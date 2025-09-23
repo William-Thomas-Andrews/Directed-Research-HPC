@@ -33,6 +33,34 @@ int run_tests() {
     printf("                          This function call took %.9f ms\n", time_spent);
     // --------------------------------
 
+    // --- 8th Matrix Multiplication Function ---
+    struct Matrix result_8;
+    init_matrix(&result_8, A_rows, B_cols);
+    begin = clock();
+    bijk(&result_8, &A, &B, A.cols, A.cols/2);
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    // printf("6th matrix multiplication result :\n");
+    // print_matrix(&result_6);
+    if (cmp_matrix(&result, &result_8) == 1) printf("MM1 and B&OH Solution are the same! This function call took %.9f ms\n", time_spent);
+    else printf("MM1 and B&OH Solution are NOT the same!!!!!!!!!! :(\n");
+
+    // ------------------------------------------
+
+
+    // --- 7th Matrix Multiplication Function ---
+    struct Matrix result_7;
+    init_matrix(&result_7, A_rows, B_cols);
+    begin = clock();
+    matrix_multiply_7(&result_7, &A, &B);
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    // printf("6th matrix multiplication result :\n");
+    // print_matrix(&result_6);
+    if (cmp_matrix(&result, &result_7) == 1) printf("MM1 and Block Implementation are the same! This function call took %.9f ms\n", time_spent);
+    else printf("MM1 and Block Implementation are NOT the same!!!!!!!!!! :(\n");
+    // --------------------------------
+
 
     // --- 2nd Matrix Multiplication Function ---
     struct Matrix result_2;
@@ -103,18 +131,7 @@ int run_tests() {
     else printf("MM1 and MM6 are NOT the same!!!!!!!!!! :(\n");
     // --------------------------------
 
-    // --- 7th Matrix Multiplication Function ---
-    struct Matrix result_7;
-    init_matrix(&result_7, A_rows, B_cols);
-    begin = clock();
-    matrix_multiply_7(&result_7, &A, &B);
-    end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    // printf("6th matrix multiplication result :\n");
-    // print_matrix(&result_6);
-    if (cmp_matrix(&result, &result_7) == 1) printf("MM1 and Block Implementation are the same! This function call took %.9f ms\n", time_spent);
-    else printf("MM1 and MM6 are NOT the same!!!!!!!!!! :(\n");
-    // --------------------------------
+
 
     printf("\n----------------------\n Tests complete! :) \n----------------------\n");
 

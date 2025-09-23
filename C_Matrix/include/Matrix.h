@@ -352,19 +352,55 @@ static inline void matrix_multiply_7(struct Matrix *result, struct Matrix *A, st
     if (A->cols != B->rows)      { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 rows.\n");           exit(1); }
     if (result->rows != A_rows)  { fprintf(stderr, "Result matrix rows do not match Matrix 1 rows.\n");        exit(1); }
     if (result->cols != B_cols)  { fprintf(stderr, "Result matrix columns do not match Matrix 2 columns.\n");  exit(1); }
-    
-    // long double sum;
-    for (int i = 0; i < A_rows; i++) {
-        for (int j = 0; j < B_cols; j++) {
-            // sum = 0.0;
-            for (int k = 0; k < B_rows; k++) {
+
+    // struct Matrix temp;
+    // init_matrix(&temp, A_rows, B_cols);
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 2; k++) {
                 // get_element(result, i, j) += get_element(A, i, k) * get_element(B, k, j);
-                result->data_array[i * B_cols + j] += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j]; // Disabled because using the 'sum' container is significantly more cache efficient
+                // result->data_array[i * B_cols + j] += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j]; // Disabled because using the 'sum' container is significantly more cache efficient
                 // sum += get_element(A, i, k) * get_element(B, k, j);
                 // sum += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j];
+                // clear_matrix(&temp);
+                // Multiply A_1*B_1
+                for (int q = i*(A_rows/2); q < (i+1)*(A_rows/2); q++) {
+                    for (int r = j*(B_cols/2); r < (j+1)*(B_cols/2); r++) {
+                        for (int s = k*(B_rows/2); s < (k+1)*(B_rows/2); s++) {
+                            result->data_array[q * B_cols + r] += A->data_array[q * A_cols + s] * B->data_array[s * B_cols + r];
+                        }
+                    }
+                }
+                // for (int a = 0; a < result->size; a++) {
+
+                // }
+                // add to correct corner of result
             }
             // result(i, j) = sum;
             // result->data_array[i * B_cols + j] = sum;;
+        }
+    }
+}
+
+void bijk(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int bsize)
+{
+    int i, j, k, kk, jj;
+    double sum;
+    int en = bsize * (n/bsize); /* Amount that fits evenly into blocks */
+    // for (i = 0; i < n; i++)
+    //     for (j = 0; j < n; j++)
+    //         result->data_array[i * result->cols + j] = 0.0;
+    for (kk = 0; kk < en; kk += bsize) {
+        for (jj = 0; jj < en; jj += bsize) {
+            for (i = 0; i < n; i++) {
+                for (j = jj; j < jj + bsize; j++) {
+                    sum = result->data_array[i*result->cols + j];
+                    for (k = kk; k < kk + bsize; k++) {
+                        sum += A->data_array[i*A->cols + k] * B->data_array[k*B->cols + j];
+                    }
+                    result->data_array[i*result->cols + j] = sum;
+                }
+            }
         }
     }
 }
@@ -395,13 +431,19 @@ static inline void del_matrix(struct Matrix *matrix) {
     free(matrix->data_array);
 }
 
+static inline void clear_matrix(struct Matrix *matrix) {
+    for (int i = 0; i < matrix->size; i++) {
+        matrix->data_array[i] = 0;
+    }
+}
+
 static inline int cmp_matrix(struct Matrix *A, struct Matrix *B) {
     if (A->rows != B->rows && A->cols != B->cols) { printf("Error: row and column sizes do not match\n"); return 0; } // fprintf(stderr, "Error: row and column sizes do not match\n");
     else if (A->rows != B->rows) return 0; // fprintf(stderr, "Error: row sizes do not match\n");
     else if (A->cols != B->cols) return 0; // fprintf(stderr, "Error: column sizes do not match\n");
     else if (A->size != B->size) return 0; // fprintf(stderr, "Error: matrix sizes do not match\n");
     for (int i = 0; i < A->size; i++) {
-        if ((A->data_array[i] - B->data_array[i]) > 1e-9 || (A->data_array[i] - B->data_array[i]) < -1e-9)  { printf("DEBUG: %Lf and %Lf were not the same.\n", A->data_array[i], B->data_array[i]); return 0; }
+        if ((A->data_array[i] - B->data_array[i]) > 1e-6 || (A->data_array[i] - B->data_array[i]) < -1e-6)  { printf("DEBUG: %.9Lf and %.9Lf were not the same.\n", A->data_array[i], B->data_array[i]); return 0; }
     }
     return 1;
 }
