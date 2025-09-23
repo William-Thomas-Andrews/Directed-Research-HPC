@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/scripts",
-  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/include -O3 -std=gnu2x -o CMakeFiles/MATRIX.dir/test/Main.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test/Main.c",
-  "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test/Main.c"
-}
-]

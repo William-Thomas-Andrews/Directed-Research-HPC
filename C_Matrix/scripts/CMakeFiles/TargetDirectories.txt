@@ -1,3 +1,0 @@
-/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/scripts/CMakeFiles/MATRIX.dir
-/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/scripts/CMakeFiles/edit_cache.dir
-/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/scripts/CMakeFiles/rebuild_cache.dir
