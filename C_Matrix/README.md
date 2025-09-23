@@ -1,6 +1,6 @@
 # C Matrix Multiplication Performance Analysis
 
-A comprehensive C implementation comparing various matrix multiplication algorithms and optimizations as part of high-performance computing research.
+A comprehensive C implementation comparing various matrix multiplication algorithms and optimizations as part of high-performance computing directed study.
 
 ## Overview
 
@@ -27,6 +27,16 @@ This project implements and benchmarks multiple matrix multiplication strategies
 - Memory-efficient matrix operations
 - Thread-safe parallel implementations
 - Configurable compiler optimizations
+
+
+## Notes
+
+### Compiler Flage
+
+- The B&OH function only is heavily sped up by -ffast-math. This is because:
+- My blocked function is not affected by -ffast-math. This is because:
+- The other functions are unaffected, except MM2 which was the slowest in the first place. This function seemingly has its slowness amplified due to -ffast-math. This is because:
+- The flag -flto keeps the parallel and MM2 the same, but slows everything else down by a decent bit. This is because:
 
 
 
@@ -126,7 +136,8 @@ struct Matrix {
 
 ### Memory Management
 
-- Efficient contiguous memory allocation (extremely lightweight too)
+- Efficient contiguous memory allocation
+- Extremely lightweight
 - Cache-friendly data access patterns
 - Proper cleanup and error handling
 - Memory leak detection support

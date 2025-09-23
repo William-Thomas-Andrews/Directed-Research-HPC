@@ -1,12 +1,12 @@
 [
 {
   "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/build",
-  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test -O2 -march=native -ffast-math -std=gnu2x -o CMakeFiles/MATRIX.dir/test/Main.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test/Main.c",
+  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test -O3 -flto -std=gnu2x -o CMakeFiles/MATRIX.dir/test/Main.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test/Main.c",
   "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test/Main.c"
 },
 {
   "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/build",
-  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test -O2 -march=native -ffast-math -std=gnu2x -o CMakeFiles/MATRIX.dir/test/Test.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test/Test.c",
+  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test -O3 -flto -std=gnu2x -o CMakeFiles/MATRIX.dir/test/Test.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test/Test.c",
   "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test/Test.c"
 }
 ]

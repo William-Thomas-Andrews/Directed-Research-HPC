@@ -30,7 +30,7 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     printf("Here is the Matrix Multiplication result:\n");
     // print_matrix(&result);
-    printf("                          This function call took %.9f ms\n", time_spent);
+    printf("                          This function call took %.9f s\n", time_spent);
     // --------------------------------
 
     // --- 8th Matrix Multiplication Function ---
@@ -42,7 +42,7 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("6th matrix multiplication result :\n");
     // print_matrix(&result_6);
-    if (cmp_matrix(&result, &result_8) == 1) printf("MM1 and B&OH Solution are the same! This function call took %.9f ms\n", time_spent);
+    if (cmp_matrix(&result, &result_8) == 1) printf("MM1 and B&OH Solution are the same! This function call took %.9f s\n", time_spent);
     else printf("MM1 and B&OH Solution are NOT the same!!!!!!!!!! :(\n");
 
     // ------------------------------------------
@@ -57,7 +57,7 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("6th matrix multiplication result :\n");
     // print_matrix(&result_6);
-    if (cmp_matrix(&result, &result_7) == 1) printf("MM1 and Block Implementation are the same! This function call took %.9f ms\n", time_spent);
+    if (cmp_matrix(&result, &result_7) == 1) printf("MM1 and Block Implementation are the same! This function call took %.9f s\n", time_spent);
     else printf("MM1 and Block Implementation are NOT the same!!!!!!!!!! :(\n");
     // --------------------------------
 
@@ -71,7 +71,7 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("2nd matrix multiplication result :\n");
     // print_matrix(&result_2);
-    if (cmp_matrix(&result, &result_2) == 1) printf("MM1 and MM2 are the same! This function call took %.9f ms\n", time_spent);
+    if (cmp_matrix(&result, &result_2) == 1) printf("MM1 and MM2 are the same! This function call took %.9f s\n", time_spent);
     else printf("MM1 and MM2 are NOT the same!!!!!!!!!! :(\n");
     // --------------------------------
 
@@ -85,7 +85,7 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("3rd matrix multiplication result :\n");
     // print_matrix(&result_3);
-    if (cmp_matrix(&result, &result_3) == 1) printf("MM1 and MM3 are the same! This function call took %.9f ms\n", time_spent);
+    if (cmp_matrix(&result, &result_3) == 1) printf("MM1 and MM3 are the same! This function call took %.9f s\n", time_spent);
     else printf("MM1 and MM3 are NOT the same!!!!!!!!!! :(\n");
     // --------------------------------
 
@@ -99,7 +99,7 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("4th matrix multiplication result :\n");
     // print_matrix(&result_4);
-    if (cmp_matrix(&result, &result_4) == 1) printf("MM1 and MM4 are the same! This function call took %.9f ms\n", time_spent);
+    if (cmp_matrix(&result, &result_4) == 1) printf("MM1 and MM4 are the same! This function call took %.9f s\n", time_spent);
     else printf("MM1 and MM4 are NOT the same!!!!!!!!!! :(\n");
     // --------------------------------
 
@@ -113,7 +113,7 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("5th matrix multiplication result :\n");
     // print_matrix(&result_5);
-    if (cmp_matrix(&result, &result_5) == 1) printf("MM1 and MM5 are the same! This function call took %.9f ms\n", time_spent);
+    if (cmp_matrix(&result, &result_5) == 1) printf("MM1 and MM5 are the same! This function call took %.9f s\n", time_spent);
     else printf("MM1 and MM5 are NOT the same!!!!!!!!!! :(\n");
     // --------------------------------
 
@@ -127,7 +127,7 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("6th matrix multiplication result :\n");
     // print_matrix(&result_6);
-    if (cmp_matrix(&result, &result_6) == 1) printf("MM1 and MM6 are the same! This function call took %.9f ms\n", time_spent);
+    if (cmp_matrix(&result, &result_6) == 1) printf("MM1 and MM6 are the same! This function call took %.9f s\n", time_spent);
     else printf("MM1 and MM6 are NOT the same!!!!!!!!!! :(\n");
     // --------------------------------
 

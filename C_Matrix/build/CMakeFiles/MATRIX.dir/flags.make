@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test
 
-C_FLAGS = -O2 -march=native -ffast-math -std=gnu2x
+C_FLAGS = -O3 -flto -std=gnu2x
 

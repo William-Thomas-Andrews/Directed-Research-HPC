@@ -1,1 +1,1 @@
-/usr/bin/cc -O2 -march=native -ffast-math CMakeFiles/MATRIX.dir/test/Main.c.o CMakeFiles/MATRIX.dir/test/Test.c.o -o bin/MATRIX 
+/usr/bin/cc -O3 -flto CMakeFiles/MATRIX.dir/test/Main.c.o CMakeFiles/MATRIX.dir/test/Test.c.o -o bin/MATRIX 
