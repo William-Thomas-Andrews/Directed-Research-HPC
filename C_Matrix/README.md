@@ -103,7 +103,7 @@ This implementation is designed for:
 - **Compiler Optimization Studies**: Understanding the impact of various optimization flags
 - **Algorithm Comparison**: Benchmarking against optimized reference implementations
 
-## Future Work
+<!-- ## Future Work
 
 Current TODO items include:
 
@@ -111,7 +111,7 @@ Current TODO items include:
 - Extended block sizes (4+ blocks) with multithreading
 - Thread scaling analysis
 - Process vs. thread distribution investigation
-- Fork-based parallelization comparison
+- Fork-based parallelization comparison -->
 
 ## Technical Details
 
@@ -126,7 +126,7 @@ struct Matrix {
 
 ### Memory Management
 
-- Efficient contiguous memory allocation
+- Efficient contiguous memory allocation (extremely lightweight too)
 - Cache-friendly data access patterns
 - Proper cleanup and error handling
 - Memory leak detection support
@@ -144,15 +144,15 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 ./scripts/memcheck.sh
 ```
 
-## Contributing
+<!-- ## Contributing
 
 This project is part of ongoing HPC research. Key areas for contribution:
 
 1. Additional parallelization strategies
 2. SIMD/vectorization optimizations
 3. Memory bandwidth analysis
-4. Cross-platform performance comparison
+4. Cross-platform performance comparison -->
 
-## License
+<!-- ## License
 
-Part of the Directed-Research-HPC project for academic research purposes.
+Part of the Directed-Research-HPC project for academic research purposes. -->
