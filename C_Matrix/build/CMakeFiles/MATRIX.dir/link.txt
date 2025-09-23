@@ -1,1 +1,1 @@
-/usr/bin/cc -O3 CMakeFiles/MATRIX.dir/test/Main.c.o -o bin/MATRIX 
+/usr/bin/cc -O3 CMakeFiles/MATRIX.dir/test/Main.c.o CMakeFiles/MATRIX.dir/test/Test.c.o -o bin/MATRIX 

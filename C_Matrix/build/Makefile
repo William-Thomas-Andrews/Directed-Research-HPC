@@ -153,6 +153,30 @@ test/Main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MATRIX.dir/build.make CMakeFiles/MATRIX.dir/test/Main.c.s
 .PHONY : test/Main.c.s
 
+test/Test.o: test/Test.c.o
+.PHONY : test/Test.o
+
+# target to build an object file
+test/Test.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MATRIX.dir/build.make CMakeFiles/MATRIX.dir/test/Test.c.o
+.PHONY : test/Test.c.o
+
+test/Test.i: test/Test.c.i
+.PHONY : test/Test.i
+
+# target to preprocess a source file
+test/Test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MATRIX.dir/build.make CMakeFiles/MATRIX.dir/test/Test.c.i
+.PHONY : test/Test.c.i
+
+test/Test.s: test/Test.c.s
+.PHONY : test/Test.s
+
+# target to generate assembly for a file
+test/Test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MATRIX.dir/build.make CMakeFiles/MATRIX.dir/test/Test.c.s
+.PHONY : test/Test.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +189,9 @@ help:
 	@echo "... test/Main.o"
 	@echo "... test/Main.i"
 	@echo "... test/Main.s"
+	@echo "... test/Test.o"
+	@echo "... test/Test.i"
+	@echo "... test/Test.s"
 .PHONY : help
 
 

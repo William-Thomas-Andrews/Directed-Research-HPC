@@ -17,6 +17,7 @@ file(GLOB_RECURSE SRC_FILES
 
 add_executable(MATRIX 
     test/Main.c
+    test/Test.c
     ${SRC_FILES}
 )
 
@@ -26,4 +27,5 @@ set(BUILD_BENCHMARKS OFF CACHE INTERNAL "" FORCE)
 target_include_directories(MATRIX
     PUBLIC ${CMAKE_SOURCE_DIR}/src
     PUBLIC ${CMAKE_SOURCE_DIR}/include
+    PUBLIC ${CMAKE_SOURCE_DIR}/test
 )
