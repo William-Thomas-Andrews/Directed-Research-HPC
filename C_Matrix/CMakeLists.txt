@@ -1,0 +1,29 @@
+cmake_minimum_required(VERSION 3.22.1)
+
+
+project(MATRIX)
+
+set(CMAKE_C_STANDARD 23)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+set(CMAKE_C_FLAGS_RELEASE "-O3")
+set(CMAKE_C_FLAGS_DEBUG "-O0 -g")
+
+file(GLOB_RECURSE SRC_FILES
+    src/*.c
+)
+
+add_executable(MATRIX 
+    test/Main.c
+    ${SRC_FILES}
+)
+
+set(BUILD_TESTS OFF CACHE INTERNAL "" FORCE)
+set(BUILD_BENCHMARKS OFF CACHE INTERNAL "" FORCE)
+
+target_include_directories(MATRIX
+    PUBLIC ${CMAKE_SOURCE_DIR}/src
+    PUBLIC ${CMAKE_SOURCE_DIR}/include
+)
