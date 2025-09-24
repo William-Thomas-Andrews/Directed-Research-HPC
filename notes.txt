@@ -1,0 +1,54 @@
+Here are rigorous but achievable project ideas to expand your HPC skills:
+
+
+
+  1. GPU Computing Transition
+
+  Implement CUDA matrix multiplication variants
+  - Port your existing algorithms to GPU kernels
+  - Compare CPU vs GPU performance across matrix sizes
+  - Experiment with shared memory, texture memory, and constant memory
+  - Analyze memory bandwidth utilization and occupancy
+
+  2. Distributed Computing with MPI
+
+  Multi-node matrix multiplication
+  - Implement block-distributed algorithms using MPI
+  - Study communication vs computation trade-offs
+  - Compare different domain decomposition strategies
+  - Benchmark across multiple nodes with varying network topologies
+
+  3. Memory Hierarchy Deep Dive
+
+  Custom memory allocator performance study
+  - Implement pool, stack, and buddy allocators
+  - Benchmark against malloc/free for different allocation patterns
+  - Study NUMA-aware allocation strategies
+  - Analyze false sharing effects in multithreaded scenarios
+
+  4. SIMD Optimization Laboratory
+
+  Vectorized algorithm implementations
+  - Rewrite matrix operations using AVX/AVX-512 intrinsics
+  - Compare compiler auto-vectorization vs hand-optimized code
+  - Implement different data layouts (AoS vs SoA)
+  - Study alignment requirements and their performance impact
+
+  5. Real-time Systems Performance
+
+  Deterministic computing constraints
+  - Implement fixed-priority scheduling algorithms
+  - Study cache-aware task scheduling
+  - Analyze worst-case execution time (WCET) bounds
+  - Compare real-time vs throughput-optimized implementations
+
+  6. Network-Attached Computing
+
+  Distributed computation frameworks
+  - Build a simple map-reduce system from scratch
+  - Implement work-stealing schedulers
+  - Study fault tolerance and load balancing
+  - Compare TCP vs RDMA communication performance
+
+  Pick one that aligns with your hardware access and time constraints. Each
+  builds naturally on your current skills while introducing new HPC domains.

@@ -25,9 +25,9 @@ main:
 .L5:
 	.cfi_restore_state
 	movq	stderr(%rip), %rcx
+	leaq	.LC0(%rip), %rdi
 	movl	$19, %edx
 	movl	$1, %esi
-	leaq	.LC0(%rip), %rdi
 	call	fwrite@PLT
 	movl	$1, %edi
 	call	exit@PLT

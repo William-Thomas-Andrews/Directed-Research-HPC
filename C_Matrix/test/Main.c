@@ -15,3 +15,6 @@ int main() {
 // TODO: see speedup based on number of threads
 // TODO: Test the process stuff with Linux perf and possibly try OpenMP 
 // TODO: try manually creating new processes with fork() 
+
+// Implement transposed access
+// Look through the assembly test.s

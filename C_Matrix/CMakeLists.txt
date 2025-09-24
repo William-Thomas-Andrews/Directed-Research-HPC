@@ -12,13 +12,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # set(CMAKE_C_FLAGS_RELEASE "-O2 -march=native -ffast-math")
 # set(CMAKE_C_FLAGS_RELEASE "-O3 -march=native -mtune=native -ffast-math -funroll-loops")
 # set(CMAKE_C_FLAGS_RELEASE "-O3 -flto -ffast-math") #B&OH function slowed by not using -ffast-math
-# set(CMAKE_C_FLAGS_RELEASE "-O3 -ffast-math")
-set(CMAKE_C_FLAGS_RELEASE "-O3 -flto -g -fno-omit-frame-pointer")
+set(CMAKE_C_FLAGS_RELEASE "-O3 -S -c -ffast-math")
+# set(CMAKE_C_FLAGS_RELEASE "-O3 -flto")
+# set(CMAKE_C_FLAGS_RELEASE "-O3 ")
 # set(CMAKE_C_FLAGS_RELEASE "-O2 -march=native -ffast-math -funroll-loops")
 set(CMAKE_C_FLAGS_DEBUG "-O0 -g")
 
 # Linux perf integration
-option(ENABLE_PERF "Enable Linux perf profiling support" ON)
+option(ENABLE_PERF "Enable Linux perf profiling support" OFF)
 if(ENABLE_PERF)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -fno-omit-frame-pointer")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -no-pie")
