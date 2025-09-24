@@ -33,17 +33,31 @@ int run_tests() {
     printf("                          This function call took %.9f s\n", time_spent);
     // --------------------------------
 
-    // --- 8th Matrix Multiplication Function ---
-    struct Matrix result_8;
-    init_matrix(&result_8, A_rows, B_cols);
+    // --- 9th Matrix Multiplication Function ---
+    struct Matrix result_9;
+    init_matrix(&result_9, A_rows, B_cols);
     begin = clock();
-    bijk(&result_8, &A, &B, A.cols, A.cols/2);
+    bijk(&result_9, &A, &B, A.cols, A.cols/2);
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("6th matrix multiplication result :\n");
     // print_matrix(&result_6);
-    if (cmp_matrix(&result, &result_8) == 1) printf("MM1 and B&OH Solution are the same! This function call took %.9f s\n", time_spent);
+    if (cmp_matrix(&result, &result_9) == 1) printf("MM1 and B&OH Solution are the same! This function call took %.9f s\n", time_spent);
     else printf("MM1 and B&OH Solution are NOT the same!!!!!!!!!! :(\n");
+
+    // ------------------------------------------
+
+    // --- 8th Matrix Multiplication Function ---
+    struct Matrix result_8;
+    init_matrix(&result_8, A_rows, B_cols);
+    begin = clock();
+    matrix_multiply_8(&result_8, &A, &B);
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    // printf("6th matrix multiplication result :\n");
+    // print_matrix(&result_6);
+    if (cmp_matrix(&result, &result_8) == 1) printf("MM1 and MM8 (parallel blocked) Solution are the same! This function call took %.9f s\n", time_spent);
+    else printf("MM1 and MM8 (parallel blocked) Solution are NOT the same!!!!!!!!!! :(\n");
 
     // ------------------------------------------
 
