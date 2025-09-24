@@ -13,6 +13,7 @@ int main() {
 // TODO: Investigate numa 
 // TODO: Block implementation (4+ blocks), and multi-thread that too (watch out for data races!! You have cache effects, decomposition effects) 
 // TODO: see speedup based on number of threads
-// TODO: will the OS automatically distribute through processes or keep on one process? If yes, then can we guarantee that it will be spread out? Will pthreads
+// TODO: will the OS automatically distribute through processes or keep on one process? Actuall
+// If yes, then can we guarantee that it will be spread out? Will pthreads
 // allow this to happen? are there C functions that let us check process states? 
-// TODO: try manually creating new processes with fork()
+// TODO: try manually creating new processes with fork() 

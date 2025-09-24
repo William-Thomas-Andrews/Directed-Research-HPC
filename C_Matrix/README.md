@@ -31,12 +31,23 @@ This project implements and benchmarks multiple matrix multiplication strategies
 
 ## Notes
 
-### Compiler Flage
+### Compiler Flags
 
 - The B&OH function only is heavily sped up by -ffast-math. This is because:
 - My blocked function is not affected by -ffast-math. This is because:
 - The other functions are unaffected, except MM2 which was the slowest in the first place. This function seemingly has its slowness amplified due to -ffast-math. This is because:
 - The flag -flto keeps the parallel and MM2 the same, but slows everything else down by a decent bit. This is because:
+
+### Linux Perf
+
+- Use Linux 'perf' to help with OS and process usage viewing
+
+### Questions and Answers
+
+#### Will the OS automatically distribute work through processes or keep on one process?
+
+- The OS will not distribute matrix work through processes unless you tell it to. It will keep it all on one process unless you specify other behavior with something like OpenMP.
+- However, the OS can and often does change processes like these and their threads throughout the cores for reasons due to scheduling: load balancing, fairness, power management/thermal, NUMA awareness, and preemption with high priority tasks removing your task from the queue.
 
 
 
