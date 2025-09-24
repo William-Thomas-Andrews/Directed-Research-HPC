@@ -1,1 +1,1 @@
-/usr/bin/cc -O3 -flto CMakeFiles/MATRIX.dir/test/Main.c.o CMakeFiles/MATRIX.dir/test/Test.c.o -o bin/MATRIX 
+/usr/bin/cc -O3 -flto -g -fno-omit-frame-pointer CMakeFiles/MATRIX.dir/test/Main.c.o CMakeFiles/MATRIX.dir/test/Test.c.o -o bin/MATRIX 

@@ -31,6 +31,14 @@ This project implements and benchmarks multiple matrix multiplication strategies
 
 ## Notes
 
+### NUMA (non-uniform memory access)
+
+#### How NUMA works
+
+- When a processor looks for data at a certain memory address, it first looks in the L1 cache on the microprocessor. Then it moves to the larger L2 cache chip and finally to a third level of cache (L3). The NUMA configuration provides this third level. If the processor still cannot find the data, it will look in the remote memory located near the other microprocessors.
+
+- Each of these clusters is viewed by NUMA as a node in the interconnection network. NUMA maintains a hierarchical view of the data on all nodes. Data is moved on the bus between the clusters using a scalable coherent interface. SCI coordinates cache coherence (consistency) across the nodes of the multiple clusters in the NUMA architecture.
+
 ### Compiler Flags
 
 - The B&OH function only is heavily sped up by -ffast-math. This is because:

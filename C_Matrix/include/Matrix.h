@@ -382,6 +382,58 @@ static inline void matrix_multiply_7(struct Matrix *result, struct Matrix *A, st
     }
 }
 
+static inline void *routine_80() {
+
+}
+
+static inline void *routine_81() {
+    
+}
+
+static inline void *routine_82() {
+    
+}
+
+static inline void *routine_83() {
+    
+}
+
+// A and B have to have rows = cols and both sides divisible by 2.
+static inline void matrix_multiply_8(struct Matrix *result, struct Matrix *A, struct Matrix *B) {
+    int A_cols = A->cols; int B_cols = B->cols; int A_rows = A->rows; int B_rows = B->rows;
+    if (A->cols != B->rows)      { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 rows.\n");           exit(1); }
+    if (result->rows != A_rows)  { fprintf(stderr, "Result matrix rows do not match Matrix 1 rows.\n");        exit(1); }
+    if (result->cols != B_cols)  { fprintf(stderr, "Result matrix columns do not match Matrix 2 columns.\n");  exit(1); }
+
+    // struct Matrix temp;
+    // init_matrix(&temp, A_rows, B_cols);
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 2; k++) {
+                // get_element(result, i, j) += get_element(A, i, k) * get_element(B, k, j);
+                // result->data_array[i * B_cols + j] += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j]; // Disabled because using the 'sum' container is significantly more cache efficient
+                // sum += get_element(A, i, k) * get_element(B, k, j);
+                // sum += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j];
+                // clear_matrix(&temp);
+                // Multiply A_1*B_1
+                for (int q = i*(A_rows/2); q < (i+1)*(A_rows/2); q++) {
+                    for (int r = j*(B_cols/2); r < (j+1)*(B_cols/2); r++) {
+                        for (int s = k*(B_rows/2); s < (k+1)*(B_rows/2); s++) {
+                            result->data_array[q * B_cols + r] += A->data_array[q * A_cols + s] * B->data_array[s * B_cols + r];
+                        }
+                    }
+                }
+                // for (int a = 0; a < result->size; a++) {
+
+                // }
+                // add to correct corner of result
+            }
+            // result(i, j) = sum;
+            // result->data_array[i * B_cols + j] = sum;;
+        }
+    }
+}
+
 void bijk(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int bsize)
 {
     int i, j, k, kk, jj;
