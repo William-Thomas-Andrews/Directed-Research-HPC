@@ -1,3 +1,5 @@
+#include "Test.h"
+#include "Matrix.h"
 #include <immintrin.h>
 #include <stdio.h>
 
@@ -45,7 +47,8 @@ void vector_add(float *a, float *b, float *result, int n) {
     #endif
 }
 
-int main() {
+int run_tests() {
+    struct Matrix m;
     float a[16], b[16], result[16];
     __m512 simd512_array_1 = _mm512_set_ps(8.0f, 4.0f, 2.0f, 1.0f, 8.0f, 4.0f, 2.0f, 1.0f, 8.0f, 4.0f, 2.0f, 1.0f, 8.0f, 4.0f, 2.0f, 1.0f);
     __m512 simd512_array_2 = _mm512_set_ps(4.0f, 3.0f, 2.0f, 1.0f, 4.0f, 3.0f, 2.0f, 1.0f, 4.0f, 3.0f, 2.0f, 1.0f, 4.0f, 3.0f, 2.0f, 1.0f);
