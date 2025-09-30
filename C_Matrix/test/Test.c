@@ -24,6 +24,15 @@ int run_tests() {
     clock_t begin, end;
     double time_spent;
 
+
+    // --- Transpose test time ---
+    // begin = clock();
+    // transpose(&A);
+    // end = clock();
+    // time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    // printf("Transpose time took: %.9f s\n", time_spent);
+
+
     // --- 1st Matrix Multiplication Function ---
     begin = clock();
     matrix_multiply_1(&result, &A, &B);

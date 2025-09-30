@@ -70,6 +70,16 @@ static inline int get_size(struct Matrix *matrix) {
     return matrix->size;
 }
 
+static inline void transpose(struct Matrix *input) {
+    struct Matrix temp;
+    init_matrix(&temp, input->cols, input->rows);
+    for (int i = 0; i < input->rows; i++) {
+        for (int j = 0; j < input->cols; j++) {
+            temp.data_array[i*temp.cols + j] = input->data_array[j*input->cols + i];
+        }
+    }
+}
+
 static inline void matrix_multiply_1(struct Matrix *result, struct Matrix *A, struct Matrix *B) {
     int A_cols = A->cols; int B_cols = B->cols; int A_rows = A->rows; int B_rows = B->rows;
     if (A->cols != B->rows)      { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 rows.\n");           exit(1); }

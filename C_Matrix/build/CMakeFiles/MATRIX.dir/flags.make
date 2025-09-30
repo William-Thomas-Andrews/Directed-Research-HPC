@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test
+C_INCLUDES = -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/C_Matrix/test -I/home/wtandrews/320_CSCI/version2
 
-C_FLAGS = -O3 -S -c -ffast-math -std=gnu2x
+C_FLAGS = -O3 -ffast-math -std=gnu2x
 
