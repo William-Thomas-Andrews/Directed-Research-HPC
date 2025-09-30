@@ -52,8 +52,9 @@ int run_tests() {
     // --- 10th Matrix Multiplication Function - Inteligent Transposes ---
     struct Matrix result_10;
     init_matrix_r(&result_10, A_rows, B_cols);
-    transpose(&B);
+    
     begin = clock();
+    transpose(&B);
     matrix_multiply_with_transposed_B(&result_10, &A, &B);
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
