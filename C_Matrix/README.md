@@ -31,6 +31,10 @@ This project implements and benchmarks multiple matrix multiplication strategies
 
 ## Notes
 
+### Cache locality with matrix data arrays
+
+The most interesting matrix operation I implemented was a simple matrix 
+
 ### NUMA (non-uniform memory access)
 
 #### How NUMA works

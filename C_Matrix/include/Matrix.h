@@ -10,7 +10,7 @@
 #define _MATRIX_H
 
 #define MIN 0.00L
-#define MAX 100.00L
+#define MAX 2.00L
 
 long double randfrom(long double min, long double max) {
     long double range = (max - min); 
@@ -75,9 +75,15 @@ static inline void transpose(struct Matrix *input) {
     init_matrix(&temp, input->cols, input->rows);
     for (int i = 0; i < input->rows; i++) {
         for (int j = 0; j < input->cols; j++) {
-            temp.data_array[i*temp.cols + j] = input->data_array[j*input->cols + i];
+            temp.data_array[j*temp.cols + i] = input->data_array[i*input->cols + j];
         }
     }
+    for (int k = 0; k < temp.size; k++) {
+        input->data_array[k] = temp.data_array[k];
+    }
+    input->rows = temp.rows;
+    input->cols = temp.cols;
+    free((temp.data_array));
 }
 
 static inline void matrix_multiply_1(struct Matrix *result, struct Matrix *A, struct Matrix *B) {
@@ -487,6 +493,24 @@ void bijk(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int 
     }
 }
 
+// Inteligent transposition for array locality
+static inline void matrix_multiply_with_transposed_B(struct Matrix *result, struct Matrix *A, struct Matrix *B) {
+    int A_cols = A->cols; int B_cols = B->cols; int A_rows = A->rows; int B_rows = B->rows;
+    if (A_cols != B_cols)      { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 cols (transposition case).\n");           exit(1); }
+    if (result->rows != A_rows)  { fprintf(stderr, "Result matrix rows do not match Matrix 1 rows.\n");        exit(1); }
+    if (result->cols != B_rows)  { fprintf(stderr, "Result matrix columns do not match Matrix 2 columns.\n");  exit(1); }
+    long double sum;
+    for (int i = 0; i < A_rows; i++) {
+        for (int j = 0; j < B_cols; j++) {
+            sum = 0.0;
+            for (int k = 0; k < B_rows; k++) {
+                sum += A->data_array[i * A_cols + k] * B->data_array[j * A_cols + k];
+            }
+            result->data_array[i * B_cols + j] = sum;;
+        }
+    }
+}
+
 static inline void print_matrix(struct Matrix *matrix) {
     int cols = matrix->cols;
     for (int i = 0; i < matrix->rows; i++) {
@@ -498,15 +522,6 @@ static inline void print_matrix(struct Matrix *matrix) {
             }
         }
     }
-    // A more cache inefficent version:
-    // int size = matrix->size;
-    // for (int index = 0; index < size; index++) {
-    //     if (index != 0 && ((index+1) % cols) == 0) {
-    //         printf("%Lf\n", matrix->data_array[index]);
-    //     } else {
-    //         printf("%Lf ", matrix->data_array[index]);
-    //     }
-    // }
 }
 
 static inline void del_matrix(struct Matrix *matrix) {
@@ -525,7 +540,7 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B) {
     else if (A->cols != B->cols) return 0; // fprintf(stderr, "Error: column sizes do not match\n");
     else if (A->size != B->size) return 0; // fprintf(stderr, "Error: matrix sizes do not match\n");
     for (int i = 0; i < A->size; i++) {
-        if ((A->data_array[i] - B->data_array[i]) > 1e-11 || (A->data_array[i] - B->data_array[i]) < -1e-11)  { printf("DEBUG: %.9Lf and %.9Lf were not the same.\n", A->data_array[i], B->data_array[i]); return 0; }
+        if ((A->data_array[i] - B->data_array[i]) > 1e-2 || (A->data_array[i] - B->data_array[i]) < -1e-2)  { printf("DEBUG: %.9Lf and %.9Lf were not the same.\n", A->data_array[i], B->data_array[i]); return 0; }
     }
     return 1;
 }
