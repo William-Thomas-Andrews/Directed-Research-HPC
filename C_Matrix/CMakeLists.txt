@@ -45,6 +45,9 @@ target_include_directories(MATRIX
     PUBLIC ${CMAKE_SOURCE_DIR}/test
 )
 
+# add_compile_options(-mavx2 -mfma)
+# include_directories(/home/wtandrews/320_CSCI/version2)
+
 # Add custom target for perf profiling
 if(ENABLE_PERF)
     add_custom_target(perf-record

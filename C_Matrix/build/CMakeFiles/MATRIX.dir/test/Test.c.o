@@ -1260,7 +1260,7 @@ routine_60:
 	.p2align 4
 	.type	init_matrix.part.0, @function
 init_matrix.part.0:
-.LFB83:
+.LFB5556:
 	.cfi_startproc
 	pushq	%rax
 	.cfi_def_cfa_offset 16
@@ -1276,7 +1276,7 @@ init_matrix.part.0:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE83:
+.LFE5556:
 	.size	init_matrix.part.0, .-init_matrix.part.0
 	.set	init_matrix_r.part.0,init_matrix.part.0
 	.p2align 4
@@ -1528,7 +1528,7 @@ bijk:
 	.globl	run_tests
 	.type	run_tests, @function
 run_tests:
-.LFB81:
+.LFB5554:
 	.cfi_startproc
 	endbr64
 	pushq	%r15
@@ -2808,7 +2808,7 @@ run_tests:
 	movl	$1, %edi
 	call	exit@PLT
 	.cfi_endproc
-.LFE81:
+.LFE5554:
 	.size	run_tests, .-run_tests
 	.section	.rodata.cst16,"aM",@progbits,16
 	.align 16

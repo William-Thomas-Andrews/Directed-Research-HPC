@@ -10,11 +10,9 @@ int main() {
     return 0;
 }
 
-// TODO: Investigate and implement numa 
-// TODO: Block implementation (4+ blocks), and multi-thread that too (watch out for data races!! You have cache effects, decomposition effects) 
-// TODO: see speedup based on number of threads
-// TODO: Test the process stuff with Linux perf and possibly try OpenMP 
-// TODO: try manually creating new processes with fork() 
 
-// Implement transposed access
-// Look through the assembly test.s
+// TODO: try manually creating new processes with fork() 
+// TODO: Implement transposed access
+// TODO: Look through the assembly test.s
+// TODO: Start AVX project
+// TODO: Implement realloc and padding for the matrices

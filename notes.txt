@@ -1,5 +1,4 @@
-Here are rigorous but achievable project ideas to expand your HPC skills:
-
+Project ideas:
 
 
   1. GPU Computing Transition

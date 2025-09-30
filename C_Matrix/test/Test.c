@@ -2,6 +2,7 @@
 
 #include "Test.h"
 #include "Matrix.h"
+#include <immintrin.h>
 
 int run_tests() {
 
