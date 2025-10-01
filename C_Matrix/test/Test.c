@@ -7,7 +7,7 @@
 int run_tests() {
 
     int A_rows, A_cols, B_rows, B_cols;
-    A_rows = 1000; A_cols = 1000; B_rows = 1000; B_cols = 1000;
+    A_rows = 2048; A_cols = 2048; B_rows = 2048; B_cols = 2048;
 
 
     
@@ -15,6 +15,7 @@ int run_tests() {
     struct Matrix B;
     struct Matrix result;
     init_matrix_r(&A, A_rows, A_cols);
+    sleep(3);
     init_matrix_r(&B, B_rows, B_cols);
     init_matrix(&result, A_rows, B_cols);
     // printf("Matrix A: \n");
@@ -28,7 +29,7 @@ int run_tests() {
 
     // --- Transpose test ---
     // struct Matrix T;
-    // init_matrix_r(&T, 3, 2);
+    // init_matrix_r(&T, 5, 3);
     // // init_matrix(&T_result, T.cols, T.rows);
     // print_matrix(&T);
     // begin = clock();
@@ -37,6 +38,7 @@ int run_tests() {
     // time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // print_matrix(&T);
     // printf("Transpose time took: %.6f s\n", time_spent);
+    // --------------------------------
 
 
     // --- 1st Matrix Multiplication Function ---
@@ -61,7 +63,7 @@ int run_tests() {
     // printf("10th matrix multiplication result :\n");
     // print_matrix(&result_10);
     printf("MM10 took %.6f s\n", time_spent);
-    // if (cmp_matrix(&result, &result_10) == 1) printf("MM1 and transposed matrix multiply Solution are the same! This function call took %.6f s\n", time_spent);
+    if (cmp_matrix(&result, &result_10) == 1) printf("MM1 and transposed matrix multiply Solution are the same! This function call took %.6f s\n", time_spent);
     // print_matrix(&result_10);
     // printf("\n");
     // print_matrix(&result);

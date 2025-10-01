@@ -12,7 +12,5 @@ int main() {
 
 
 // TODO: try manually creating new processes with fork() 
-// TODO: Implement transposed access
-// TODO: Look through the assembly test.s
-// TODO: Start AVX project
+// TODO: Implement AVX classic, and shuffle/permute stuff
 // TODO: Implement realloc and padding for the matrices

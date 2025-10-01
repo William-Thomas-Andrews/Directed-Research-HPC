@@ -1,85 +1,82 @@
 #include "Test.h"
-#include "Matrix.h"
+#include "avx.h"
 #include <immintrin.h>
 #include <stdio.h>
+#include <unistd.h>
 
-// Function implementations
-void vector_add_scalar(float *a, float *b, float *result, int n) {
-    for (int i = 0; i < n; i++) {
-        result[i] = a[i] + b[i];
-    }
-}
-
-#ifdef __AVX2__
-void vector_add_avx2(float *a, float *b, float *result, int n) {
-    int i;
-    for (i = 0; i <= n - 8; i += 8) {
-        __m256 va = _mm256_loadu_ps(&a[i]);
-        __m256 vb = _mm256_loadu_ps(&b[i]);
-        __m256 vr = _mm256_add_ps(va, vb);
-        _mm256_storeu_ps(&result[i], vr);
-    }
-    for (; i < n; i++) {
-        result[i] = a[i] + b[i];
-    }
-}
-#endif
-
-#ifdef __AVX512F__
-void vector_add_avx512(float *a, float *b, float *result, int n) {
-    int i;
-    for (i = 0; i <= n - 16; i += 16) {
-
-    }
-    for (; i < n; i++) {
-        result[i] = a[i] + b[i];
-    }
-}
-#endif
-
-void vector_add(float *a, float *b, float *result, int n) {
-    #ifdef __AVX512F__
-        vector_add_avx512(a, b, result, n);
-    #elif __AVX2__
-        vector_add_avx2(a, b, result, n);
-    #else
-        vector_add_scalar(a, b, result, n);
-    #endif
-}
 
 int run_tests() {
-    struct Matrix m;
-    float a[16], b[16], result[16];
-    __m512 simd512_array_1 = _mm512_set_ps(8.0f, 4.0f, 2.0f, 1.0f, 8.0f, 4.0f, 2.0f, 1.0f, 8.0f, 4.0f, 2.0f, 1.0f, 8.0f, 4.0f, 2.0f, 1.0f);
-    __m512 simd512_array_2 = _mm512_set_ps(4.0f, 3.0f, 2.0f, 1.0f, 4.0f, 3.0f, 2.0f, 1.0f, 4.0f, 3.0f, 2.0f, 1.0f, 4.0f, 3.0f, 2.0f, 1.0f);
-    __m512 simd512_array_3;
 
-    // Initialize arrays
-    // for (int i = 0; i < 32; i++) {
-    //     a[i] = i * 1.0f;
-    //     b[i] = i * 2.0f;
-    // }
 
-    simd512_array_3 = _mm512_add_ps(simd512_array_1, simd512_array_2);
-    _mm512_store_ps(result, simd512_array_3);
-    printf("[ ");
-    for (int j = 0; j < 16; j++) {
-        printf("%f ", result[j]);
+
+
+    clock_t begin, end;
+    long double time_spent;
+
+    int A_rows, A_cols, B_rows, B_cols;
+    A_rows = 2048; A_cols = 2048; B_rows = 2048; B_cols = 2048;
+
+
+    
+    struct Matrix result, result_2, result_3, A, B;
+    init_matrix_r(&A, A_rows, A_cols);
+    sleep(2);
+    init_matrix_r(&B, B_rows, B_cols);
+    init_matrix(&result, A_rows, B_cols);
+    init_matrix(&result_2, A_rows, B_cols);
+    init_matrix(&result_3, A_rows, B_cols);
+
+    
+    // Example
+    double ex[512] = {(double) 2.3};
+    __m512d vec_1;
+    
+    // print_matrix(&A);
+    vec_1 = _mm512_loadu_pd(ex);
+    double* p = (double*)&vec_1;
+    for (int z = 0; z < 4; z++) {
+        printf("hey %f ", p[z]);
     }
-    printf("]\n");
-
-    // printf("[ ");
-    // for (int k = 0; k < 32; k++) {
-    //     printf("%f ", b[k]);
-    // }
-    // printf("]\n");
     
 
-    // // Call the dispatcher - it picks the right implementation
-    // vector_add(a, b, result, 32);
+
+    // --- 1st Matrix Multiplication Function ---
+    begin = clock();
+    matrix_multiply_1(&result, &A, &B);
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Here is the Matrix Multiplication result:\n");
+    // print_matrix(&result);
+    printf("                          This function call took %.6Lf s\n", time_spent);
+    // --------------------------------
+
+    // --- 2nd Matrix Multiplication Function - avx512 intrinsics ---
+    begin = clock();
+    avx_matrix_multiply(&result_2, &A, &B);
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Here is the avx512 result:\n");
+    // print_matrix(&result);
+    printf("                          This function call took %.6Lf s\n", time_spent);
+    // --------------------------------
+
+    if (cmp_matrix(&result, &result_2) == 1) {printf("Yay they are the same!\n");}
+    // print_matrix(&result);
+    // print_matrix(&result_2);
+    transpose(&B);
     
-    // printf("result[0] = %f\n", result[0]);
-    // printf("result[31] = %f\n", result[31]);
-    
+
+        // --- 3rd Matrix Multiplication Function - cache-friendly-transposition ---
+    begin = clock();
+    transpose(&B);
+    matrix_multiply_with_transposed_B(&result_3, &A, &B);
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Here is the cache-friendly-transposition result:\n");
+    // print_matrix(&result);
+    printf("                          This function call took %.6Lf s\n", time_spent);
+    if (cmp_matrix(&result, &result_3) == 1) {printf("Yay they are the same!\n");}
+    // --------------------------------
+    transpose(&B);
     return 0;
 }
