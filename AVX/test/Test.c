@@ -40,7 +40,7 @@ int run_tests() {
     // printf("Here is the avx512 result:\n");
     // print_matrix(&result);
     printf("The avx512 instrinsics took %.6Lf s\n", time_spent);
-    if (cmp_matrix(&result, &result_2) == 1) {printf("Yay they are the same!\n");}
+    if (cmp_matrix(&result, &result_2) == 1) {printf("Yay the matrix is correct!\n");}
     transpose(&B); // Transpose B back
     // --------------------------------
     
@@ -54,7 +54,7 @@ int run_tests() {
     // printf("Here is the cache-friendly-transposition result:\n");
     // print_matrix(&result);
     printf("The cache-friendly transposition function took %.6Lf s\n", time_spent);
-    if (cmp_matrix(&result, &result_3) == 1) {printf("Yay they are the same!\n");}
+    if (cmp_matrix(&result, &result_3) == 1) {printf("Yay the matrix is correct!\n");}
     transpose(&B); // Transpose B back
     // --------------------------------
     
