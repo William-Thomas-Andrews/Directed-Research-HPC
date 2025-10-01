@@ -6,25 +6,15 @@
 
 int run_tests() {
 
-    int A_rows, A_cols, B_rows, B_cols;
-    A_rows = 2048; A_cols = 2048; B_rows = 2048; B_cols = 2048;
-
-
-    
-    struct Matrix A;
-    struct Matrix B;
-    struct Matrix result;
-    init_matrix_r(&A, A_rows, A_cols);
-    sleep(3);
-    init_matrix_r(&B, B_rows, B_cols);
-    init_matrix(&result, A_rows, B_cols);
-    // printf("Matrix A: \n");
-    // print_matrix(&A);
-    // printf("\nMatrix B: \n");
-    // print_matrix(&B);
-
     clock_t begin, end;
     double time_spent;
+
+    int A_rows, A_cols, B_rows, B_cols;
+    A_rows = 2048; A_cols = 2048; B_rows = 2048; B_cols = 2048;
+    
+    struct Matrix A; init_matrix_r(&A, A_rows, A_cols); sleep(2);
+    struct Matrix B; init_matrix_r(&B, B_rows, B_cols);
+    struct Matrix result; init_matrix(&result, A_rows, B_cols);
 
 
     // --- Transpose test ---
@@ -51,10 +41,10 @@ int run_tests() {
     printf("                          This function call took %.6f s\n", time_spent);
     // --------------------------------
 
+
     // --- 10th Matrix Multiplication Function - Inteligent Transposes ---
     struct Matrix result_10;
     init_matrix_r(&result_10, A_rows, B_cols);
-    
     begin = clock();
     transpose(&B);
     matrix_multiply_with_transposed_B(&result_10, &A, &B);
@@ -64,13 +54,11 @@ int run_tests() {
     // print_matrix(&result_10);
     printf("MM10 took %.6f s\n", time_spent);
     if (cmp_matrix(&result, &result_10) == 1) printf("MM1 and transposed matrix multiply Solution are the same! This function call took %.6f s\n", time_spent);
-    // print_matrix(&result_10);
-    // printf("\n");
-    // print_matrix(&result);
     // else printf("MM1 and transposed matrix multiply Solution are NOT the same!!!!!!!!!! :(\n");
+    transpose(&B);
     // ------------------------------------------
 
-    transpose(&B);
+    
     // --- 9th Matrix Multiplication Function ---
     struct Matrix result_9;
     init_matrix_r(&result_9, A_rows, B_cols);
@@ -83,8 +71,8 @@ int run_tests() {
     printf("MM9 took %.6f s\n", time_spent);
     // if (cmp_matrix(&result, &result_9) == 1) printf("MM1 and B&OH Solution are the same! This function call took %.6f s\n", time_spent);
     // else printf("MM1 and B&OH Solution are NOT the same!!!!!!!!!! :(\n");
-
     // ------------------------------------------
+
 
     // --- 8th Matrix Multiplication Function ---
     struct Matrix result_8;
@@ -98,7 +86,6 @@ int run_tests() {
     printf("MM8 took %.6f s\n", time_spent);
     // if (cmp_matrix(&result, &result_8) == 1) printf("MM1 and MM8 (parallel blocked) Solution are the same! This function call took %.6f s\n", time_spent);
     // else printf("MM1 and MM8 (parallel blocked) Solution are NOT the same!!!!!!!!!! :(\n");
-
     // ------------------------------------------
 
 
@@ -190,7 +177,6 @@ int run_tests() {
     // if (cmp_matrix(&result, &result_6) == 1) printf("MM1 and MM6 are the same! This function call took %.6f s\n", time_spent);
     // else printf("MM1 and MM6 are NOT the same!!!!!!!!!! :(\n");
     // --------------------------------
-
 
 
     printf("\n----------------------\n Tests complete! :) \n----------------------\n");

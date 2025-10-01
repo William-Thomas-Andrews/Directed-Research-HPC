@@ -96,14 +96,9 @@ static inline void matrix_multiply_1(struct Matrix *result, struct Matrix *A, st
         for (int j = 0; j < B_cols; j++) {
             sum = 0.0;
             for (int k = 0; k < B_rows; k++) {
-                // printf("MUltiplying: (%d,%d)%Lf * (%d,%d)%Lf = %Lf\n", i, k, A->data_array[i * A_cols + k], k, j, B->data_array[k * B_cols + j], A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j]);
-                // get_element(result, i, j) += get_element(A, i, k) * get_element(B, k, j);
                 // result->data_array[i * B_cols + j] += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j]; // Disabled because using the 'sum' container is significantly more cache efficient
-                // sum += get_element(A, i, k) * get_element(B, k, j);
                 sum += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j];
-                // printf("Sum %f\n", sum);
             }
-            // result(i, j) = sum;
             result->data_array[i * B_cols + j] = sum;
         }
     }
@@ -118,7 +113,6 @@ static inline void matrix_multiply_2(struct Matrix *result, struct Matrix *A, st
     for (int i = 0; i < A_cols; i++) {
         for (int j = 0; j < B_cols; j++) {
             for (int k = 0; k < A_rows; k++) {
-                // *get_element(result, k, j) += (*get_element(A, k, i)) * (*get_element(B, i, j));
                 result->data_array[k * B_cols + j] += A->data_array[k * A_cols + i] * B->data_array[i * B_cols + j];
             }
         }
@@ -136,7 +130,6 @@ static inline void matrix_multiply_3(struct Matrix *result, struct Matrix *A, st
         for (int j = 0; j < A_rows; j++) {
             // sum = 0.0;
             for (int k = 0; k < A_cols; k++) {
-                // *get_element(result, j, i) += (*get_element(A, j, l)) * (*get_element(B, l, i));
                 result->data_array[j * B_cols + i] += A->data_array[j * A_cols + k] * B->data_array[k * B_cols + i];
                 // sum += A->data_array[j * A_cols + k] * B->data_array[k * B_cols + i];
             }
@@ -161,12 +154,9 @@ static inline void *routine_40(void* arg) {
         for (int j = 0; j < data->B->cols; j++) {
             sum = 0.0;
             for (int k = 0; k < data->B->rows; k++) {
-                // get_element(result, i, j) += get_element(A, i, k) * get_element(B, k, j);
                 // result->data_array[i * B_cols + j] += A->data_array[i * A_cols + k) * B->data_array[k * B_cols + j); // Disabled because using the 'sum' container is significantly more cache efficient
-                // sum += get_element(A, i, k) * get_element(B, k, j);
                 sum += data->A->data_array[i * data->A->cols + k] * data->B->data_array[k * data->B->cols + j];
             }
-            // result(i, j) = sum;
             data->result->data_array[i * data->B->cols + j] = sum;;
         }
     }
@@ -181,12 +171,9 @@ static inline void *routine_41(void* arg) {
         for (int j = 0; j < data->B->cols; j++) {
             sum = 0.0;
             for (int k = 0; k < data->B->rows; k++) {
-                // get_element(result, i, j) += get_element(A, i, k) * get_element(B, k, j);
                 // result->data_array[i * B_cols + j] += A->data_array[i * A_cols + k) * B->data_array[k * B_cols + j); // Disabled because using the 'sum' container is significantly more cache efficient
-                // sum += get_element(A, i, k) * get_element(B, k, j);
                 sum += data->A->data_array[i * data->A->cols + k] * data->B->data_array[k * data->B->cols + j];
             }
-            // result(i, j) = sum;
             data->result->data_array[i * data->B->cols + j] = sum;;
         }
     }
@@ -220,7 +207,6 @@ static inline void *routine_50(void* arg) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
             for (int k = 0; k < data->A->cols; k++) {
-                // *get_element(result, j, i) += (*get_element(A, j, l)) * (*get_element(B, l, i));
                 // data->result->data_array[j * data->B->cols + i] += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
                 sum += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
             }
@@ -238,7 +224,6 @@ static inline void *routine_51(void* arg) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
             for (int k = 0; k < data->A->cols; k++) {
-                // *get_element(result, j, i) += (*get_element(A, j, l)) * (*get_element(B, l, i));
                 // data->result->data_array[j * data->B->cols + i] += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
                 sum += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
             }
@@ -275,7 +260,6 @@ static inline void *routine_60(void* arg) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
             for (int k = 0; k < data->A->cols; k++) {
-                // *get_element(result, j, i) += (*get_element(A, j, l)) * (*get_element(B, l, i));
                 // data->result->data_array[j * data->B->cols + i] += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
                 sum += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
             }
@@ -293,7 +277,6 @@ static inline void *routine_61(void* arg) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
             for (int k = 0; k < data->A->cols; k++) {
-                // *get_element(result, j, i) += (*get_element(A, j, l)) * (*get_element(B, l, i));
                 // data->result->data_array[j * data->B->cols + i] += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
                 sum += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
             }
@@ -311,7 +294,6 @@ static inline void *routine_62(void* arg) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
             for (int k = 0; k < data->A->cols; k++) {
-                // *get_element(result, j, i) += (*get_element(A, j, l)) * (*get_element(B, l, i));
                 // data->result->data_array[j * data->B->cols + i] += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
                 sum += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
             }
@@ -329,7 +311,6 @@ static inline void *routine_63(void* arg) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
             for (int k = 0; k < data->A->cols; k++) {
-                // *get_element(result, j, i) += (*get_element(A, j, l)) * (*get_element(B, l, i));
                 // data->result->data_array[j * data->B->cols + i] += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
                 sum += data->A->data_array[j * data->A->cols + k] * data->B->data_array[k * data->B->cols + i];
             }
@@ -375,18 +356,9 @@ static inline void matrix_multiply_7(struct Matrix *result, struct Matrix *A, st
     if (A->cols != B->rows)      { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 rows.\n");           exit(1); }
     if (result->rows != A_rows)  { fprintf(stderr, "Result matrix rows do not match Matrix 1 rows.\n");        exit(1); }
     if (result->cols != B_cols)  { fprintf(stderr, "Result matrix columns do not match Matrix 2 columns.\n");  exit(1); }
-
-    // struct Matrix temp;
-    // init_matrix(&temp, A_rows, B_cols);
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
             for (int k = 0; k < 2; k++) {
-                // get_element(result, i, j) += get_element(A, i, k) * get_element(B, k, j);
-                // result->data_array[i * B_cols + j] += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j]; // Disabled because using the 'sum' container is significantly more cache efficient
-                // sum += get_element(A, i, k) * get_element(B, k, j);
-                // sum += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j];
-                // clear_matrix(&temp);
-                // Multiply A_1*B_1
                 for (int q = i*(A_rows/2); q < (i+1)*(A_rows/2); q++) {
                     for (int r = j*(B_cols/2); r < (j+1)*(B_cols/2); r++) {
                         for (int s = k*(B_rows/2); s < (k+1)*(B_rows/2); s++) {
@@ -394,13 +366,7 @@ static inline void matrix_multiply_7(struct Matrix *result, struct Matrix *A, st
                         }
                     }
                 }
-                // for (int a = 0; a < result->size; a++) {
-
-                // }
-                // add to correct corner of result
             }
-            // result(i, j) = sum;
-            // result->data_array[i * B_cols + j] = sum;;
         }
     }
 }
@@ -472,6 +438,7 @@ static inline void matrix_multiply_8(struct Matrix *result, struct Matrix *A, st
     }
 }
 
+// Bryant & O'Hallaron Solution
 void bijk(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int bsize)
 {
     int i, j, k, kk, jj;

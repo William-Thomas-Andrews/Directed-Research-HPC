@@ -1,4 +1,5 @@
 #include "Matrix.h"
+
 #include <immintrin.h>
 
 #ifndef _AVX_H_
@@ -6,7 +7,7 @@
 
 static inline void avx_matrix_multiply(struct Matrix* result, struct Matrix* A, struct Matrix* B) {
    
-    if (A->cols != B->rows)      { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 rows.\n");           exit(1); }
+    if (A->cols != B->rows)         { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 rows.\n");           exit(1); }
     if (result->rows != A->rows)  { fprintf(stderr, "Result matrix rows do not match Matrix 1 rows.\n");        exit(1); }
     if (result->cols != B->cols)  { fprintf(stderr, "Result matrix columns do not match Matrix 2 columns.\n");  exit(1); }
     __m512d vec_1;
