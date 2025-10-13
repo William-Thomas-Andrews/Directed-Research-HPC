@@ -489,9 +489,9 @@ static inline void print_matrix(struct Matrix *matrix) {
     for (int i = 0; i < matrix->rows; i++) {
         for (int j = 0; j < cols; j++) {
             if (j == cols-1) {
-                printf("%Lf\n", matrix->data_array[i*cols + j]);
+                printf("%f\n", matrix->data_array[i*cols + j]);
             } else {
-                printf("%Lf ", matrix->data_array[i*cols + j]);
+                printf("%f ", matrix->data_array[i*cols + j]);
             }
         }
     }
@@ -513,7 +513,7 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B) {
     else if (A->cols != B->cols) return 0; // fprintf(stderr, "Error: column sizes do not match\n");
     else if (A->size != B->size) return 0; // fprintf(stderr, "Error: matrix sizes do not match\n");
     for (int i = 0; i < A->size; i++) {
-        if ((A->data_array[i] - B->data_array[i]) > 1e-2 || (A->data_array[i] - B->data_array[i]) < -1e-2)  { printf("DEBUG: %.9Lf and %.9Lf were not the same.\n", A->data_array[i], B->data_array[i]); return 0; }
+        if ((A->data_array[i] - B->data_array[i]) > 1e-9 || (A->data_array[i] - B->data_array[i]) < -1e-9)  { printf("DEBUG: %.9f and %.9f were not the same.\n", A->data_array[i], B->data_array[i]); return 0; }
     }
     return 1;
 }

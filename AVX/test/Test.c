@@ -19,6 +19,7 @@ int run_tests() {
     struct Matrix result; init_matrix(&result, A_rows, B_cols);
     struct Matrix result_2; init_matrix(&result_2, A_rows, B_cols);
     struct Matrix result_3; init_matrix(&result_3, A_rows, B_cols);
+    struct Matrix result_4; init_matrix(&result_4, A_rows, B_cols);
 
 
     // --- 1st Matrix Multiplication Function ---
@@ -33,29 +34,47 @@ int run_tests() {
 
 
     // --- 2nd Matrix Multiplication Function - avx512 intrinsics ---
+    transpose(&B);
+    DEFINE_PRE_AVX(struct Matrix*)
     begin = clock();
     avx_matrix_multiply(&result_2, &A, &B);
+    // PRE_AVX(&result_2, &A, &B);
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("Here is the avx512 result:\n");
     // print_matrix(&result);
-    printf("The avx512 instrinsics took %.6Lf s\n", time_spent);
+    printf("The avx512 instrinsic function took %.6Lf s\n", time_spent);
     if (cmp_matrix(&result, &result_2) == 1) {printf("Yay the matrix is correct!\n");}
     transpose(&B); // Transpose B back
     // --------------------------------
     
     
-    // --- 3rd Matrix Multiplication Function - cache-friendly-transposition ---
+    // --- 3rd Matrix Multiplication Function - restricted pointer avx512 intrinsics ---
+    transpose(&B);
     begin = clock();
-    transpose(&B); // Includes the transpose to be fair with the avx function
-    matrix_multiply_with_transposed_B(&result_3, &A, &B);
+    // transpose(&B); // Includes the transpose to be fair with the avx function
+    restricted_avx_matrix_multiply(&result_3, &A, &B);
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    // printf("Here is the cache-friendly-transposition result:\n");
+    // print_matrix(&result);
+    printf("The restricted pointer avx512 intrinsic function took %.6Lf s\n", time_spent);
+    if (cmp_matrix(&result, &result_3) == 1) {printf("Yay the matrix is correct!\n");}
+    // transpose(&B); // Transpose B back
+    // --------------------------------
+
+    // --- 4th Matrix Multiplication Function - cache-friendly-transposition ---
+    transpose(&B);
+    begin = clock();
+    // transpose(&B); // Includes the transpose to be fair with the avx function
+    matrix_multiply_with_transposed_B(&result_4, &A, &B);
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     // printf("Here is the cache-friendly-transposition result:\n");
     // print_matrix(&result);
     printf("The cache-friendly transposition function took %.6Lf s\n", time_spent);
-    if (cmp_matrix(&result, &result_3) == 1) {printf("Yay the matrix is correct!\n");}
-    transpose(&B); // Transpose B back
+    if (cmp_matrix(&result, &result_4) == 1) {printf("Yay the matrix is correct!\n");}
+    // transpose(&B); // Transpose B back
     // --------------------------------
     
 
