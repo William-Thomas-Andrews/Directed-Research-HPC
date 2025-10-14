@@ -1,6 +1,6 @@
 # Project Title
 
-## 🧩 Abstract
+## Abstract
 A concise 3–5 sentence summary of what this project investigates.  
 State the **goal**, **approach**, and **main finding**.
 
