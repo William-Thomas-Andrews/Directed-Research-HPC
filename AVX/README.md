@@ -141,26 +141,27 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B)
 ---
 
 ## 5. Discussion
-Interpret your results — this is where you show understanding, not just data.
+<!-- Interpret your results — this is where you show understanding, not just data.
 
 - Why does one method outperform another?
 - Were there trade-offs (register pressure, cache thrashing, etc.)?
 - How does this relate to known performance models (e.g., roofline model, memory bandwidth limits)?
-- If something unexpected happened, explain your reasoning or hypotheses.
+- If something unexpected happened, explain your reasoning or hypotheses. -->
+COMING SOON
 
 ---
 
 ## 6. Conclusion
-Summarize your key findings and insights.
+<!-- Summarize your key findings and insights.
 
 - What did you learn about optimization or hardware behavior?
 - What would you try next (e.g., parallelization, prefetching, fused kernels)?
-- State the main performance takeaway.
+- State the main performance takeaway. -->
+COMING SOON
 
 ---
 
 ## 7. Future Work
-Outline possible next steps.
 
 - OpenMP or CUDA parallelization  
 - Deeper blocking hierarchies (L1/L2/L3 blocking)
@@ -171,13 +172,14 @@ Outline possible next steps.
 ---
 
 ## 8. References
-List any resources used for theory, implementation, or inspiration.
+<!-- List any resources used for theory, implementation, or inspiration.
 
 - Intel Intrinsics Guide  
 - “Optimizing Matrix Multiplication using Blocked Algorithms” — [Author, Year]  
 - Hennessy & Patterson, *Computer Architecture: A Quantitative Approach*  
 - BLIS Framework documentation  
-- NumPy source or OpenBLAS documentation
+- NumPy source or OpenBLAS documentation -->
+COMING SOON
 
 ---
 
