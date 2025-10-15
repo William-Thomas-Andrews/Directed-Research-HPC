@@ -13,7 +13,9 @@ This repository contains multiple independent research projects exploring variou
 
 ## Current Projects
 
-### [C_Matrix](./C_Matrix/)
+
+
+### [Project 1: High Performance Matrix Framework](./C_Matrix/)
 **Matrix Multiplication Performance Analysis**
 
 Comprehensive C implementation comparing 8 different matrix multiplication algorithms including serial implementations, parallel strategies with threading, and optimized block algorithms. Features high-precision arithmetic, correctness verification, and detailed performance benchmarking.
@@ -24,6 +26,19 @@ Comprehensive C implementation comparing 8 different matrix multiplication algor
 - Thread-safe parallel processing
 - Compiler optimization studies
 - Memory-efficient operations
+- Extremely fast blocked matrix algorithms
+
+
+### [Project 2: AVX Instruction Set Implementation, SIMD Vectorization, and Cache Properties Analysis](./AVX/)
+**Matrix Multiplication Performance Analysis**
+
+An implementation that seeks to improve upon standard C matrix multiplication algorithms shown in the **C_Matrix** project by using the AVX-512 instruction set. I used these instructions to SIMD vectorize my matrix operations in various ways to efficiently use cache locality and fully utilize the comparative speed of registers. As a result, I did infact create algorithms that are faster than previous tries.
+
+**Key Features:**
+- AVX-512 Intel instruction set
+- Cache architecture analysis
+- Algorithm benchmarking
+- Cache vs Single Instruction Multiple Data (SIMD) vector register perfromance analysis
 
 ## Getting Started
 
@@ -34,7 +49,6 @@ Each subproject contains its own build system and documentation. Navigate to ind
 - GCC with modern C standard support
 - pthread library
 - (Optional) Valgrind for memory analysis
-- (Optional) Linux perf for performance profiling
 
 ## Research Applications
 
