@@ -171,6 +171,30 @@ COMING SOON
 
 ---
 
+## 8. TODO
+- Analyze how these SIMD elements are multiplied and added in parallel, what complexity is it? nlogn?
+- Adder lanes and what happens on a hardware level.
+- Look into FUTURE WORK above.
+- Pipelining
+- Indexing cache blocks
+- Doing this process Input operands (32 or 64 bits each)
+    ↓
+[Exponent aligner]
+    ↓
+[Mantissa adder/subtractor]
+    ↓
+[Normalization and rounding logic]
+    ↓
+Output (32 or 64 bits)
+- What these registers are doing in the pipelines
+
+- Are the stages of the pipeline really that 31 stage process? What does intel do for this operation exactly? All separate specialized hardware?
+
+- Look into BLAS.
+- Look into SYCL and OpenMP and implement into a separate project.
+
+---
+
 ## 8. References
 <!-- List any resources used for theory, implementation, or inspiration.
 

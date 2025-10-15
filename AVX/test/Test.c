@@ -11,7 +11,7 @@ int run_tests() {
     clock_t begin, end;
     long double time_spent;
 
-    int A_rows, A_cols, B_rows, B_cols, size = 512;
+    int A_rows, A_cols, B_rows, B_cols, size = 2048;
     A_rows = size; A_cols = size; B_rows = size; B_cols = size;
 
     struct Matrix A; init_matrix_r(&A, A_rows, A_cols); sleep(2);
@@ -23,6 +23,7 @@ int run_tests() {
     struct Matrix result_5; init_matrix(&result_5, A_rows, B_cols);
     struct Matrix result_6; init_matrix(&result_6, A_rows, B_cols);
     struct Matrix result_7; init_matrix(&result_7, A_rows, B_cols);
+    struct Matrix result_8; init_matrix(&result_8, A_rows, B_cols);
 
     printf("Row size: %d\nCol size: %d\n", size, size);
 
@@ -118,6 +119,17 @@ int run_tests() {
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     printf("The Blocked AVX function took %.6Lf s\n", time_spent);
     if (cmp_matrix(&result, &result_7) == 1) {printf("Yay the matrix is correct!\n");}
+    transpose(&B); // Transpose B back
+    // --------------------------------
+
+        // --- 8th Matrix Multiplication Function - Unrolled Blocked AVX ---
+    transpose(&B);
+    begin = clock();
+    unroll_blocked_avx(&result_8, &A, &B, A.cols, A.cols/2);
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("The Unrolled Blocked AVX function took %.6Lf s\n", time_spent);
+    if (cmp_matrix(&result, &result_8) == 1) {printf("Yay the matrix is correct!\n");}
     transpose(&B); // Transpose B back
     // --------------------------------
     
