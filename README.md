@@ -72,14 +72,20 @@ Additional projects planned for this repository include:
 
 ```
 Directed-Research-HPC/
-├── C_Matrix/              # Matrix multiplication performance study
+├── AVX/
+│   ├── build/            # Build artifacts
+│   ├── scripts/          # Build and run automation
+│   ├── src/              # Source implementations
+│   ├── test/             # Test drivers and validation
+│   └── README.md         # Detailed project documentation
+├── C_Matrix/            # Matrix multiplication performance study
 │   ├── build/            # Build artifacts
 │   ├── include/          # Header files
 │   ├── scripts/          # Build and run automation
 │   ├── src/              # Source implementations
 │   ├── test/             # Test drivers and validation
 │   └── README.md         # Detailed project documentation
-└── README.md             # This file
+└── README.md            # This file
 ```
 
 ## Contributing
