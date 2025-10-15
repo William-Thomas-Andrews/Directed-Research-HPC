@@ -16,7 +16,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # set(CMAKE_C_FLAGS_RELEASE "-O3 -march=native -mtune=native -ffast-math -funroll-loops")
 # set(CMAKE_C_FLAGS_RELEASE "-O3 -flto -ffast-math")
 set(CMAKE_C_FLAGS_RELEASE "-O3 -mavx512f")
-set(CMAKE_C_FLAGS_DEBUG "-O0 -g")
+# set(CMAKE_C_FLAGS_DEBUG "-O0 -g")
 
 # Assembly flags (if you're using GAS/GNU assembler)
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -mavx512f")

@@ -1,68 +1,112 @@
 # Project Title
 
 ## Abstract
-A concise 3–5 sentence summary of what this project investigates.  
-State the **goal**, **approach**, and **main finding**.
-
-Example structure:
-> This project investigates the performance impact of blocking and SIMD vectorization on dense matrix multiplication in C.  
-> Several implementations were compared to analyze cache reuse and register utilization.  
-> Results show that [X technique] achieved [Y%] performance improvement over the baseline.
+> This project seeks to improve upon standard C matrix multiplication algorithms shown in the **C_Matrix** project by using the AVX-512 instruction set. 
+> I used these instructions to SIMD vectorize my matrix operations in various ways to efficiently use cache locality and fully utilize the comparative speed of registers. > As a result, I did infact create algorithms that are faster than previous tries.
 
 ---
 
 ## 1. Introduction
-Explain the **motivation** and **problem** being solved.
 
-- Why is this computation important (e.g., matrix multiply, convolution, etc.)?
-- What aspect are you optimizing or understanding?
-- Mention any real-world relevance (scientific computing, ML, simulations, etc.)
-- State the objective clearly — e.g., *“To measure how blocking and AVX512 affect performance compared to a naive implementation.”*
+- Matrix multiplication has an extremely wide variety of applications, notably in: data transformations in computer graphics, machine learning, physics, and engineering. Neural networks are computationally mostly matrix multiplication, with some nonlinear function application and derivatives.
+- I seek to use the register based AVX-512 instruction set to speed up otherwise cache-heavy matrix algorithms that I have written in the **C_Matrix** project.
+- I also inspect in detail blocking since it had the best performance of my original functions from **C_Matrix**.
+- Objective: To measure how blocking and AVX-512 affect performance compared to a naive implementation.
 
 ---
 
 ## 2. Background
-Provide theoretical or technical context.
 
-- Describe relevant computer architecture concepts:
-  - Cache hierarchy, memory locality, SIMD execution, etc.
-- Mention any mathematical background (if applicable)
-- Reference prior work or known techniques (e.g., BLAS, NumPy, MKL)
+- Relevant computer architecture concepts:
+  - __Cache Hierarchy__: Modern computers contain a hierarchy of L1d, L1i, L2, and L3 caches. The L1d cache (L1 data cache) stores recently used data so the CPU can access it almost instantly in the least clock cycles possible. The L1i cache (L1 instruction cache) has a similar role but for accessing CPU instructions to execute tasks very quickly. The L2 cache is larger than the L1 cache but has slower access time. The L3 cache is even larger but has even slower access time.
+  - For sizes, the computer I used has 384 KiB in the L1d cache, 256 KiB in the L1i cache, 16 MiB in the L2 cache, and 22.5 MiB in the L3 cache. 
+  - __Memory locality__:
+  - __SIMD execution__:
+  - __AVX-512 Intrinsics__:
+  - __Cache indexing__:
+  - __Cache thrashing__:
 
-This section gives readers enough context to understand **why** your optimizations might work.
 
 ---
 
 ## 3. Methodology
-Explain **how** the experiment or implementation was carried out.
 
 ### 3.1 Implementation Details
-- Describe the algorithms implemented (naive, blocked, SIMD, etc.)
-- Discuss memory layout (row-major vs. column-major)
-- Include pseudocode or small annotated code snippets if useful.
+- Describe the algorithms implemented (naive, blocked, SIMD, etc.). First I implemented AVX-512 intrinsics by simply vectorizing my standard matrix function by going through the last loop in increments of 8 (because 512 bits = 8 doubles) and loading 8 doubles into a **__m512** type vector from the rows, and the same for another **__m512** type vector.
+- The load instruction I used was:
+> __m512d _mm512_loadu_pd (void const* mem_addr)
+- Since reading data into a register for a **__m512** vector reads 512 bits contigously onward from the pointer it was passed, the standard matrix multiplication *i-j-k* function would not work because matrix B has its data read by column, so I had to transpose the matrix to read matrix B's data contiguously.
+- I created an accumulator vector called *acc* that was set to the 0 vector everytime the innermost loop was about to run with the instruction:
+> __m512d _mm512_setzero_pd ()
+- This accumulator vector was used to accumulate the vectors that resulted from each iteration of the innermost loop and be added to as a single entry by summing the elements with this instruction:
+> double _mm512_reduce_add_pd (__m512d a)
+- In the loop, for each iteration the accumulator was updated with this instruction:
+> __m512d _mm512_fmadd_pd (__m512d a, __m512d b, __m512d c)
+- This instruction above takes in vectors *a* and *b* and pairwize multiplies them, and adds them to vector *c*. I simply put *acc* as the argument for vector *c* and assigned what this operation returns to be *acc*.
+- That concludes our basic intrinsic operations, which tell the computer with machine code to put our vectors into registers and perform the standard matrix operations I have shown above.
+- I used the keyword *static* for this function to limit the scope to internal use to try to help the compiler know that this function has a specific use.
+- I also used the GNU compiler extension:  *\_\_attribute__((always_inline))*. This directive instructs the compiler to inline the function regardless of any other factors.
+- Below is the standard avx matrix multiplication function with its comments removed:
+
+```c
+static __attribute__((always_inline)) inline void 
+avx_matrix_multiply(struct Matrix* result, struct Matrix* A, struct Matrix* B) {
+    int A_cols = A->cols; int B_cols = B->cols; int A_rows = A->rows; int B_rows = B->rows;
+
+    __m512d vec_1, vec_2, acc;
+    
+    for (int i = 0; i < A_rows; i++) {
+        for (int j = 0; j < B_rows; j++) {
+            acc = _mm512_setzero_pd();
+            for (int k = 0; k < A_cols; k+=8) {
+                vec_1 = _mm512_loadu_pd(&A->data_array[i * A_cols + k]);
+                vec_2 = _mm512_loadu_pd(&B->data_array[j * A_cols + k]); 
+                acc = _mm512_fmadd_pd(vec_1, vec_2, acc);
+            }
+            result->data_array[i * B_rows + j] = _mm512_reduce_add_pd(acc);
+        }
+    }
+}
+```
 
 ### 3.2 Experimental Setup
-- Hardware (CPU model, cache sizes, RAM)
-- Compiler and optimization flags
-- Operating system and any libraries used
-- Test sizes (e.g., 512×512, 1024×1024, 2048×2048 matrices)
+- I used my standard school computer: a x86_64 Intel(R) Xeon(R) w3-2435, with 46 bit physical address size, and 57 bit virtual address size.
+- This computer has an L1 data cache of size 384 KiB (8 instances), an L1 instruction cache of size 256 KiB (8 instances), an L2 cache of size 16 MiB (8 instances), and an L3 cache of size 22.5 MiB (1 instance).
+- I used **GCC** as my compiler with two flags: *-O3* and *-mavx512f*.
+- This computer is an Ubunut 22.04.3 OS.
+- Test sizes: 512×512, 1024×1024, 2048×2048 matrices.
 
 ### 3.3 Measurement Method
-- How timing was done (e.g., `clock_gettime`, `std::chrono`, `time.time()`)
-- How correctness was verified
-- How many runs were averaged
+- Timing was done with the `clock()` function.
+- Correctness was verified with my comparision function:
+> static inline int cmp_matrix(struct Matrix *A, struct Matrix *B)
+- To create an efficient final number, I averaged 5 runs each.
 
 ---
 
 ## 4. Results
-Present your experimental findings.
 
 ### 4.1 Timing Comparison
-| Implementation | Size | Time (s) | Speedup |
+| Small-size Implementation | Size | Time (s) | Speedup |
+|----------------|-------|-----------|----------|
+| Naive | 512 | 1.540 | 1.0× |
+| Blocked | 512 | 0.370 | 4.1× |
+| AVX512 Standard | 512 | 0.220 | 7.0× |
+| AVX512 Blocked | 512 | 0.220 | 7.0× |
+
+| Medium-size Implementation | Size | Time (s) | Speedup |
 |----------------|-------|-----------|----------|
 | Naive | 1024 | 1.540 | 1.0× |
 | Blocked | 1024 | 0.370 | 4.1× |
+| AVX512 Standard | 1024 | 0.220 | 7.0× |
 | AVX512 Blocked | 1024 | 0.220 | 7.0× |
+
+| Large-size Implementation | Size | Time (s) | Speedup |
+|----------------|-------|-----------|----------|
+| Naive | 2048 | 1.540 | 1.0× |
+| Blocked | 2048 | 0.370 | 4.1× |
+| AVX512 Standard | 2048 | 0.220 | 7.0× |
+| AVX512 Blocked | 2048 | 0.220 | 7.0× |
 
 ### 4.2 Observations
 - Describe trends (e.g., blocking improves cache reuse)
@@ -103,6 +147,7 @@ Outline possible next steps.
 - Deeper blocking hierarchies (L1/L2/L3 blocking)
 - Profiling with performance counters
 - Comparing to BLAS libraries
+- Examining loop unrolling and its effects
 
 ---
 
@@ -117,8 +162,8 @@ List any resources used for theory, implementation, or inspiration.
 
 ---
 
-## Appendix (Optional)
+<!-- ## Appendix (Optional)
 Include:
 - Detailed pseudocode
 - Full benchmark logs
-- Extended tables or graphs
+- Extended tables or graphs -->
