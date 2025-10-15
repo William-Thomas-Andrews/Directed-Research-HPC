@@ -36,4 +36,4 @@ print(f"Matrix multiplication of {rows_A}x{cols_A} and {rows_B}x{cols_B} matrice
 # print("\nFirst 5x5 block of the result matrix:")
 # print(result_matrix[:5, :5])
 
-matmul(matrix_A, matrix_B)
+# matmul(matrix_A, matrix_B)
