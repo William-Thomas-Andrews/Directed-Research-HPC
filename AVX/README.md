@@ -46,7 +46,7 @@ This project seeks to improve upon standard C matrix multiplication algorithms s
 
   - __Pipeline Method__: Since these hardware functions are separate and (usually) not dependent on eachother, they can all be run at the same time like an assembly line in a factory. The graph below shows the multi-stage protocol when executing multiple instructions in a pipeline and how that setup changes over time in clock cycles (CC #).
 
-  <!-- ![Alt text](images/instruction_pipeline.png) -->
+  ![Alt text](images/instruction_pipeline.png)
 
   - __Pipeline Hazards__: There are a number of problems that arise when instructions overlap:
 
