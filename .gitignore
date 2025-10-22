@@ -3,3 +3,5 @@ C_matrix/build/
 notes.txt
 
 AVX/build
+
+MultiCore/build
