@@ -35,8 +35,25 @@ This project seeks to improve upon standard C matrix multiplication algorithms s
   - __Cache thrashing__: Occurs most commonly with data having the size in a power of 2. This is when data being stored and accessed of a size that fits cache lines very well is repeatedly used. This can result in the same cache lines that fit this data well to repeatedly be used causing a performance bottleneck because the whole capactiy of the cache is not being used. Sometimes data with less ideal size (2^n -1 size, for example) does not perfectly fit among any cache lines so it is evenly distributed to all cache lines. This is not so much as a flaw but really is a necessary limitation of modern computers.
   - __Single Instruction, Multiple Data (SIMD) execution__: As said in the name, incorporates multiple data being manipulated in one instruction, most commonly utilized by registers.
   - __AVX-512 Intrinsics__: An instruction set created by Intel that uses specific functions and types to specifically create machine code that puts your data into registers of a certain size (for AVX-512 in particular, size = 512 bits = 8 doubles). This enables us to do register-level operations which happen in single instructions to employ SIMD.
- 
+  - __CPU Data Pipeline__: A hardware pipeline that ultimately handles instructions from the machine. There are multiple stages of this pipeline in hardware:
+    - __IF (Instruction Fetch)__: Fetch the instruction from the instruction cache using the Program Counter (PC). The PC is then incremented (or changed if there’s a branch).
+    - __ID (Instruction Decode/Register Fetch)__: Decode the instruction to figure out what kind it is (e.g., ADD, LOAD). Read operands from registers.
+    - __EX (Execute/Address Calculation)__: Perform the ALU operation (e.g., addition, subtraction) or compute the memory address for load/store.
+    - __MEM (Memory Access)__: Access data memory if needed (for loads and stores). Otherwise, skip this. Our SIMD instructions just accessing registers will skip this a lot.
+    - __WB (Write Back)__: Write the result of the computation (or loaded data) back into a register.
 
+  ![Alt text](images/data_pipeline.png)
+
+  - __Pipeline Attributes__:
+
+  - __Pipeline Hazards__: There are a number of problems that arise when instructions overlap:
+
+    - __Structural Hazard__:
+    - __Data Hazard__:
+    - __Control Hazard__:
+
+
+  - __ALU Operations__: 
 
 ---
 
