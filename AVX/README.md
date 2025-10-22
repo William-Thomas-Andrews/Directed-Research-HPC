@@ -44,16 +44,18 @@ This project seeks to improve upon standard C matrix multiplication algorithms s
 
   ![Alt text](images/data_pipeline.png)
 
-  - __Pipeline Attributes__:
+  - __Pipeline Method__: Since these hardware functions are separate and (usually) not dependent on eachother, they can all be run at the same time like an assembly line in a factory. The graph below shows the multi-stage protocol when executing multiple instructions in a pipeline and how that setup changes over time in clock cycles (CC #).
+
+  ![Alt text](images/instruction_pipeline.png)
 
   - __Pipeline Hazards__: There are a number of problems that arise when instructions overlap:
 
-    - __Structural Hazard__:
-    - __Data Hazard__:
-    - __Control Hazard__:
+    - __Structural Hazard__: Hardware resource conflict (shared data between two or more instructions in the pipeline).
+    - __Data Hazard__: Instruction depends on a previous result not yet written. Solved via forwarding or stalling.
+    - __Control Hazard__: Branch prediction is wrong, then we get a pipeline flush.
 
 
-  - __ALU Operations__: 
+  - __ALU Operations__: The output of the MUX (multiplexer) is taken as an input to the ALU. The ALU uses its internal logic circuits, such as adders and logic gates, to carry out the specified function on the input operands. Result is stored in a temporary holding register called a latch.
 
 ---
 
