@@ -1,4 +1,4 @@
-# SIMD Vectorization, Matrix Algorithms, and AVX-512 Intrinsics
+# SIMD Vectorization, Matrix Algorithms, AVX-512 Intrinsics, and CPU Data Pipelines
 
 ## Abstract
 This project seeks to improve upon standard C matrix multiplication algorithms shown in the **C_Matrix** project by using the AVX-512 instruction set. I used these instructions to SIMD vectorize my matrix operations in various ways to efficiently use cache locality and fully utilize the comparative speed of registers. As a result, I did infact create algorithms that are faster than previous tries.
