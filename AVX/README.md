@@ -248,7 +248,7 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B);
 
 ---
 
-## 5. Discussion
+## 5. Discussion & Conclusion
 <!-- Interpret your results — this is where you show understanding, not just data.
 
 - Why does one method outperform another?
@@ -257,20 +257,24 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B);
 - If something unexpected happened, explain your reasoning or hypotheses. -->
 - These results are as expected. Blocking efficiently reuses data fetched from the cache to reduce the amount of RAM fetches in total by a significant amount. Purely mathematically speaking, this algorithm doesn't improve much, but in terms of hardware efficiency we can clearly see its results on display in the data above with the speed of the blocked matrix function compared to the standard function
 - We see even more of a speedup in using SIMD AVX-512 instructions because now we are not only minimizing RAM access, but also minimizing cache access. If you recall the memory hierarchy diagram above, register access is significantly faster than cache access, especially compared to the L3 cache, so it is no surprise that when we increase the usage of register-based vector operations we see a giant speedup. Something to note is that we have not completely eliminated cache access, because operations other than vector operations still can require data from the cache or even RAM, and in the data pipeline, for each instruction the CPU needs to access the L1 instruction cache to fetch instructions to operate on the register data.
-- It is also not surprising that we see the blocked SIMD vectorized function having the greatest speedup. This is because
+- It is also not surprising that we see the blocked SIMD vectorized function having the greatest speedup. This is because, like mentioned above, we have not completely eliminated cache and RAM accesses, but this blocked SIMD function helps us to increase reuse of cache data so we don't have to access RAM frequently.
 
 
 
 
----
+
+
+<!-- --- -->
 
 ## 6. Conclusion
+- We can conclude that (assuming we are careful to avoid [the evil of premature optimization](https://www.geeksforgeeks.org/software-engineering/premature-optimization/)) it is very often a good idea to use register focused operations when RAM and even cache access can be avoided. AVX-512 instructions are incredibly easy to use and versitile, and are a great tool for register operations in C.
+
 <!-- Summarize your key findings and insights.
 
 - What did you learn about optimization or hardware behavior?
 - What would you try next (e.g., parallelization, prefetching, fused kernels)?
 - State the main performance takeaway. -->
-COMING SOON
+<!-- COMING SOON  -->
 
 ---
 
@@ -318,7 +322,7 @@ Output (32 or 64 bits)
 - NumPy source or OpenBLAS documentation -->
 <!-- COMING SOON
 
---- --> -->
+--- --> 
 
 <!-- ## Appendix (Optional)
 Include:
