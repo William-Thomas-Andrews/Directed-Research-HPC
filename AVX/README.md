@@ -215,7 +215,7 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B);
 ---
 
 ## 4. Results
-- Each matrix has an amount of elements of: __Size x Size__; we are dealing with square matrices.
+- Each matrix has an amount of elements of: __Size x Size__ since we are dealing with square matrices.
 ### 4.1 Timing Comparison
 | Small-size Implementation | Size | Time (seconds) | Speedup |
 |----------------|-------|-----------|----------|
@@ -248,7 +248,7 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B);
 
 ---
 
-## 5. Discussion & Conclusion
+## 5. Discussion
 <!-- Interpret your results — this is where you show understanding, not just data.
 
 - Why does one method outperform another?
@@ -258,7 +258,10 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B);
 - These results are as expected. Blocking efficiently reuses data fetched from the cache to reduce the amount of RAM fetches in total by a significant amount. Purely mathematically speaking, this algorithm doesn't improve much, but in terms of hardware efficiency we can clearly see its results on display in the data above with the speed of the blocked matrix function compared to the standard function
 - We see even more of a speedup in using SIMD AVX-512 instructions because now we are not only minimizing RAM access, but also minimizing cache access. If you recall the memory hierarchy diagram above, register access is significantly faster than cache access, especially compared to the L3 cache, so it is no surprise that when we increase the usage of register-based vector operations we see a giant speedup. Something to note is that we have not completely eliminated cache access, because operations other than vector operations still can require data from the cache or even RAM, and in the data pipeline, for each instruction the CPU needs to access the L1 instruction cache to fetch instructions to operate on the register data.
 - It is also not surprising that we see the blocked SIMD vectorized function having the greatest speedup. This is because, like mentioned above, we have not completely eliminated cache and RAM accesses, but this blocked SIMD function helps us to increase reuse of cache data so we don't have to access RAM frequently.
-
+- The largest row size (2048 entries * 64 bits per double = 131072 bits) which is ~16KB is able to fit in any of the caches (the smallest cache being 384KB).
+- Matrices of 512 x 512 size are able to completely fit in L2 and L3 caches because they are ~2MB in size.
+- Matrices of 1024 x 1024 size are able to completely fit in L2 and L3 caches because they are ~8MB in size.
+- Matrices of 2048 x 2048 size are not able to completely fit in any cache because they are ~33MB in size, by far exceeding the L1 data cache size (384KB), the L2 cache size (16MB), and the L3 cache size (22.5MB).
 
 
 
