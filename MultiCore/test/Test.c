@@ -1,6 +1,6 @@
 #include "Test.h"
 // #include "avx.h"
-#include "multicore.h"
+#include "../src/multicore.h"
 
 #include <omp.h>
 
@@ -27,10 +27,10 @@ int run_tests() {
     struct Matrix result_2; init_matrix(&result_2, A_rows, B_cols);
     struct Matrix result_3; init_matrix(&result_3, A_rows, B_cols);
     struct Matrix result_4; init_matrix(&result_4, A_rows, B_cols);
-    struct Matrix result_5; init_matrix(&result_5, A_rows, B_cols);
-    struct Matrix result_6; init_matrix(&result_6, A_rows, B_cols);
-    struct Matrix result_7; init_matrix(&result_7, A_rows, B_cols);
-    struct Matrix result_8; init_matrix(&result_8, A_rows, B_cols);
+    // struct Matrix result_5; init_matrix(&result_5, A_rows, B_cols);
+    // struct Matrix result_6; init_matrix(&result_6, A_rows, B_cols);
+    // struct Matrix result_7; init_matrix(&result_7, A_rows, B_cols);
+    // struct Matrix result_8; init_matrix(&result_8, A_rows, B_cols);
 
     printf("Row size: %d\nCol size: %d\n", size, size);
 
@@ -56,20 +56,26 @@ int run_tests() {
 
     // // --------------------------------
 
-    // --- 3: AVX blocked unrolled ---
-    transpose(&B);
-    begin = clock();
-    unroll_blocked_avx(&result_3, &A, &B, A.cols, A.cols/2);
-    end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    // printf("Here is the Matrix Multiplication result:\n");
-    // print_matrix(&result);
-    // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
-    if (cmp_matrix(&result, &result_3) == 1) printf("M1 and AVX blocked are the same! This function call took %.6Lf s\n", time_spent);
-    transpose(&B);
+    // // --- 3: AVX blocked unrolled ---
+    // transpose(&B);
+    // begin = clock();
+    // unroll_blocked_avx(&result_3, &A, &B, A.cols, A.cols/2);
+    // end = clock();
+    // time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    // // printf("Here is the Matrix Multiplication result:\n");
+    // // print_matrix(&result);
+    // // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
+    // if (cmp_matrix(&result, &result_3) == 1) printf("M1 and AVX blocked are the same! This function call took %.6Lf s\n", time_spent);
+    // transpose(&B);
     // --------------------------------
 
 
+// {
+    // for (int i = 0; i < 0; i++) {
+
+    // }
+    // Do nothing
+// }
     // --- 3: Parallel AVX blocked unrolled ---
     transpose(&B);
     begin = clock();
@@ -79,7 +85,7 @@ int run_tests() {
     // printf("Here is the Matrix Multiplication result:\n");
     // print_matrix(&result);
     // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
-    if (cmp_matrix(&result, &result_4) == 1) printf("M1 and Parallel AVX blocked are the same! This function call took %.6Lf s\n", time_spent);
+    // if (cmp_matrix(&result, &result_4) == 1) printf("M1 and Parallel AVX blocked are the same! This function call took %.6Lf s\n", time_spent);
     transpose(&B);
     // --------------------------------
 

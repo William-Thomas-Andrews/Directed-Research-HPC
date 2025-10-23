@@ -15,7 +15,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # set(CMAKE_C_FLAGS_RELEASE "-O2 -march=native -ffast-math")
 # set(CMAKE_C_FLAGS_RELEASE "-O3 -march=native -mtune=native -ffast-math -funroll-loops")
 # set(CMAKE_C_FLAGS_RELEASE "-O3 -flto -ffast-math")
-set(CMAKE_C_FLAGS_RELEASE "-O3 -mavx512f")
+set(CMAKE_C_FLAGS_RELEASE "-O3 -mavx512f -fopenmp")
 # set(CMAKE_C_FLAGS_DEBUG "-O0 -g")
 
 # Assembly flags (if you're using GAS/GNU assembler)
@@ -38,8 +38,8 @@ add_executable(MC
 set(BUILD_TESTS OFF CACHE INTERNAL "" FORCE)
 set(BUILD_BENCHMARKS OFF CACHE INTERNAL "" FORCE)
 
-find_package(OpenMP REQUIRED)
-target_link_libraries(MC PRIVATE OpenMP::OpenMP_C)
+# find_package(OpenMP REQUIRED)
+# target_link_libraries(MC PRIVATE OpenMP::OpenMP_C)
 
 target_include_directories(MC
     PUBLIC ${CMAKE_SOURCE_DIR}/src

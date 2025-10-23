@@ -1,0 +1,604 @@
+	.file	"Test.c"
+	.text
+	.section	.rodata.str1.8,"aMS",@progbits,1
+	.align 8
+.LC0:
+	.string	"Error: row or col sizes cannot be below 0\n"
+	.text
+	.p2align 4
+	.type	init_matrix.part.0, @function
+init_matrix.part.0:
+.LFB5562:
+	.cfi_startproc
+	pushq	%rax
+	.cfi_def_cfa_offset 16
+	popq	%rax
+	.cfi_def_cfa_offset 8
+	leaq	.LC0(%rip), %rdi
+	movl	$42, %edx
+	movl	$1, %esi
+	subq	$8, %rsp
+	.cfi_def_cfa_offset 16
+	movq	stderr(%rip), %rcx
+	call	fwrite@PLT
+	movl	$1, %edi
+	call	exit@PLT
+	.cfi_endproc
+.LFE5562:
+	.size	init_matrix.part.0, .-init_matrix.part.0
+	.set	init_matrix_r.part.0,init_matrix.part.0
+	.p2align 4
+	.globl	randfrom
+	.type	randfrom, @function
+randfrom:
+.LFB40:
+	.cfi_startproc
+	endbr64
+	subq	$24, %rsp
+	.cfi_def_cfa_offset 32
+	vmovsd	%xmm0, 8(%rsp)
+	vmovsd	%xmm1, (%rsp)
+	call	rand@PLT
+	vmovsd	8(%rsp), %xmm0
+	vmovsd	(%rsp), %xmm1
+	vxorps	%xmm2, %xmm2, %xmm2
+	vmovsd	.LC1(%rip), %xmm3
+	vcvtsi2sdl	%eax, %xmm2, %xmm2
+	addq	$24, %rsp
+	.cfi_def_cfa_offset 8
+	vsubsd	%xmm0, %xmm1, %xmm1
+	vdivsd	%xmm1, %xmm3, %xmm1
+	vdivsd	%xmm1, %xmm2, %xmm2
+	vaddsd	%xmm0, %xmm2, %xmm0
+	ret
+	.cfi_endproc
+.LFE40:
+	.size	randfrom, .-randfrom
+	.p2align 4
+	.globl	bijk
+	.type	bijk, @function
+bijk:
+.LFB65:
+	.cfi_startproc
+	endbr64
+	movl	%ecx, %eax
+	pushq	%r15
+	.cfi_def_cfa_offset 16
+	.cfi_offset 15, -16
+	pushq	%r14
+	.cfi_def_cfa_offset 24
+	.cfi_offset 14, -24
+	pushq	%r13
+	.cfi_def_cfa_offset 32
+	.cfi_offset 13, -32
+	movq	%rdx, %r13
+	cltd
+	idivl	%r8d
+	pushq	%r12
+	.cfi_def_cfa_offset 40
+	.cfi_offset 12, -40
+	pushq	%rbp
+	.cfi_def_cfa_offset 48
+	.cfi_offset 6, -48
+	pushq	%rbx
+	.cfi_def_cfa_offset 56
+	.cfi_offset 3, -56
+	movl	%r8d, -4(%rsp)
+	movl	%ecx, -12(%rsp)
+	imull	%r8d, %eax
+	movl	%eax, -8(%rsp)
+	testl	%eax, %eax
+	jle	.L21
+	vmovq	%rdi, %xmm5
+	testl	%ecx, %ecx
+	jle	.L21
+	movslq	%r8d, %rax
+	movl	%r8d, %ebx
+	xorl	%r12d, %r12d
+	xorl	%r11d, %r11d
+	vmovq	%rax, %xmm4
+	vmovq	%rsi, %xmm7
+	vmovq	%r13, %xmm6
+.L9:
+	leal	-1(%rbx), %r15d
+	xorl	%ebp, %ebp
+	vmovdqa	%xmm4, %xmm1
+	movq	$0, -24(%rsp)
+	subl	%r11d, %r15d
+	addq	%r12, %r15
+.L16:
+	movl	%ebp, %eax
+	addl	-4(%rsp), %ebp
+	cmpl	%ebp, %eax
+	jge	.L13
+	vmovq	%xmm5, %rax
+	xorl	%r13d, %r13d
+	vmovq	%xmm7, %r9
+	vmovq	(%rax), %xmm2
+	movl	16(%rax), %eax
+	vmovq	%xmm6, %r10
+	movl	%eax, -16(%rsp)
+	.p2align 4,,10
+	.p2align 3
+.L15:
+	movl	-16(%rsp), %eax
+	vmovq	%xmm2, %rdi
+	imull	%r13d, %eax
+	cltq
+	leaq	(%rdi,%rax,8), %r14
+	movq	-24(%rsp), %rdi
+	.p2align 4,,10
+	.p2align 3
+.L12:
+	vmovsd	(%r14,%rdi,8), %xmm0
+	cmpl	%r11d, %ebx
+	jle	.L10
+	movl	16(%r9), %esi
+	movslq	16(%r10), %rcx
+	movq	(%r9), %r8
+	imull	%r13d, %esi
+	movq	%rcx, %rdx
+	salq	$3, %rcx
+	imull	%r11d, %edx
+	movslq	%esi, %rsi
+	leaq	(%r12,%rsi), %rax
+	movslq	%edx, %rdx
+	addq	%r15, %rsi
+	leaq	(%r8,%rax,8), %rax
+	addq	%rdi, %rdx
+	leaq	8(%r8,%rsi,8), %rsi
+	movq	%rax, -32(%rsp)
+	movq	(%r10), %rax
+	leaq	(%rax,%rdx,8), %rdx
+	movq	-32(%rsp), %rax
+	.p2align 4,,10
+	.p2align 3
+.L11:
+	vmovsd	(%rax), %xmm3
+	addq	$8, %rax
+	vfmadd231sd	(%rdx), %xmm3, %xmm0
+	addq	%rcx, %rdx
+	cmpq	%rax, %rsi
+	jne	.L11
+.L10:
+	vmovsd	%xmm0, (%r14,%rdi,8)
+	addq	$1, %rdi
+	cmpl	%edi, %ebp
+	jg	.L12
+	addl	$1, %r13d
+	cmpl	%r13d, -12(%rsp)
+	jne	.L15
+.L13:
+	vmovq	%xmm1, %rdi
+	addq	%rdi, -24(%rsp)
+	cmpl	%ebp, -8(%rsp)
+	jg	.L16
+	movl	-4(%rsp), %eax
+	addl	%eax, %r11d
+	addl	%eax, %ebx
+	vmovq	%xmm4, %rax
+	addq	%rax, %r12
+	cmpl	%r11d, -8(%rsp)
+	jg	.L9
+.L21:
+	popq	%rbx
+	.cfi_def_cfa_offset 48
+	popq	%rbp
+	.cfi_def_cfa_offset 40
+	popq	%r12
+	.cfi_def_cfa_offset 32
+	popq	%r13
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
+	ret
+	.cfi_endproc
+.LFE65:
+	.size	bijk, .-bijk
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC2:
+	.string	"Using %d threads\n"
+.LC5:
+	.string	"Row size: %d\nCol size: %d\n"
+	.section	.rodata.str1.8
+	.align 8
+.LC6:
+	.string	"The standard Matrix Multiplication took %.6Lf s\n"
+	.section	.rodata.str1.1
+.LC8:
+	.string	"%d\n"
+	.section	.rodata.str1.8
+	.align 8
+.LC11:
+	.string	"DEBUG: %.9f and %.9f were not the same.\n"
+	.align 8
+.LC12:
+	.string	"M1 and AVX blocked are the same! This function call took %.6Lf s\n"
+	.text
+	.p2align 4
+	.globl	run_tests
+	.type	run_tests, @function
+run_tests:
+.LFB5561:
+	.cfi_startproc
+	endbr64
+	leaq	8(%rsp), %r10
+	.cfi_def_cfa 10, 0
+	andq	$-64, %rsp
+	pushq	-8(%r10)
+	pushq	%rbp
+	movq	%rsp, %rbp
+	.cfi_escape 0x10,0x6,0x2,0x76,0
+	pushq	%r15
+	pushq	%r14
+	pushq	%r13
+	pushq	%r12
+	pushq	%r10
+	.cfi_escape 0xf,0x3,0x76,0x58,0x6
+	.cfi_escape 0x10,0xf,0x2,0x76,0x78
+	.cfi_escape 0x10,0xe,0x2,0x76,0x70
+	.cfi_escape 0x10,0xd,0x2,0x76,0x68
+	.cfi_escape 0x10,0xc,0x2,0x76,0x60
+	pushq	%rbx
+	subq	$64, %rsp
+	.cfi_escape 0x10,0x3,0x2,0x76,0x50
+	call	omp_get_max_threads@PLT
+	leaq	.LC2(%rip), %rsi
+	movl	$1, %edi
+	movl	%eax, %edx
+	xorl	%eax, %eax
+	call	__printf_chk@PLT
+	movl	$33554432, %edi
+	call	malloc@PLT
+	xorl	%edi, %edi
+	movq	%rax, %r12
+	call	time@PLT
+	movq	%r12, %rbx
+	movl	%eax, %edi
+	call	srand@PLT
+	leaq	33554432(%r12), %rax
+	movq	%rax, -56(%rbp)
+.L24:
+	call	rand@PLT
+	vxorpd	%xmm3, %xmm3, %xmm3
+	addq	$8, %rbx
+	vcvtsi2sdl	%eax, %xmm3, %xmm0
+	vxorpd	%xmm3, %xmm3, %xmm3
+	vdivsd	.LC3(%rip), %xmm0, %xmm0
+	vaddsd	%xmm3, %xmm0, %xmm0
+	vmovsd	%xmm0, -8(%rbx)
+	cmpq	%rbx, -56(%rbp)
+	jne	.L24
+	movl	$2, %edi
+	call	sleep@PLT
+	movl	$33554432, %edi
+	call	malloc@PLT
+	xorl	%edi, %edi
+	movq	%rax, %rbx
+	call	time@PLT
+	leaq	33554432(%rbx), %r15
+	movq	%rbx, %r13
+	movl	%eax, %edi
+	call	srand@PLT
+.L25:
+	call	rand@PLT
+	vxorpd	%xmm3, %xmm3, %xmm3
+	addq	$8, %r13
+	vcvtsi2sdl	%eax, %xmm3, %xmm0
+	vxorpd	%xmm3, %xmm3, %xmm3
+	vdivsd	.LC3(%rip), %xmm0, %xmm0
+	vaddsd	%xmm3, %xmm0, %xmm0
+	vmovsd	%xmm0, -8(%r13)
+	cmpq	%r13, %r15
+	jne	.L25
+	movl	$8, %esi
+	movl	$4194304, %edi
+	call	calloc@PLT
+	movl	$8, %esi
+	movl	$4194304, %edi
+	movq	%rax, %r13
+	call	calloc@PLT
+	movl	$2048, %ecx
+	movl	$2048, %edx
+	leaq	.LC5(%rip), %rsi
+	movl	$1, %edi
+	movq	%rax, %r14
+	xorl	%eax, %eax
+	call	__printf_chk@PLT
+	call	clock@PLT
+	movq	%r13, %r11
+	leaq	16384(%r13), %r9
+	movq	%r12, %r8
+	movq	%rax, %r10
+.L26:
+	movq	%r15, %rcx
+	movq	%rbx, %rdi
+	movq	%r11, %rsi
+	.p2align 4,,10
+	.p2align 3
+.L30:
+	movq	%r8, %rdx
+	movq	%rdi, %rax
+	vxorpd	%xmm0, %xmm0, %xmm0
+	.p2align 4,,10
+	.p2align 3
+.L27:
+	vbroadcastsd	(%rdx), %zmm6
+	addq	$16384, %rax
+	addq	$8, %rdx
+	vfmadd231pd	-16384(%rax), %zmm6, %zmm0
+	cmpq	%rax, %rcx
+	jne	.L27
+	vmovupd	%zmm0, (%rsi)
+	addq	$64, %rsi
+	addq	$64, %rdi
+	addq	$64, %rcx
+	cmpq	%rsi, %r9
+	jne	.L30
+	addq	$16384, %r9
+	addq	$16384, %r11
+	addq	$16384, %r8
+	cmpq	%r8, -56(%rbp)
+	jne	.L26
+	movq	%r10, -56(%rbp)
+	vzeroupper
+	call	clock@PLT
+	movq	-56(%rbp), %r10
+	subq	$16, %rsp
+	vxorpd	%xmm3, %xmm3, %xmm3
+	leaq	.LC6(%rip), %rsi
+	movl	$1, %edi
+	subq	%r10, %rax
+	vcvtsi2sdq	%rax, %xmm3, %xmm0
+	vdivsd	.LC7(%rip), %xmm0, %xmm3
+	xorl	%eax, %eax
+	vmovsd	%xmm3, -56(%rbp)
+	fldl	-56(%rbp)
+	fstpt	(%rsp)
+	call	__printf_chk@PLT
+	movl	$8, %esi
+	movl	$4194304, %edi
+	call	calloc@PLT
+	popq	%rsi
+	movq	%rbx, %rsi
+	popq	%r9
+	movq	%rax, %r15
+	movq	%rax, %rdi
+	leaq	33554432(%rax), %rcx
+	leaq	33570816(%rax), %r8
+.L31:
+	movq	%rsi, %rdx
+	movq	%rdi, %rax
+	.p2align 4,,10
+	.p2align 3
+.L32:
+	vmovupd	(%rdx), %ymm0
+	addq	$131072, %rax
+	addq	$64, %rdx
+	vmovlpd	%xmm0, -131072(%rax)
+	vmovhpd	%xmm0, -114688(%rax)
+	vextractf128	$0x1, %ymm0, %xmm0
+	vmovlpd	%xmm0, -98304(%rax)
+	vmovhpd	%xmm0, -81920(%rax)
+	vmovupd	-64(%rdx), %zmm7
+	vextractf64x4	$0x1, %zmm7, %ymm0
+	vmovlpd	%xmm0, -65536(%rax)
+	vmovhpd	%xmm0, -49152(%rax)
+	vextractf128	$0x1, %ymm0, %xmm0
+	vmovlpd	%xmm0, -32768(%rax)
+	vmovhpd	%xmm0, -16384(%rax)
+	cmpq	%rax, %rcx
+	jne	.L32
+	addq	$8, %rcx
+	addq	$16384, %rsi
+	addq	$8, %rdi
+	cmpq	%rcx, %r8
+	jne	.L31
+	movl	$33554432, %edx
+	movq	%r15, %rsi
+	movq	%rbx, %rdi
+	vzeroupper
+	call	memcpy@PLT
+	movq	%r15, %rdi
+	call	free@PLT
+	call	clock@PLT
+	movl	$1024, %edx
+	movl	$1, %edi
+	leaq	.LC8(%rip), %rsi
+	movq	%rax, -56(%rbp)
+	xorl	%eax, %eax
+	call	__printf_chk@PLT
+	leaq	8192(%r14), %r10
+	xorl	%r11d, %r11d
+	movq	%r10, %r15
+.L34:
+	movq	%r11, %r8
+	movq	%r12, %rcx
+	leaq	33554432(%r15), %r9
+	movq	%r15, %rdi
+	salq	$14, %r8
+	addq	%rbx, %r8
+	.p2align 4,,10
+	.p2align 3
+.L39:
+	leaq	-8192(%rdi), %rsi
+	movq	%r8, %rdx
+	.p2align 4,,10
+	.p2align 3
+.L36:
+	vmovsd	(%rsi), %xmm2
+	xorl	%eax, %eax
+	vxorpd	%xmm0, %xmm0, %xmm0
+	.p2align 4,,10
+	.p2align 3
+.L35:
+	vmovupd	(%rcx,%rax), %zmm4
+	vfmadd231pd	(%rdx,%rax), %zmm4, %zmm0
+	addq	$64, %rax
+	cmpq	$8192, %rax
+	jne	.L35
+	vextractf64x4	$0x1, %zmm0, %ymm1
+	addq	$8, %rsi
+	addq	$16384, %rdx
+	vaddpd	%ymm0, %ymm1, %ymm1
+	vextractf128	$0x1, %ymm1, %xmm0
+	vaddpd	%xmm1, %xmm0, %xmm0
+	vhaddpd	%xmm0, %xmm0, %xmm0
+	vaddsd	%xmm2, %xmm0, %xmm0
+	vmovsd	%xmm0, -8(%rsi)
+	cmpq	%rsi, %rdi
+	jne	.L36
+	addq	$16384, %rdi
+	addq	$16384, %rcx
+	cmpq	%rdi, %r9
+	jne	.L39
+	addq	$1024, %r11
+	addq	$8192, %r15
+	cmpq	$2048, %r11
+	jne	.L34
+	xorl	%r11d, %r11d
+.L38:
+	movq	%r11, %r8
+	movq	%r12, %rcx
+	leaq	33554432(%r10), %r9
+	movq	%r10, %rdi
+	salq	$14, %r8
+	addq	%rbx, %r8
+	.p2align 4,,10
+	.p2align 3
+.L44:
+	leaq	-8192(%rdi), %rsi
+	movq	%r8, %rdx
+	.p2align 4,,10
+	.p2align 3
+.L41:
+	vmovsd	(%rsi), %xmm2
+	movl	$1024, %eax
+	vxorpd	%xmm0, %xmm0, %xmm0
+	.p2align 4,,10
+	.p2align 3
+.L40:
+	vmovupd	(%rcx,%rax,8), %zmm5
+	vfmadd231pd	(%rdx,%rax,8), %zmm5, %zmm0
+	addq	$8, %rax
+	cmpq	$2048, %rax
+	jne	.L40
+	vextractf64x4	$0x1, %zmm0, %ymm1
+	addq	$8, %rsi
+	addq	$16384, %rdx
+	vaddpd	%ymm0, %ymm1, %ymm1
+	vextractf128	$0x1, %ymm1, %xmm0
+	vaddpd	%xmm1, %xmm0, %xmm0
+	vhaddpd	%xmm0, %xmm0, %xmm0
+	vaddsd	%xmm2, %xmm0, %xmm0
+	vmovsd	%xmm0, -8(%rsi)
+	cmpq	%rsi, %rdi
+	jne	.L41
+	addq	$16384, %rdi
+	addq	$16384, %rcx
+	cmpq	%rdi, %r9
+	jne	.L44
+	addq	$1024, %r11
+	addq	$8192, %r10
+	cmpq	$2048, %r11
+	jne	.L38
+	vzeroupper
+	call	clock@PLT
+	vxorpd	%xmm3, %xmm3, %xmm3
+	subq	-56(%rbp), %rax
+	vcvtsi2sdq	%rax, %xmm3, %xmm0
+	vdivsd	.LC7(%rip), %xmm0, %xmm3
+	xorl	%eax, %eax
+	vmovsd	%xmm3, -56(%rbp)
+	vmovsd	.LC10(%rip), %xmm3
+	fldl	-56(%rbp)
+.L49:
+	vmovsd	0(%r13,%rax), %xmm0
+	vmovsd	(%r14,%rax), %xmm1
+	vsubsd	%xmm1, %xmm0, %xmm2
+	vcomisd	.LC9(%rip), %xmm2
+	ja	.L62
+	vcomisd	%xmm2, %xmm3
+	ja	.L63
+	addq	$8, %rax
+	cmpq	$33554432, %rax
+	jne	.L49
+	subq	$16, %rsp
+	leaq	.LC12(%rip), %rsi
+	movl	$1, %edi
+	xorl	%eax, %eax
+	fstpt	(%rsp)
+	call	__printf_chk@PLT
+	popq	%rax
+	popq	%rdx
+.L48:
+	leaq	-48(%rbp), %rsp
+	xorl	%eax, %eax
+	popq	%rbx
+	popq	%r10
+	.cfi_remember_state
+	.cfi_def_cfa 10, 0
+	popq	%r12
+	popq	%r13
+	popq	%r14
+	popq	%r15
+	popq	%rbp
+	leaq	-8(%r10), %rsp
+	.cfi_def_cfa 7, 8
+	ret
+.L62:
+	.cfi_restore_state
+	fstp	%st(0)
+	jmp	.L45
+.L63:
+	fstp	%st(0)
+.L45:
+	leaq	.LC11(%rip), %rsi
+	movl	$1, %edi
+	movl	$2, %eax
+	call	__printf_chk@PLT
+	jmp	.L48
+	.cfi_endproc
+.LFE5561:
+	.size	run_tests, .-run_tests
+	.section	.rodata.cst8,"aM",@progbits,8
+	.align 8
+.LC1:
+	.long	-4194304
+	.long	1105199103
+	.align 8
+.LC3:
+	.long	-4194304
+	.long	1104150527
+	.align 8
+.LC7:
+	.long	0
+	.long	1093567616
+	.align 8
+.LC9:
+	.long	-400107883
+	.long	1041313291
+	.align 8
+.LC10:
+	.long	-400107883
+	.long	-1106170357
+	.ident	"GCC: (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0"
+	.section	.note.GNU-stack,"",@progbits
+	.section	.note.gnu.property,"a"
+	.align 8
+	.long	1f - 0f
+	.long	4f - 1f
+	.long	5
+0:
+	.string	"GNU"
+1:
+	.align 8
+	.long	0xc0000002
+	.long	3f - 2f
+2:
+	.long	0x3
+3:
+	.align 8
+4:

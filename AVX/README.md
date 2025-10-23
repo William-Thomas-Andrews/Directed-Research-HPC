@@ -33,6 +33,9 @@ This project seeks to improve upon standard C matrix multiplication algorithms s
     - __Set associative__: Each block of main memory can be mapped to any of the lines within a specific set.
     - __Fully associative__: Each block of main memory can be mapped to any cache line.
   - __Cache thrashing__: Occurs most commonly with data having the size in a power of 2. This is when data being stored and accessed of a size that fits cache lines very well is repeatedly used. This can result in the same cache lines that fit this data well to repeatedly be used causing a performance bottleneck because the whole capactiy of the cache is not being used. Sometimes data with less ideal size (2^n -1 size, for example) does not perfectly fit among any cache lines so it is evenly distributed to all cache lines. This is not so much as a flaw but really is a necessary limitation of modern computers.
+  - __Memory__ hierarchy, storage, and access times:
+
+  ![Alt text](images/mem.jpg)
   - __Single Instruction, Multiple Data (SIMD) execution__: As said in the name, incorporates multiple data being manipulated in one instruction, most commonly utilized by registers.
   - __AVX-512 Intrinsics__: An instruction set created by Intel that uses specific functions and types to specifically create machine code that puts your data into registers of a certain size (for AVX-512 in particular, size = 512 bits = 8 doubles). This enables us to do register-level operations which happen in single instructions to employ SIMD.
   - __CPU Data Pipeline__: A hardware pipeline that ultimately handles instructions from the machine. There are multiple stages of this pipeline in hardware:
@@ -62,7 +65,52 @@ This project seeks to improve upon standard C matrix multiplication algorithms s
 ## 3. Methodology
 
 ### 3.1 Implementation Details
-- Describe the algorithms implemented (naive, blocked, SIMD, etc.). First I implemented AVX-512 intrinsics by simply vectorizing my standard matrix function by going through the last loop in increments of 8 (because 512 bits = 8 doubles) and loading 8 doubles into a **__m512** type vector from the rows, and the same for another **__m512** type vector.
+- My standard matrix multiplication (the regular i-j-k matrix multiplication) was simple to implement, and the code is listed below:
+
+```c
+static inline void 
+matrix_multiply_1(struct Matrix *result, struct Matrix *A, struct Matrix *B) {
+    int A_cols = A->cols; int B_cols = B->cols; int A_rows = A->rows; int B_rows = B->rows;
+    double sum;
+    for (int i = 0; i < A_rows; i++) {
+        for (int j = 0; j < B_cols; j++) {
+            sum = 0.0;
+            for (int k = 0; k < B_rows; k++) {
+                sum += A->data_array[i * A_cols + k] * B->data_array[k * B_cols + j];
+            }
+            result->data_array[i * B_cols + j] = sum;
+        }
+    }
+}
+```
+- Blocking is a matrix algorithm technique where you divide large matrices into smaller sub-matrices (blocks). This commonly improves computational performance because it promotes cache-fetched data reuse.
+- As shown below, blocking is computed in this order:
+
+![Alt text](images/block.png)
+
+- Here is the solution code for the standard blocking function I implemented using more loops:
+```c
+// Bryant & O'Hallaron-based Solution
+void bijk(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int bsize) {
+    int i, j, k, kk, jj;
+    double sum;
+    int en = bsize * (n/bsize); /* Amount that fits evenly into blocks */
+    for (kk = 0; kk < en; kk += bsize) {
+        for (jj = 0; jj < en; jj += bsize) {
+            for (i = 0; i < n; i++) {
+                for (j = jj; j < jj + bsize; j++) {
+                    sum = result->data_array[i*result->cols + j];
+                    for (k = kk; k < kk + bsize; k++) {
+                        sum += A->data_array[i*A->cols + k] * B->data_array[k*B->cols + j];
+                    }
+                    result->data_array[i*result->cols + j] = sum;
+                }
+            }
+        }
+    }
+}
+```
+- I implemented AVX-512 intrinsics by simply vectorizing my standard matrix function by going through the last loop in increments of 8 (because 512 bits = 8 doubles) and loading 8 doubles into a **__m512** type vector from the rows, and the same for another **__m512** type vector.
 - The load instruction I used was:
 ```c
 __m512d _mm512_loadu_pd (void const* mem_addr)
@@ -108,6 +156,47 @@ avx_matrix_multiply(struct Matrix* result, struct Matrix* A, struct Matrix* B) {
 }
 ```
 
+- If you examine the assembly code in the __Test.s__ file, you will find an example line of a small part of the machine code produced:
+
+```asm
+vmovapd	%zmm0, 320(%rsp)
+```
+
+- This code moves data from a 512 bit-aligned address to the special 512 bit register %zmm0.
+
+- I blocked this function simply by employing the same blocking algorithm above, but this time with SIMD instructions:
+
+```c
+// Blocked Intrinsic
+static __attribute__((always_inline)) inline void 
+blocked_avx(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int bsize)
+{
+    __m512d vec_1, vec_2, vec_3, acc;
+    int A_cols = A->cols;
+    int B_cols = B->cols;
+    int i, j, k, kk, jj;
+    double sum;
+    int en = bsize * (n/bsize); /* Amount that fits evenly into blocks */
+    for (kk = 0; kk < en; kk += bsize) {
+        printf("%d\n",kk+bsize);
+        for (jj = 0; jj < en; jj += bsize) {
+            for (i = 0; i < n; i++) {
+                for (j = jj; j < jj + bsize; j++) {
+                    sum = result->data_array[i*result->cols + j];
+                    acc = _mm512_setzero_pd();
+                    for (k = kk; k < kk + bsize; k += 8) {
+                        vec_1 = _mm512_loadu_pd(&A->data_array[i * A_cols + k]);
+                        vec_2 = _mm512_loadu_pd(&B->data_array[j * B_cols + k]);
+                        acc = _mm512_fmadd_pd(vec_1, vec_2, acc);
+                    }
+                    result->data_array[i*result->cols+j] = _mm512_reduce_add_pd(acc) + sum;
+                }
+            }
+        }
+    }
+}
+```
+
 ### 3.2 Experimental Setup
 - I used my standard school computer: a x86_64 Intel(R) Xeon(R) w3-2435, with 46 bit physical address size, and 57 bit virtual address size.
 - This computer has an L1 data cache of size 384 KiB (8 instances), an L1 instruction cache of size 256 KiB (8 instances), an L2 cache of size 16 MiB (8 instances), and an L3 cache of size 22.5 MiB (1 instance).
@@ -119,14 +208,14 @@ avx_matrix_multiply(struct Matrix* result, struct Matrix* A, struct Matrix* B) {
 - Timing was done with the `clock()` function.
 - Correctness was verified with my comparision function:
 ```c
-static inline int cmp_matrix(struct Matrix *A, struct Matrix *B)
+static inline int cmp_matrix(struct Matrix *A, struct Matrix *B);
 ```
 - To create efficient measurments, I averaged 5 runs each size for each function.
 
 ---
 
 ## 4. Results
-
+- Each matrix has an amount of elements of: __Size x Size__; we are dealing with square matrices.
 ### 4.1 Timing Comparison
 | Small-size Implementation | Size | Time (seconds) | Speedup |
 |----------------|-------|-----------|----------|
@@ -166,7 +255,12 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B)
 - Were there trade-offs (register pressure, cache thrashing, etc.)?
 - How does this relate to known performance models (e.g., roofline model, memory bandwidth limits)?
 - If something unexpected happened, explain your reasoning or hypotheses. -->
-COMING SOON
+- These results are as expected. Blocking efficiently reuses data fetched from the cache to reduce the amount of RAM fetches in total by a significant amount. Purely mathematically speaking, this algorithm doesn't improve much, but in terms of hardware efficiency we can clearly see its results on display in the data above with the speed of the blocked matrix function compared to the standard function
+- We see even more of a speedup in using SIMD AVX-512 instructions because now we are not only minimizing RAM access, but also minimizing cache access. If you recall the memory hierarchy diagram above, register access is significantly faster than cache access, especially compared to the L3 cache, so it is no surprise that when we increase the usage of register-based vector operations we see a giant speedup. Something to note is that we have not completely eliminated cache access, because operations other than vector operations still can require data from the cache or even RAM, and in the data pipeline, for each instruction the CPU needs to access the L1 instruction cache to fetch instructions to operate on the register data.
+- It is also not surprising that we see the blocked SIMD vectorized function having the greatest speedup. This is because
+
+
+
 
 ---
 
@@ -190,7 +284,7 @@ COMING SOON
 
 ---
 
-## 8. TODO
+<!-- ## 8. TODO
 - Analyze how these SIMD elements are multiplied and added in parallel, what complexity is it? nlogn?
 - Adder lanes and what happens on a hardware level.
 - Look into FUTURE WORK above.
@@ -212,9 +306,9 @@ Output (32 or 64 bits)
 - Look into BLAS.
 - Look into SYCL and OpenMP and implement into a separate project.
 
----
+--- -->
 
-## 8. References
+<!-- ## 8. References
 <!-- List any resources used for theory, implementation, or inspiration.
 
 - Intel Intrinsics Guide  
@@ -222,9 +316,9 @@ Output (32 or 64 bits)
 - Hennessy & Patterson, *Computer Architecture: A Quantitative Approach*  
 - BLIS Framework documentation  
 - NumPy source or OpenBLAS documentation -->
-COMING SOON
+<!-- COMING SOON
 
----
+--- --> -->
 
 <!-- ## Appendix (Optional)
 Include:

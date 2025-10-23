@@ -2,6 +2,7 @@
 #include <omp.h>
 
 
+
 #ifndef _MC_H_
 #define _MC_H_
 
@@ -27,33 +28,36 @@ static inline void par_multiply_1(struct Matrix *result, struct Matrix *A, struc
 
 
 // Unrolled Blocked Intrinsic
-static __attribute__((always_inline)) inline void par_unroll_blocked_avx(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int bsize)
+static inline void par_unroll_blocked_avx(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int bsize)
 {
-    __m512d vec_1, vec_2, vec_3, acc;
     int A_cols = A->cols;
     int B_cols = B->cols;
     int i, j, k, kk, jj;
-    double sum;
     int en = bsize * (n/bsize); /* Amount that fits evenly into blocks */
     kk = 0;
     printf("%d\n",kk+bsize);
 
+    // #pragma omp parallel for collapse(2) schedule(static)
+    // for (int i =0; i < 1; i++) {
+    //     for(int j = 0; j < 1; j++) ;
+    // }
+
     #pragma omp parallel for collapse(2) schedule(static)
-for (jj = 0; jj < n; jj += bsize) {
-    for (i = 0; i < n; i++) {
-        for (kk = 0; kk < n; kk += bsize) {
-            for (j = jj; j < jj + bsize; j++) {
-                __m512d acc = _mm512_setzero_pd();
-                for (k = kk; k < kk + bsize; k += 8) {
-                    __m512d a = _mm512_loadu_pd(&A->data_array[i * A_cols + k]);
-                    __m512d b = _mm512_loadu_pd(&B->data_array[j * B_cols + k]); // B transposed!
-                    acc = _mm512_fmadd_pd(a, b, acc);
+    for (jj = 0; jj < n; jj += bsize) {
+        for (i = 0; i < n; i++) {
+            for (kk = 0; kk < n; kk += bsize) {
+                for (j = jj; j < jj + bsize; j++) {
+                    __m512d acc = _mm512_setzero_pd();
+                    for (k = kk; k < kk + bsize; k += 8) {
+                        __m512d a = _mm512_loadu_pd(&A->data_array[i * A_cols + k]);
+                        __m512d b = _mm512_loadu_pd(&B->data_array[j * B_cols + k]); // B transposed!
+                        acc = _mm512_fmadd_pd(a, b, acc);
+                    }
+                    result->data_array[i * result->cols + j] += _mm512_reduce_add_pd(acc);
                 }
-                result->data_array[i * result->cols + j] += _mm512_reduce_add_pd(acc);
             }
         }
     }
-}
 
     // #pragma omp parallel for collapse(2) schedule(static)
     // for (jj = 0; jj < en; jj += bsize) {
