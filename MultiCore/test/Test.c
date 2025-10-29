@@ -14,14 +14,14 @@ int run_tests() {
     double begin, end;
     long double time_spent;
 
-    // omp_set_num_threads(1);
+    omp_set_num_threads(64);
     printf("Using %d threads\n", omp_get_max_threads());
 
     // Note: clock() measures the total CPU time across ALL threads, 
     // not the actual elapsed wall-clock time. When OpenMP spawns 16 threads!!!!
     // Takeway: use omp_get_wtime() instead
 
-    int A_rows, A_cols, B_rows, B_cols, size = 2047;
+    int A_rows, A_cols, B_rows, B_cols, size = 2048;
     A_rows = size; A_cols = size; B_rows = size; B_cols = size;
 
     struct Matrix A; init_matrix_r(&A, A_rows, A_cols); sleep(2);
@@ -48,61 +48,54 @@ int run_tests() {
     printf("The standard Matrix Multiplication took %.6Lf s\n", time_spent);
     // --------------------------------
 
-    // // --- 2: OpenMP parallel multiply ---
-    // begin = omp_get_wtime();
-    // par_multiply_1(&result_2, &A, &B);
-    // end = omp_get_wtime();
-    // time_spent = end - begin;
-    // // printf("Here is the Matrix Multiplication result:\n");
-    // // print_matrix(&result);
-    // // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
-    // if (cmp_matrix(&result, &result_2) == 1) printf("M1 and OpenMP parallel 1 are the same! This function call took %.6Lf s\n", time_spent);
-
-    // // --------------------------------
-
-    // // --- 3: AVX blocked unrolled ---
-    // transpose(&B);
-    // begin = omp_get_wtime();
-    // unroll_blocked_avx(&result_3, &A, &B, A.cols, A.cols/2);
-    // end = omp_get_wtime();
-    // time_spent = end - begin;
-    // // printf("Here is the Matrix Multiplication result:\n");
-    // // print_matrix(&result);
-    // // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
-    // if (cmp_matrix(&result, &result_3) == 1) printf("M1 and AVX blocked are the same! This function call took %.6Lf s\n", time_spent);
-    // transpose(&B);
-    // --------------------------------
-
-
-// {
-    // for (int i = 0; i < 0; i++) {
-
-    // }
-    // Do nothing
-// }
-    // --- 4: Parallel AVX blocked unrolled ---
-    // transpose(&B);
-    // begin = omp_get_wtime();
-    // par_unroll_blocked_avx(&result_4, &A, &B, A.cols, A.cols/2);
-    // end = omp_get_wtime();
-    // time_spent = end - begin;
+    // --- 2: OpenMP parallel multiply ---
+    begin = omp_get_wtime();
+    par_multiply_1(&result_2, &A, &B);
+    end = omp_get_wtime();
+    time_spent = end - begin;
     // printf("Here is the Matrix Multiplication result:\n");
     // print_matrix(&result);
     // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
-    // if (cmp_matrix(&result, &result_4) == 1) printf("M1 and Parallel AVX blocked are the same! This function call took %.6Lf s\n", time_spent);
-    // transpose(&B);
+    if (cmp_matrix(&result, &result_2) == 1) printf("M1 and OpenMP parallel 1 are the same! This function call took %.6Lf s\n", time_spent);
+    // --------------------------------
+
+    // // --- 3: AVX blocked unrolled ---
+    transpose(&B);
+    begin = omp_get_wtime();
+    unroll_blocked_avx(&result_3, &A, &B, A.cols, A.cols/2);
+    end = omp_get_wtime();
+    time_spent = end - begin;
+    // printf("Here is the Matrix Multiplication result:\n");
+    // print_matrix(&result);
+    // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
+    if (cmp_matrix(&result, &result_3) == 1) printf("M1 and AVX blocked are the same! This function call took %.6Lf s\n", time_spent);
+    transpose(&B);
+    // --------------------------------
+
+
+    // --- 4: Parallel AVX blocked unrolled ---
+    transpose(&B);
+    begin = omp_get_wtime();
+    par_unroll_blocked_avx(&result_4, &A, &B, A.cols, A.cols/2);
+    end = omp_get_wtime();
+    time_spent = end - begin;
+    // printf("Here is the Matrix Multiplication result:\n");
+    // print_matrix(&result);
+    // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
+    if (cmp_matrix(&result, &result_4) == 1) printf("M1 and Parallel AVX blocked are the same! This function call took %.6Lf s\n", time_spent);
+    transpose(&B);
     // --------------------------------
 
 
     // --- 5: OpenMP parallel multiply 2 ---
-    // begin = omp_get_wtime();
-    // par_multiply_2(&result_5, &A, &B);
-    // end = omp_get_wtime();
-    // time_spent = end - begin;
-    // // printf("Here is the Matrix Multiplication result:\n");
-    // // print_matrix(&result);
+    begin = omp_get_wtime();
+    par_multiply_2(&result_5, &A, &B);
+    end = omp_get_wtime();
+    time_spent = end - begin;
+    // printf("Here is the Matrix Multiplication result:\n");
+    // print_matrix(&result);
     // printf("The OpenMP parallel took %.6Lf s\n", time_spent);
-    // if (cmp_matrix(&result, &result_5) == 1) printf("M1 and Parallel multiply 2 are the same! This function call took %.6Lf s\n", time_spent);
+    if (cmp_matrix(&result, &result_5) == 1) printf("M1 and Parallel multiply 2 are the same! This function call took %.6Lf s\n", time_spent);
     // --------------------------------
 
     // // --- 6: Special par_multiply combo ---
@@ -136,7 +129,7 @@ int run_tests() {
     // // --- 7: Fast par_multiply combo 2 ---
     transpose(&B);
     begin = omp_get_wtime();
-    // par_multiply_5(&result_8, &A, &B);
+    par_multiply_5(&result_8, &A, &B);
     end = omp_get_wtime();
     time_spent = end - begin;
     // printf("Here is the Matrix Multiplication result:\n");
@@ -150,7 +143,7 @@ int run_tests() {
         // // --- 8: Fast par_multiply combo 3 ---
     transpose(&B);
     begin = omp_get_wtime();
-    // par_multiply_6(&result_9, &A, &B);
+    par_multiply_6(&result_9, &A, &B);
     end = omp_get_wtime();
     time_spent = end - begin;
     // printf("Here is the Matrix Multiplication result:\n");

@@ -37,11 +37,6 @@ static inline void par_unroll_blocked_avx(struct Matrix* result, struct Matrix* 
     kk = 0;
     printf("%d\n",kk+bsize);
 
-    // #pragma omp parallel for collapse(2) schedule(static)
-    // for (int i =0; i < 1; i++) {
-    //     for(int j = 0; j < 1; j++) ;
-    // }
-
     #pragma omp parallel for collapse(2) schedule(static)
     for (jj = 0; jj < n; jj += bsize) {
         for (i = 0; i < n; i++) {
@@ -58,36 +53,6 @@ static inline void par_unroll_blocked_avx(struct Matrix* result, struct Matrix* 
             }
         }
     }
-
-    // #pragma omp parallel for collapse(2) schedule(static)
-    // for (jj = 0; jj < en; jj += bsize) {
-    //     for (i = 0; i < n; i++) {
-    //         for (j = jj; j < jj + bsize; j++) {
-    //             sum = result->data_array[i*result->cols + j];
-    //             acc = _mm512_setzero_pd();
-    //             #pragma unroll(512)
-    //             for (k = kk; k < kk + bsize; k += 8) {
-    //                 acc = _mm512_fmadd_pd(_mm512_loadu_pd(&A->data_array[i * A_cols + k]), _mm512_loadu_pd(&B->data_array[j * B_cols + k]), acc);
-    //             }
-    //             result->data_array[i*result->cols + j] = _mm512_reduce_add_pd(acc) + sum;
-    //         }
-    //     }
-    // }
-    // kk = bsize;
-    // #pragma omp parallel for collapse(2) schedule(static)
-    // for (jj = 0; jj < en; jj += bsize) {
-    //     for (i = 0; i < n; i++) {
-    //         for (j = jj; j < jj + bsize; j++) {
-    //             sum = result->data_array[i*result->cols + j];
-    //             acc = _mm512_setzero_pd();
-    //             #pragma unroll(512)
-    //             for (k = kk; k < kk + bsize; k += 8) {
-    //                 acc = _mm512_fmadd_pd(_mm512_loadu_pd(&A->data_array[i * A_cols + k]), _mm512_loadu_pd(&B->data_array[j * B_cols + k]), acc);
-    //             }
-    //             result->data_array[i*result->cols + j] = _mm512_reduce_add_pd(acc) + sum;
-    //         }
-    //     }
-    // }
 }
 
 static inline void par_multiply_2(struct Matrix* result, struct Matrix* A, struct Matrix* B) {
@@ -542,9 +507,6 @@ static inline void par_multiply_5(struct Matrix* restrict result, struct Matrix*
     }
 }
 
-
-// Ultimate optimized version for Intel Xeon w3-2435 (Sapphire Rapids)
-// Tuned for: L1d=48KB, L2=2MB, L3=22.5MB, 8 cores, 16 threads, AVX-512
 static inline void par_multiply_6(struct Matrix* restrict result, 
                                    struct Matrix* restrict A, 
                                    struct Matrix* restrict B_transposed) {
