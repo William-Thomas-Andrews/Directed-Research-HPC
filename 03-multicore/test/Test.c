@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define SIZE 1024
+#define SIZE 2048
 #define NUM_THREADS 64
 
 int run_tests() {

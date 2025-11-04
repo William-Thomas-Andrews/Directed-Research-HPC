@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22.1)
 
-project(MC C ASM)
+project(CUDA LANGUAGES CXX CUDA)
 
 # Enable assembly language support
 enable_language(C ASM)
@@ -23,16 +23,16 @@ set(CMAKE_C_FLAGS_RELEASE "-O3 -mavx512f -fopenmp ")
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -mavx512f")
 
 # Collect C source files
-file(GLOB_RECURSE C_SRC_FILES src/*.c)
+file(GLOB_RECURSE CU_SRC_FILES src/*.cu)
 
 # Collect assembly source files (.s or .S)
 file(GLOB_RECURSE ASM_SRC_FILES src/*.s src/*.S)
 
 # Create executable with both C and assembly sources
-add_executable(MC 
-    test/Main.c
-    test/Test.c
-    ${C_SRC_FILES}
+add_executable(CUDA 
+    test/Main.cu
+    test/Test.cu
+    ${CU_SRC_FILES}
     ${ASM_SRC_FILES}
 )
 
@@ -40,9 +40,9 @@ set(BUILD_TESTS OFF CACHE INTERNAL "" FORCE)
 set(BUILD_BENCHMARKS OFF CACHE INTERNAL "" FORCE)
 
 # find_package(OpenMP REQUIRED)
-# target_link_libraries(MC PRIVATE OpenMP::OpenMP_C)
+# target_link_libraries(CUDA PRIVATE OpenMP::OpenMP_C)
 
-target_include_directories(MC
+target_include_directories(CUDA
     PUBLIC ${CMAKE_SOURCE_DIR}/src
     PUBLIC ${CMAKE_SOURCE_DIR}/test
     PUBLIC ${CMAKE_SOURCE_DIR}/../01-matrix/include/
