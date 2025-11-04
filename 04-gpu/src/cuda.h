@@ -1,14 +1,19 @@
 #ifndef _CUDA_
 #define _CUDA_
 
+// #include "Matrix.h"
 
-__global__ void gpu_multiply(int *a, int *b, int *c, int N);
+// CUDA kernel
+__global__ void gpu_multiply(double *a, double *b, double *c, int N);
 
-void init_matrix(int *a, int N);
+// Host functions
+double randfrom(double min, double max);
+void init_matrix(double *a, int N);
+void standard_multiply(double *a, double *b, double *c, int N);
+void standard_transposed_multiply(double *a, double *b, double *c, int N);
+int verify(double *result, double *solution, int N);
 
-void standard_multiply(int *a, int *b, int *c, int N);
 
-int verify(int *result, int *solution, int N);
 
 
 #endif /* _CUDA_ */
