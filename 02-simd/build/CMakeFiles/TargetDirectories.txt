@@ -1,0 +1,3 @@
+/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/build/CMakeFiles/AVX.dir
+/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/build/CMakeFiles/edit_cache.dir
+/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/build/CMakeFiles/rebuild_cache.dir

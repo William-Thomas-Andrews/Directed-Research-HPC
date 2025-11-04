@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -mavx512f -fopenmp  CMakeFiles/MC.dir/test/Main.c.o CMakeFiles/MC.dir/test/Test.c.o -o bin/MC 

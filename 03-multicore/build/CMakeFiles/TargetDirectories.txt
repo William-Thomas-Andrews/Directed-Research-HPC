@@ -1,0 +1,3 @@
+/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/build/CMakeFiles/MC.dir
+/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/build/CMakeFiles/edit_cache.dir
+/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/build",
+  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/test -I/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/../01-matrix/include -O3 -mavx512f -std=gnu2x -o CMakeFiles/AVX.dir/test/Main.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/test/Main.c",
+  "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/test/Main.c"
+},
+{
+  "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/build",
+  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/test -I/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/../01-matrix/include -O3 -mavx512f -std=gnu2x -o CMakeFiles/AVX.dir/test/Test.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/test/Test.c",
+  "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/02-simd/test/Test.c"
+}
+]

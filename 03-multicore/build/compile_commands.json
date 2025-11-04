@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/build",
+  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/test -I/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/../01-matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/../02-simd/src -O3 -mavx512f -fopenmp  -std=gnu2x -o CMakeFiles/MC.dir/test/Main.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/test/Main.c",
+  "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/test/Main.c"
+},
+{
+  "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/build",
+  "command": "/usr/bin/cc  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/test -I/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/../01-matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/../02-simd/src -O3 -mavx512f -fopenmp  -std=gnu2x -o CMakeFiles/MC.dir/test/Test.c.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/test/Test.c",
+  "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/03-multicore/test/Test.c"
+}
+]

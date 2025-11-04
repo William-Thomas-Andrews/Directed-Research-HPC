@@ -15,7 +15,7 @@ This repository contains multiple independent research projects exploring variou
 
 
 
-### [Project 1: High Performance Matrix Framework](./C_Matrix/)
+### [Project 1: High Performance Matrix Framework](./01-matrix/)
 **Matrix Multiplication Performance Analysis**
 
 Comprehensive C implementation comparing 8 different matrix multiplication algorithms including serial implementations, parallel strategies with threading, and optimized block algorithms. Features high-precision arithmetic, correctness verification, and detailed performance benchmarking.
@@ -29,10 +29,10 @@ Comprehensive C implementation comparing 8 different matrix multiplication algor
 - Extremely fast blocked matrix algorithms
 
 
-### [Project 2: AVX Instruction Set Implementation, SIMD Vectorization, and Cache Properties Analysis](./AVX/)
+### [Project 2: AVX Instruction Set Implementation, SIMD Vectorization, and Cache Properties Analysis](./02-simd/)
 **Matrix Multiplication Performance Analysis**
 
-An implementation that seeks to improve upon standard C matrix multiplication algorithms shown in the **C_Matrix** project by using the AVX-512 instruction set. I used these instructions to SIMD vectorize my matrix operations in various ways to efficiently use cache locality and fully utilize the comparative speed of registers. As a result, I did infact create algorithms that are faster than previous tries.
+An implementation that seeks to improve upon standard C matrix multiplication algorithms shown in the **01-matrix** project by using the AVX-512 instruction set. I used these instructions to SIMD vectorize my matrix operations in various ways to efficiently use cache locality and fully utilize the comparative speed of registers. As a result, I did infact create algorithms that are faster than previous tries.
 
 **Key Features:**
 - AVX-512 Intel instruction set
@@ -72,15 +72,21 @@ Additional projects planned for this repository include:
 
 ```
 Directed-Research-HPC/
-├── AVX/
+├── 01-matrix/           # Matrix multiplication performance study
+│   ├── build/            # Build artifacts
+│   ├── include/          # Header files
+│   ├── scripts/          # Build and run automation
+│   ├── src/              # Source implementations
+│   ├── test/             # Test drivers and validation
+│   └── README.md         # Detailed project documentation
+├── 02-simd/             # SIMD vectorization with AVX-512
 │   ├── build/            # Build artifacts
 │   ├── scripts/          # Build and run automation
 │   ├── src/              # Source implementations
 │   ├── test/             # Test drivers and validation
 │   └── README.md         # Detailed project documentation
-├── C_Matrix/            # Matrix multiplication performance study
+├── 03-multicore/        # Multi-core parallelization study
 │   ├── build/            # Build artifacts
-│   ├── include/          # Header files
 │   ├── scripts/          # Build and run automation
 │   ├── src/              # Source implementations
 │   ├── test/             # Test drivers and validation
