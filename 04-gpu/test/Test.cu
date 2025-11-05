@@ -33,7 +33,7 @@ int run_tests() {
 
     // Initialize our CTA and Grid dimensions
     // This is the max in our 2d block (matrix) case as 32x32 = 1024 which is the max thread number for this machine
-    int threads = 32; 
+    const int threads = 32; 
     int blocks = (N + threads - 1) / threads;
     printf("Thread configuration: %d threads per block\n", threads);
     printf("Block configuration: %d blocks\n", (N + threads - 1) / threads);

@@ -21,26 +21,27 @@ __global__ void gpu_multiply(double *a, double *b, double *c, int N) {
 
 // Shared memory cache-blocking GPU matrix multiplication
 // Matrix sizes: MxK * KxN = MxN
-template <const int BLOCKSIZE> __global__ void multiply_shared_mem_block(double *A, double *B, double *C, int M, int N, int K) {
+template <const int BLOCKSIZE>
+__global__ void multiply_shared_mem_block(double *A, double *B, double *C, int M, int N, int K) {
   // the output block that we want to compute in this threadblock
   const uint cRow = blockIdx.x;
   const uint cCol = blockIdx.y;
 
   // allocate buffer for current block in fast shared mem
   // shared mem is shared between all threads in a block
-  __shared__ float As[BLOCKSIZE * BLOCKSIZE];
-  __shared__ float Bs[BLOCKSIZE * BLOCKSIZE];
+  __shared__ double As[BLOCKSIZE * BLOCKSIZE];
+  __shared__ double Bs[BLOCKSIZE * BLOCKSIZE];
 
   // the inner row & col that we're accessing in this thread
-  const uint threadCol = threadIdx.x % BLOCKSIZE;
-  const uint threadRow = threadIdx.x / BLOCKSIZE;
+  const uint threadCol = threadIdx.x;
+  const uint threadRow = threadIdx.y;
 
   // advance pointers to the starting positions
   A += cRow * BLOCKSIZE * K;                    // row=cRow, col=0
   B += cCol * BLOCKSIZE;                        // row=0, col=cCol
   C += cRow * BLOCKSIZE * N + cCol * BLOCKSIZE; // row=cRow, col=cCol
 
-  float tmp = 0.0;
+  double tmp = 0.0;
   for (int bkIdx = 0; bkIdx < K; bkIdx += BLOCKSIZE) {
     // Have each thread load one of the elements in A & B
     // Make the threadCol (=threadIdx.x) the consecutive index
@@ -61,7 +62,7 @@ template <const int BLOCKSIZE> __global__ void multiply_shared_mem_block(double 
     // fetching the next block into the cache before slower threads are done
     __syncthreads();
   }
-  C[threadRow * N + threadCol] = tmp + C[threadRow * N + threadCol];
+  C[threadRow * N + threadCol] = tmp;
 }
 
 // Host function declarations
