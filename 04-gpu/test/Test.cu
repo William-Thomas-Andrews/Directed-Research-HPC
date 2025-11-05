@@ -4,6 +4,8 @@
  * This test harness benchmarks CUDA parallel matrix multiplication
  * implementations, evaluating scalability and performance characteristics
  * across various parallelization strategies and thread counts on a GPU.
+ * 
+ * Inspiration credit: https://siboehm.com/articles/22/CUDA-MMM
  */
 
 #include "Test.h"
