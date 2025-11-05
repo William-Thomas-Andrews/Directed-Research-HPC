@@ -7,7 +7,7 @@
  */
 
 #include "Test.h"
-#include "cuda.h"
+#include "cuda.cuh"
 
 #include <omp.h>
 // #include <immintrin.h>
@@ -43,11 +43,12 @@ int run_tests() {
     dim3 BLOCKS(blocks, blocks);
 
     // Allocate some memory for our inputs/outputs
-    double *a, *b, *c, *d;
+    double *a, *b, *res_1, *res_2, *res_3, res_4;
     cudaMallocManaged(&a, bytes);
     cudaMallocManaged(&b, bytes);
-    cudaMallocManaged(&c, bytes);
-    cudaMallocManaged(&d, bytes);
+    cudaMallocManaged(&res_1, bytes);
+    cudaMallocManaged(&res_2, bytes);
+    cudaMallocManaged(&res_3, bytes);
 
     // Initialize our data
     init_matrix(a, N);
@@ -65,7 +66,7 @@ int run_tests() {
 
     /* Benchmark 2: MM2 (Transposed multiply) */
     begin = clock();
-    standard_transposed_multiply(a, b, c, N);
+    standard_transposed_multiply(a, b, res_1, N);
     end = clock();
     time_spent = end - begin;
     // if (verify(c, d, N) == 1) {
@@ -73,10 +74,10 @@ int run_tests() {
     // }
 
 
-     /* Benchmark 3: MM2 (Basic GPU matrix multiply) */
+     /* Benchmark 3: MM3 (Basic GPU matrix multiply) */
     cudaEventRecord(start);
     // Call the kernel
-    gpu_multiply<<<BLOCKS, THREADS>>>(a, b, d, N);
+    gpu_multiply<<<BLOCKS, THREADS>>>(a, b, res_2, N);
     cudaEventRecord(stop);
     cudaEventSynchronize(stop);
     cudaError_t err = cudaGetLastError();
@@ -85,9 +86,24 @@ int run_tests() {
         return 1;
     }
     cudaEventElapsedTime(&ms, start, stop);
-    // printf("MM3 (Basic GPU matrix multiply):               %.6f s\n", ms/1000);
-    if (verify(c, d, N) == 1) {
-        printf("MM3 (Basic GPU matrix multiply):               %.6f s\n", ms/1000);
+    if (verify(res_1, res_2, N) == 1) {
+        printf("MM3 (Basic GPU matrix multiply):           %.6f s\n", ms/1000);
+    } else return 1;
+
+    /* Benchmark 4: MM4 (Shared Memory Cache-Blocking GPU matrix multiply) */
+    cudaEventRecord(start);
+    // Call the kernel
+    multiply_shared_mem_block<32><<<BLOCKS, THREADS>>>(a, b, res_3, N, N, N);
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+    err = cudaGetLastError();
+    if (err != cudaSuccess) {
+        printf("CUDA Error: %s\n", cudaGetErrorString(err));
+        return 1;
+    }
+    cudaEventElapsedTime(&ms, start, stop);
+    if (verify(res_1, res_3, N) == 1) {
+        printf("MM4 (Shared Memory Cache-Blocking GPU matrix multiply):           %.6f s\n", ms/1000);
     } else return 1;
 
     

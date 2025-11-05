@@ -184,5 +184,8 @@ CMakeFiles/CUDA.dir/src/cuda.cu.o : /home/wtandrews/320_CSCI/Directed-Research-H
     /usr/include/texture_indirect_functions.h \
     /usr/include/surface_indirect_functions.h \
     /usr/include/device_launch_parameters.h \
-    /home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/src/cuda.h \
-    /usr/include/c++/11/cassert
+    /usr/include/cuda.h \
+    /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
+    /usr/include/stdint.h \
+    /usr/include/x86_64-linux-gnu/bits/wchar.h \
+    /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h

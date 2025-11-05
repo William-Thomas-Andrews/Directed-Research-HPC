@@ -185,7 +185,7 @@ CMakeFiles/CUDA.dir/test/Test.cu.o : /home/wtandrews/320_CSCI/Directed-Research-
     /usr/include/surface_indirect_functions.h \
     /usr/include/device_launch_parameters.h \
     /home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/test/Test.h \
-    /home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/src/cuda.h \
+    /home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/src/cuda.cuh \
     /usr/lib/gcc/x86_64-linux-gnu/11/include/omp.h \
     /usr/include/unistd.h \
     /usr/include/x86_64-linux-gnu/bits/posix_opt.h \

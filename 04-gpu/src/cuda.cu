@@ -1,11 +1,8 @@
-// This program performs matrix multiplication on two matrices on a GPU using CUDA
+// Host-side utility functions for CUDA matrix multiplication
 
 #include "cuda.h"
-// #include "Matrix.h"
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <cassert>
 
 #define MIN 0.00L
 #define MAX 2.00L
@@ -15,22 +12,6 @@ double new_randfrom(double min, double max) {
     double range = (max - min);
     double div = RAND_MAX / range;
     return min + (rand() / div);
-}
-
-// Computes the product of two matrices
-__global__ void gpu_multiply(double *a, double *b, double *c, int N) {
-    // Calculate global thread IS
-    int row = blockIdx.y * blockDim.y + threadIdx.y;
-    int col = blockIdx.x * blockDim.x + threadIdx.x;
-    // Boundary check for our matrix
-    if (row < N && col < N) {
-        // Accumulate partial result
-        double sum = 0;
-        for (int k = 0; k < N; k++) {
-            sum += a[row * N + k] * b[k * N + col];
-        }
-        c[row * N + col] = sum;
-    }
 }
 
 void new_transpose(double *input, int N) {
@@ -93,3 +74,5 @@ int verify(double *result, double *solution, int N) {
     }
     return 1;
 }
+
+

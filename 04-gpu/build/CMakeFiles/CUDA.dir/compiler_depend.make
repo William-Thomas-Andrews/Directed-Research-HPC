@@ -187,8 +187,11 @@ CMakeFiles/CUDA.dir/src/cuda.cu.o: ../src/cuda.cu \
   /usr/include/texture_indirect_functions.h \
   /usr/include/surface_indirect_functions.h \
   /usr/include/device_launch_parameters.h \
-  ../src/cuda.h \
-  /usr/include/c++/11/cassert
+  /usr/include/cuda.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h
 
 CMakeFiles/CUDA.dir/test/Main.cu.o: ../test/Main.cu \
   /usr/include/stdc-predef.h \
@@ -574,7 +577,7 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
   /usr/include/surface_indirect_functions.h \
   /usr/include/device_launch_parameters.h \
   ../test/Test.h \
-  ../src/cuda.h \
+  ../src/cuda.cuh \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/omp.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
@@ -587,6 +590,8 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
   /usr/include/linux/close_range.h
 
 
+../src/cuda.cuh:
+
 /usr/include/x86_64-linux-gnu/bits/unistd.h:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
@@ -595,7 +600,7 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
-../src/cuda.h:
+/usr/include/cuda.h:
 
 /usr/include/texture_indirect_functions.h:
 
@@ -841,6 +846,8 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
 
 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:
 
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
 /usr/include/x86_64-linux-gnu/bits/local_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
@@ -852,6 +859,8 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
 /usr/include/x86_64-linux-gnu/bits/stdio2.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/stdint.h:
 
 /usr/include/crt/device_double_functions.h:
 
@@ -933,6 +942,8 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
 
 /usr/include/unistd.h:
 
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
@@ -975,9 +986,9 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
 
 /usr/include/math.h:
 
-/usr/include/c++/11/cassert:
-
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 
 /usr/include/c++/11/bits/stl_algobase.h:
 
