@@ -578,6 +578,16 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
   /usr/include/device_launch_parameters.h \
   ../test/Test.h \
   ../src/cuda.cuh \
+  /usr/include/cublas_v2.h \
+  /usr/include/cublas_api.h \
+  /usr/include/cuComplex.h \
+  /usr/include/cuda_fp16.h \
+  /usr/include/cuda_fp16.hpp \
+  /usr/include/c++/11/utility \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/initializer_list \
+  /usr/include/cuda_bf16.h \
+  /usr/include/cuda_bf16.hpp \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/omp.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
@@ -590,6 +600,20 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
   /usr/include/linux/close_range.h
 
 
+/usr/include/cuda_bf16.hpp:
+
+/usr/include/c++/11/initializer_list:
+
+/usr/include/c++/11/utility:
+
+/usr/include/cuda_fp16.hpp:
+
+/usr/include/cuda_fp16.h:
+
+/usr/include/cuComplex.h:
+
+/usr/include/cublas_api.h:
+
 ../src/cuda.cuh:
 
 /usr/include/x86_64-linux-gnu/bits/unistd.h:
@@ -597,6 +621,8 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
+
+/usr/include/cuda_bf16.h:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
@@ -718,9 +744,13 @@ CMakeFiles/CUDA.dir/test/Test.cu.o: ../test/Test.cu \
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
+/usr/include/c++/11/bits/stl_relops.h:
+
 /usr/include/sm_32_atomic_functions.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
+
+/usr/include/cublas_v2.h:
 
 /usr/include/device_atomic_functions.hpp:
 

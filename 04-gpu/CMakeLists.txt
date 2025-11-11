@@ -22,6 +22,12 @@ set(CMAKE_C_FLAGS_RELEASE "-O3 -mavx512f -fopenmp ")
 # Assembly flags (if you're using GAS/GNU assembler)
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -mavx512f")
 
+# CUDA compiler flags for optimization
+# RTX A5000 uses Ampere architecture (compute capability 8.6)
+set(CMAKE_CUDA_ARCHITECTURES 86)
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -O3 --use_fast_math")
+set(CMAKE_CUDA_FLAGS_RELEASE "-O3 --use_fast_math -lineinfo")
+
 # Collect C source files
 file(GLOB_RECURSE CU_SRC_FILES src/*.cu)
 
@@ -41,6 +47,9 @@ set(BUILD_BENCHMARKS OFF CACHE INTERNAL "" FORCE)
 
 # find_package(OpenMP REQUIRED)
 # target_link_libraries(CUDA PRIVATE OpenMP::OpenMP_C)
+
+# Link cuBLAS library
+target_link_libraries(CUDA PRIVATE cublas)
 
 target_include_directories(CUDA
     PUBLIC ${CMAKE_SOURCE_DIR}/src

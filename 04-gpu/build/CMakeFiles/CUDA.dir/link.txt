@@ -1,1 +1,1 @@
-/usr/lib/nvidia-cuda-toolkit/bin/g++ CMakeFiles/CUDA.dir/test/Main.cu.o CMakeFiles/CUDA.dir/test/Test.cu.o CMakeFiles/CUDA.dir/src/cuda.cu.o -o bin/CUDA  -lcudadevrt -lcudart_static -lrt -lpthread -ldl  -L"/usr/lib/x86_64-linux-gnu/stubs" -L"/usr/lib/x86_64-linux-gnu"
+/usr/lib/nvidia-cuda-toolkit/bin/g++ CMakeFiles/CUDA.dir/test/Main.cu.o CMakeFiles/CUDA.dir/test/Test.cu.o CMakeFiles/CUDA.dir/src/cuda.cu.o -o bin/CUDA  -lcublas -lcudadevrt -lcudart_static -lrt -lpthread -ldl  -L"/usr/lib/x86_64-linux-gnu/stubs" -L"/usr/lib/x86_64-linux-gnu"

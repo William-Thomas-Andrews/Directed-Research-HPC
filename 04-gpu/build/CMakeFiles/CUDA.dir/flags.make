@@ -6,5 +6,5 @@ CUDA_DEFINES =
 
 CUDA_INCLUDES = -I/home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/test -I/home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/../01-matrix/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/../02-simd/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/04-gpu/../03-multicore/src
 
-CUDA_FLAGS = -O3 -DNDEBUG --generate-code=arch=compute_52,code=[compute_52,sm_52]
+CUDA_FLAGS =  -O3 --use_fast_math -O3 --use_fast_math -lineinfo --generate-code=arch=compute_86,code=[compute_86,sm_86]
 
