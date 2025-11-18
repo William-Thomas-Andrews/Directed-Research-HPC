@@ -69,11 +69,12 @@ int run_tests() {
 
     // Allocate float arrays for single-precision cuBLAS comparison
     size_t bytes_float = N * N * sizeof(float);
-    float *a_float, *b_float, *res_8, *res_9;
+    float *a_float, *b_float, *res_8, *res_9, *res_10;
     cudaMallocManaged(&a_float, bytes_float);
     cudaMallocManaged(&b_float, bytes_float);
     cudaMallocManaged(&res_8, bytes_float);
     cudaMallocManaged(&res_9, bytes_float);
+    cudaMallocManaged(&res_10, bytes_float);
 
     init_matrix(a, N);
     init_matrix(b, N);
@@ -113,6 +114,7 @@ int run_tests() {
     cudaMemPrefetchAsync(b_float, bytes_float, device, 0);
     cudaMemPrefetchAsync(res_8, bytes_float, device, 0);
     cudaMemPrefetchAsync(res_9, bytes_float, device, 0);
+    cudaMemPrefetchAsync(res_10, bytes_float, device, 0);
     cudaDeviceSynchronize();
 
     // Warmup cuBLAS (important: cuBLAS performs JIT compilation on first call)
@@ -278,6 +280,23 @@ int run_tests() {
     cudaEventElapsedTime(&ms, start, stop);
     printf("MM10 (Basic float GPU matrix multiply):           %.6f s\n", ms/1000);
     // if (verify(res_1, res_9, N) == 1) {
+    //     printf("MM10 (Basic float GPU matrix multiply):           %.6f s\n", ms/1000);
+    // } else return 1;
+
+    /* Benchmark 11: MM11 (Autotuned float GPU matrix multiply) */
+    cudaEventRecord(start);
+    // Call the kernel
+    multiply_autotuned_float<128, 128, 8, 8, 8><<<BLOCKS_BT, THREADS_BT>>>(N, N, N, a_float, b_float, res_10);
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+    err = cudaGetLastError();
+    if (err != cudaSuccess) {
+        printf("CUDA Error: %s\n", cudaGetErrorString(err));
+        return 1;
+    }
+    cudaEventElapsedTime(&ms, start, stop);
+    printf("MM11 (Autotuned float GPU matrix multiply):           %.6f s\n", ms/1000);
+    // if (verify(res_1, res_10, N) == 1) {
     //     printf("MM10 (Basic float GPU matrix multiply):           %.6f s\n", ms/1000);
     // } else return 1;
 

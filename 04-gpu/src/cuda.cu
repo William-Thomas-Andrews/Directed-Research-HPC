@@ -75,4 +75,14 @@ int verify(double *result, double *solution, int N) {
     return 1;
 }
 
+int verify(double *result, float *solution, int N) {
+    for (int i = 0; i < N*N; i++) {
+        if ((result[i] - solution[i]) > 1e-9 || (result[i] - solution[i]) < -1e-9) {
+            printf("Error: elements %f and %f do not match.\n", result[i], solution[i]);
+            return 0;
+        }
+    }
+    return 1;
+}
+
 
