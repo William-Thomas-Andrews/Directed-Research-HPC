@@ -31,7 +31,7 @@ Matrix create_initial_heat_distribution(int rows, int cols) {
     }
 
     Solver solver = Solver(&M, 0.0);
-    solver.iterate(1);
+    solver.iterate(1000);
 
     return M;
 }

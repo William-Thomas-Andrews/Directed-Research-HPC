@@ -11,9 +11,16 @@ Solver::Solver(Matrix* matrix, float alpha) {
 Solver::~Solver() {}
 
 void Solver::iterate(int iterations) {
-    for (int i = 0; i < matrix->get_rows(); i++) {
-        for (int j = 0; j < matrix->get_cols(); j++) {
-            (*matrix)(i, j) = 0.0;
+    if (matrix->get_rows() < 3 or matrix->get_cols() < 3) {
+        std::cout << "Dimensions too small, no iteration performed." << std::endl; 
+        return;
+    }
+    for (int it = 0; it < iterations; it++) {
+        for (int i = 1; i < matrix->get_rows()-1; i++) {
+            for (int j = 1; j < matrix->get_cols()-1; j++) {
+                (*matrix)(i, j) = 0.25 * ((*matrix)(i, j-1) + (*matrix)(i, j+1) + (*matrix)(i-1, j) + (*matrix)(i+1, j));
+                // (*matrix)(i, j) = 0;
+            }
         }
     }
 }
