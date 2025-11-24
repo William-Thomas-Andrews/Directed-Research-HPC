@@ -49,6 +49,7 @@ add_executable(FIN
     src/Main.cpp
     src/Matrix.cpp
     src/HeatVisualizer.cpp
+    src/Solver.cpp
     test/Test.cpp
     ${CXX_SRC_FILES}
     # ${ASM_SRC_FILES}

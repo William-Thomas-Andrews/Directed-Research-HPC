@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/FIN.dir/src/Main.cpp.o.d"
   "CMakeFiles/FIN.dir/src/Matrix.cpp.o"
   "CMakeFiles/FIN.dir/src/Matrix.cpp.o.d"
+  "CMakeFiles/FIN.dir/src/Solver.cpp.o"
+  "CMakeFiles/FIN.dir/src/Solver.cpp.o.d"
   "CMakeFiles/FIN.dir/test/Test.cpp.o"
   "CMakeFiles/FIN.dir/test/Test.cpp.o.d"
   "bin/FIN"

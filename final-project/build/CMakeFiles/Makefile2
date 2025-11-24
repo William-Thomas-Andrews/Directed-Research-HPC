@@ -143,16 +143,16 @@ _deps/matplotplusplus-build/source/matplot/clean: _deps/matplotplusplus-build/so
 # Target rules for target CMakeFiles/FIN.dir
 
 # All Build rule for target.
-CMakeFiles/FIN.dir/all: _deps/matplotplusplus-build/source/matplot/CMakeFiles/matplot.dir/all
 CMakeFiles/FIN.dir/all: _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/all
+CMakeFiles/FIN.dir/all: _deps/matplotplusplus-build/source/matplot/CMakeFiles/matplot.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FIN.dir/build.make CMakeFiles/FIN.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FIN.dir/build.make CMakeFiles/FIN.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target FIN"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target FIN"
 .PHONY : CMakeFiles/FIN.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/FIN.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles 49
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles 50
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/FIN.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles 0
 .PHONY : CMakeFiles/FIN.dir/rule
@@ -173,7 +173,7 @@ CMakeFiles/FIN.dir/clean:
 _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/build.make _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/build.make _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=44,45,46,47,48,49 "Built target nodesoup"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=45,46,47,48,49,50 "Built target nodesoup"
 .PHONY : _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/all
 
 # Build rule for subdir invocation for target.
@@ -199,7 +199,7 @@ _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/clean:
 _deps/matplotplusplus-build/source/matplot/CMakeFiles/matplot.dir/all: _deps/matplotplusplus-build/source/3rd_party/CMakeFiles/nodesoup.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/matplotplusplus-build/source/matplot/CMakeFiles/matplot.dir/build.make _deps/matplotplusplus-build/source/matplot/CMakeFiles/matplot.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/matplotplusplus-build/source/matplot/CMakeFiles/matplot.dir/build.make _deps/matplotplusplus-build/source/matplot/CMakeFiles/matplot.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43 "Built target matplot"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44 "Built target matplot"
 .PHONY : _deps/matplotplusplus-build/source/matplot/CMakeFiles/matplot.dir/all
 
 # Build rule for subdir invocation for target.

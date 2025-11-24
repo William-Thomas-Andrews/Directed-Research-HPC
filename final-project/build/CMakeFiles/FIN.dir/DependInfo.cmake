@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/HeatVisualizer.cpp" "CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o" "gcc" "CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o.d"
   "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Main.cpp" "CMakeFiles/FIN.dir/src/Main.cpp.o" "gcc" "CMakeFiles/FIN.dir/src/Main.cpp.o.d"
   "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Matrix.cpp" "CMakeFiles/FIN.dir/src/Matrix.cpp.o" "gcc" "CMakeFiles/FIN.dir/src/Matrix.cpp.o.d"
+  "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp" "CMakeFiles/FIN.dir/src/Solver.cpp.o" "gcc" "CMakeFiles/FIN.dir/src/Solver.cpp.o.d"
   "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp" "CMakeFiles/FIN.dir/test/Test.cpp.o" "gcc" "CMakeFiles/FIN.dir/test/Test.cpp.o.d"
   )
 

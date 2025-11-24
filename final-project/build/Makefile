@@ -272,6 +272,30 @@ src/Matrix.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FIN.dir/build.make CMakeFiles/FIN.dir/src/Matrix.cpp.s
 .PHONY : src/Matrix.cpp.s
 
+src/Solver.o: src/Solver.cpp.o
+.PHONY : src/Solver.o
+
+# target to build an object file
+src/Solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FIN.dir/build.make CMakeFiles/FIN.dir/src/Solver.cpp.o
+.PHONY : src/Solver.cpp.o
+
+src/Solver.i: src/Solver.cpp.i
+.PHONY : src/Solver.i
+
+# target to preprocess a source file
+src/Solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FIN.dir/build.make CMakeFiles/FIN.dir/src/Solver.cpp.i
+.PHONY : src/Solver.cpp.i
+
+src/Solver.s: src/Solver.cpp.s
+.PHONY : src/Solver.s
+
+# target to generate assembly for a file
+src/Solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FIN.dir/build.make CMakeFiles/FIN.dir/src/Solver.cpp.s
+.PHONY : src/Solver.cpp.s
+
 test/Test.o: test/Test.cpp.o
 .PHONY : test/Test.o
 
@@ -320,6 +344,9 @@ help:
 	@echo "... src/Matrix.o"
 	@echo "... src/Matrix.i"
 	@echo "... src/Matrix.s"
+	@echo "... src/Solver.o"
+	@echo "... src/Solver.i"
+	@echo "... src/Solver.s"
 	@echo "... test/Test.o"
 	@echo "... test/Test.i"
 	@echo "... test/Test.s"

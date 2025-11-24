@@ -5,6 +5,7 @@
 #include <random>
 
 
+
 class Matrix {
     private:
         float* matrix_array;

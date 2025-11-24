@@ -1,4 +1,5 @@
 #include "Matrix.hpp"
+#include "Solver.hpp"
 #include "HeatVisualizer.hpp"
 #include <cmath>
 
@@ -22,12 +23,15 @@ Matrix create_initial_heat_distribution(int rows, int cols) {
     // Set boundary conditions (edges fixed at 0)
     for (int i = 0; i < rows; ++i) {
         M(i, 0) = 0.0;
-        M(i, cols - 1) = 0.0;
+        M(i, cols - 1) = 10.0;
     }
     for (int j = 0; j < cols; ++j) {
         M(0, j) = 0.0;
-        M(rows - 1, j) = 0.0;
+        M(rows - 1, j) = 78.0;
     }
+
+    Solver solver = Solver(&M, 0.0);
+    solver.iterate(1);
 
     return M;
 }

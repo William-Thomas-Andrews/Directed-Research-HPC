@@ -16,6 +16,11 @@
 },
 {
   "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build",
+  "command": "/usr/bin/c++ -DMATPLOT_BUILD_HIGH_RESOLUTION_WORLD_MAP -DNOMINMAX -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-build/source/matplot -O3 -mavx512f -fopenmp  -std=gnu++23 -o CMakeFiles/FIN.dir/src/Solver.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp",
+  "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp"
+},
+{
+  "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build",
   "command": "/usr/bin/c++ -DMATPLOT_BUILD_HIGH_RESOLUTION_WORLD_MAP -DNOMINMAX -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source -I/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-build/source/matplot -O3 -mavx512f -fopenmp  -std=gnu++23 -o CMakeFiles/FIN.dir/test/Test.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp",
   "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp"
 }

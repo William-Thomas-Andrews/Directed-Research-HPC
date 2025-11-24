@@ -1,8 +1,6 @@
-CMakeFiles/FIN.dir/src/Main.cpp.o: \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Main.cpp \
- /usr/include/stdc-predef.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/Matrix.hpp \
- /usr/include/c++/11/iostream \
+CMakeFiles/FIN.dir/src/Solver.cpp.o: \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp \
+ /usr/include/stdc-predef.h /usr/include/c++/11/climits \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -13,12 +11,24 @@ CMakeFiles/FIN.dir/src/Main.cpp.o: \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
- /usr/include/c++/11/pstl/pstl_config.h /usr/include/c++/11/ostream \
+ /usr/include/c++/11/pstl/pstl_config.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+ /usr/include/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/Solver.hpp \
+ /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
  /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/memoryfwd.h /usr/include/c++/11/bits/postypes.h \
  /usr/include/c++/11/cwchar /usr/include/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
@@ -97,7 +107,6 @@ CMakeFiles/FIN.dir/src/Main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
- /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
  /usr/include/c++/11/bits/locale_classes.h /usr/include/c++/11/string \
@@ -203,116 +212,4 @@ CMakeFiles/FIN.dir/src/Main.cpp.o: \
  /usr/include/c++/11/bits/stl_numeric.h /usr/include/c++/11/bit \
  /usr/include/c++/11/pstl/glue_numeric_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/Solver.hpp \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/HeatVisualizer.hpp \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/matplot.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/common.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/detail/config.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-build/source/matplot/matplot/detail/exports.h \
- /usr/include/c++/11/algorithm /usr/include/c++/11/utility \
- /usr/include/c++/11/bits/stl_relops.h \
- /usr/include/c++/11/bits/ranges_algo.h \
- /usr/include/c++/11/bits/ranges_algobase.h /usr/include/c++/11/iterator \
- /usr/include/c++/11/bits/stream_iterator.h \
- /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/bits/ranges_util.h \
- /usr/include/c++/11/pstl/glue_algorithm_defs.h \
- /usr/include/c++/11/functional /usr/include/c++/11/tuple \
- /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
- /usr/include/c++/11/bits/refwrap.h \
- /usr/include/c++/11/bits/std_function.h \
- /usr/include/c++/11/unordered_map \
- /usr/include/c++/11/ext/aligned_buffer.h \
- /usr/include/c++/11/bits/hashtable.h \
- /usr/include/c++/11/bits/hashtable_policy.h \
- /usr/include/c++/11/bits/enable_special_members.h \
- /usr/include/c++/11/bits/node_handle.h \
- /usr/include/c++/11/bits/unordered_map.h \
- /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/complex \
- /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc \
- /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
- /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/concepts.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/handle_types.h \
- /usr/include/c++/11/memory \
- /usr/include/c++/11/bits/stl_raw_storage_iter.h \
- /usr/include/c++/11/bits/align.h /usr/include/c++/11/bits/unique_ptr.h \
- /usr/include/c++/11/bits/shared_ptr.h \
- /usr/include/c++/11/bits/shared_ptr_base.h \
- /usr/include/c++/11/bits/allocated_ptr.h \
- /usr/include/c++/11/ext/concurrence.h \
- /usr/include/c++/11/bits/shared_ptr_atomic.h \
- /usr/include/c++/11/bits/atomic_base.h \
- /usr/include/c++/11/bits/atomic_lockfree_defines.h \
- /usr/include/c++/11/bits/atomic_wait.h /usr/include/c++/11/climits \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
- /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
- /usr/include/x86_64-linux-gnu/bits/local_lim.h \
- /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
- /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
- /usr/include/x86_64-linux-gnu/bits/environments.h \
- /usr/include/x86_64-linux-gnu/bits/confname.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/syscall.h \
- /usr/include/x86_64-linux-gnu/sys/syscall.h \
- /usr/include/x86_64-linux-gnu/asm/unistd.h \
- /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
- /usr/include/x86_64-linux-gnu/bits/syscall.h \
- /usr/include/c++/11/bits/std_mutex.h \
- /usr/include/c++/11/backward/auto_ptr.h \
- /usr/include/c++/11/bits/ranges_uninitialized.h \
- /usr/include/c++/11/bits/uses_allocator_args.h \
- /usr/include/c++/11/pstl/glue_memory_defs.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/type_traits.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/geodata.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/backend/backend_interface.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/backend/backend_registry.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/backend/gnuplot.h \
- /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
- /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/axes_type.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/colors.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/keywords.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/axis_type.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/legend.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/line_spec.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/error_bar.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/line.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/axes_object.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/figure_type.h \
- /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/popen.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/function_line.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/histogram.h \
- /usr/include/c++/11/optional \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/bars.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/box_chart.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/circles.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/contours.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/contourc.h \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/list.tcc \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/filled_area.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/labels.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/matrix.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/network.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/parallel_lines.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/stair.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/string_function.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/surface.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/vectors.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/freestanding/axes_functions.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/freestanding/axes_lim.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/freestanding/histcounts.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/freestanding/plot.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/figure_registry.h
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/Matrix.hpp

@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include "Matrix.hpp"
+#include "Solver.hpp"
+
 
 class HeatVisualizer {
 private:
