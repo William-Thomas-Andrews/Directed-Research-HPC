@@ -2,6 +2,8 @@
 #include "Solver.hpp"
 #include "HeatVisualizer.hpp"
 #include <cmath>
+#include <chrono>
+#include <thread>
 
 // Example: Create initial heat distribution with hot spot in center
 Matrix create_initial_heat_distribution(int rows, int cols) {
@@ -30,9 +32,6 @@ Matrix create_initial_heat_distribution(int rows, int cols) {
         M(rows - 1, j) = 78.0;
     }
 
-    Solver solver = Solver(&M, 0.0);
-    solver.iterate(1000);
-
     return M;
 }
 
@@ -42,29 +41,34 @@ int main() {
     Matrix heat_grid = create_initial_heat_distribution(grid_size, grid_size);
 
     std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
+    Solver solver = Solver(&heat_grid, 0.0);
+    for (int i = 0; i < 1000; i++) {
+        solver.iterate(1);
+        // Create visualizer and configure
+        HeatVisualizer viz;
+        viz.set_colormap("hot")
+        .set_title("Initial Heat Distribution")
+        .set_colorbar(true);
 
-    // Create visualizer and configure
-    HeatVisualizer viz;
-    viz.set_colormap("hot")
-       .set_title("Initial Heat Distribution")
-       .set_colorbar(true);
+        // Save heatmap to file (works on headless systems)
+        viz.heatmap(heat_grid);
+        viz.save("heat_heatmap.png");
+        std::cout << "Saved heat_heatmap.png" << std::endl;
 
-    // Save heatmap to file (works on headless systems)
-    viz.heatmap(heat_grid);
-    viz.save("heat_heatmap.png");
-    std::cout << "Saved heat_heatmap.png" << std::endl;
+        // Save surface plot to file
+        viz.set_title("Heat Distribution (3D Surface)");
+        viz.surface(heat_grid);
+        viz.save("heat_surface.png");
+        std::cout << "Saved heat_surface.png" << std::endl;
 
-    // Save surface plot to file
-    viz.set_title("Heat Distribution (3D Surface)");
-    viz.surface(heat_grid);
-    viz.save("heat_surface.png");
-    std::cout << "Saved heat_surface.png" << std::endl;
+        // Save contour plot
+        viz.set_title("Heat Distribution (Contour)");
+        viz.contour(heat_grid);
+        viz.save("heat_contour.png");
+        std::cout << "Saved heat_contour.png" << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
-    // Save contour plot
-    viz.set_title("Heat Distribution (Contour)");
-    viz.contour(heat_grid);
-    viz.save("heat_contour.png");
-    std::cout << "Saved heat_contour.png" << std::endl;
+    }
 
     return 0;
 }

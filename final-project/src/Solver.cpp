@@ -1,4 +1,6 @@
 #include <climits>
+#include <chrono>
+#include <thread>
 
 #include "Solver.hpp"
 
@@ -22,5 +24,6 @@ void Solver::iterate(int iterations) {
                 // (*matrix)(i, j) = 0;
             }
         }
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
