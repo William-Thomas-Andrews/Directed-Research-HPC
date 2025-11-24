@@ -12,14 +12,14 @@
 #define MIN 0.00L
 #define MAX 2.00L
 
-double randfrom(double min, double max) {
-    double range = (max - min); 
-    double div = RAND_MAX / range;
+float randfrom(float min, float max) {
+    float range = (max - min); 
+    float div = RAND_MAX / range;
     return min + (rand() / div);
 }
 
 struct Matrix {
-    double* data_array;
+    float* data_array;
     int size, rows, cols;
 };
 
@@ -29,7 +29,7 @@ static inline void init_matrix(struct Matrix *matrix, int r, int c) {
     matrix->size = size;
     matrix->rows = r;
     matrix->cols = c;
-    matrix->data_array = (double*)calloc(size, sizeof(double));
+    matrix->data_array = (float*)calloc(size, sizeof(float));
 }
 
 static inline void init_matrix_r(struct Matrix *matrix, int r, int c) {
@@ -38,26 +38,26 @@ static inline void init_matrix_r(struct Matrix *matrix, int r, int c) {
     matrix->size = size;
     matrix->rows = r;
     matrix->cols = c;
-    matrix->data_array = (double*)malloc(size * sizeof(double));
+    matrix->data_array = (float*)malloc(size * sizeof(float));
     srand(time(NULL));
     for (int i = 0; i < size; i++) {
         matrix->data_array[i] = randfrom(MIN, MAX);
     }
 }
 
-static inline void init_matrix_v(struct Matrix *matrix, int r, int c, double val) {
+static inline void init_matrix_v(struct Matrix *matrix, int r, int c, float val) {
     if (r < 0 || c < 0) { fprintf(stderr, "Error: row or col sizes cannot be below 0\n"); exit(1); }
     int size = r*c;
     matrix->size = size;
     matrix->rows = r;
     matrix->cols = c;
-    matrix->data_array = (double*)malloc(size * sizeof(double));
+    matrix->data_array = (float*)malloc(size * sizeof(float));
     for (int i = 0; i < size; i++) {
         matrix->data_array[i] = val; 
     }
 }
 
-static inline double* get_element(struct Matrix *matrix, int row_index, int col_index) {
+static inline float* get_element(struct Matrix *matrix, int row_index, int col_index) {
     if (row_index < 0)  { fprintf(stderr, "Error: Row index %d smaller than 0\n", row_index); exit(1); }
     else if (row_index >= matrix->rows) { fprintf(stderr, "Error: Row index %d larger than row upper bound %d\n", row_index, matrix->rows-1); exit(1); }
     else if (col_index < 0) { fprintf(stderr, "Error: Column index %d smaller than 0\n", col_index); exit(1); }
@@ -91,7 +91,7 @@ static inline void matrix_multiply_1(struct Matrix *result, struct Matrix *A, st
     if (A->cols != B->rows)      { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 rows.\n");           exit(1); }
     if (result->rows != A_rows)  { fprintf(stderr, "Result matrix rows do not match Matrix 1 rows.\n");        exit(1); }
     if (result->cols != B_cols)  { fprintf(stderr, "Result matrix columns do not match Matrix 2 columns.\n");  exit(1); }
-    double sum;
+    float sum;
     for (int i = 0; i < A_rows; i++) {
         for (int j = 0; j < B_cols; j++) {
             sum = 0.0;
@@ -125,7 +125,7 @@ static inline void matrix_multiply_3(struct Matrix *result, struct Matrix *A, st
     if (A->cols != B->rows)      { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 rows.\n");           exit(1); }
     if (result->rows != A_rows)  { fprintf(stderr, "Result matrix rows do not match Matrix 1 rows.\n");        exit(1); }
     if (result->cols != B_cols)  { fprintf(stderr, "Result matrix columns do not match Matrix 2 columns.\n");  exit(1); }
-    // double sum;
+    // float sum;
     for (int i = 0; i < B_cols; i++) {
         for (int j = 0; j < A_rows; j++) {
             // sum = 0.0;
@@ -149,7 +149,7 @@ struct BlockedThreadArgs {
 
 static inline void *routine_40(void* arg) {
     struct ThreadArgs *data = (struct ThreadArgs *)arg;
-    double sum;
+    float sum;
     for (int i = 0; i < data->A->rows / 2; i++) {
         for (int j = 0; j < data->B->cols; j++) {
             sum = 0.0;
@@ -166,7 +166,7 @@ static inline void *routine_40(void* arg) {
 
 static inline void *routine_41(void* arg) {
     struct ThreadArgs *data = (struct ThreadArgs *)arg;
-    double sum;
+    float sum;
     for (int i = (data->A->rows / 2); i < data->A->rows; i++) {
         for (int j = 0; j < data->B->cols; j++) {
             sum = 0.0;
@@ -202,7 +202,7 @@ static inline void matrix_multiply_4(struct Matrix *result, struct Matrix *A, st
 
 static inline void *routine_50(void* arg) {
     struct ThreadArgs *data = (struct ThreadArgs *)arg;
-    double sum;
+    float sum;
     for (int i = 0; i < data->B->cols / 2; i++) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
@@ -219,7 +219,7 @@ static inline void *routine_50(void* arg) {
 
 static inline void *routine_51(void* arg) {
     struct ThreadArgs *data = (struct ThreadArgs *)arg;
-    double sum;
+    float sum;
     for (int i = data->B->cols / 2; i < data->B->cols; i++) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
@@ -255,7 +255,7 @@ static inline void matrix_multiply_5(struct Matrix *result, struct Matrix *A, st
 
 static inline void *routine_60(void* arg) {
     struct ThreadArgs *data = (struct ThreadArgs *)arg;
-    double sum;
+    float sum;
     for (int i = 0; i < data->B->cols / 4; i++) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
@@ -272,7 +272,7 @@ static inline void *routine_60(void* arg) {
 
 static inline void *routine_61(void* arg) {
     struct ThreadArgs *data = (struct ThreadArgs *)arg;
-    double sum;
+    float sum;
     for (int i = data->B->cols / 4; i < data->B->cols / 2; i++) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
@@ -289,7 +289,7 @@ static inline void *routine_61(void* arg) {
 
 static inline void *routine_62(void* arg) {
     struct ThreadArgs *data = (struct ThreadArgs *)arg;
-    double sum;
+    float sum;
     for (int i = data->B->cols / 2; i < (data->B->cols * 3) / 4; i++) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
@@ -306,7 +306,7 @@ static inline void *routine_62(void* arg) {
 
 static inline void *routine_63(void* arg) {
     struct ThreadArgs *data = (struct ThreadArgs *)arg;
-    double sum;
+    float sum;
     for (int i = (data->B->cols * 3) / 4; i < data->B->cols; i++) {
         for (int j = 0; j < data->A->rows; j++) {
             sum = 0.0;
@@ -442,7 +442,7 @@ static inline void matrix_multiply_8(struct Matrix *result, struct Matrix *A, st
 void bijk(struct Matrix* result, struct Matrix* A, struct Matrix* B, int n, int bsize)
 {
     int i, j, k, kk, jj;
-    double sum;
+    float sum;
     int en = bsize * (n/bsize); /* Amount that fits evenly into blocks */
     // for (i = 0; i < n; i++)
     //     for (j = 0; j < n; j++)
@@ -468,7 +468,7 @@ static inline void matrix_multiply_with_transposed_B(struct Matrix *result, stru
     if (A_cols != B_cols)        { fprintf(stderr, "Matrix 1 colums do not match Matrix 2 cols (transposition case).\n");           exit(1); }
     if (result->rows != A_rows)  { fprintf(stderr, "Result matrix rows do not match Matrix 1 rows.\n");        exit(1); }
     if (result->cols != B_rows)  { fprintf(stderr, "Result matrix columns do not match Matrix 2 columns.\n");  exit(1); }
-    double sum;
+    float sum;
     for (int i = 0; i < A_rows; i++) {
         for (int j = 0; j < B_rows; j++) {
             sum = 0.0;

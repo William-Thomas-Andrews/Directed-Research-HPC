@@ -14,7 +14,7 @@
 
 int run_tests() {
     clock_t begin, end;
-    double time_spent;
+    float time_spent;
 
     int A_rows, A_cols, B_rows, B_cols;
     A_rows = SIZE;
@@ -36,7 +36,7 @@ int run_tests() {
     begin = clock();
     matrix_multiply_1(&result, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM1 (Standard):                           %.6f s\n", time_spent);
 
     /* Benchmark 10: Cache-Optimized with Transposed B */
@@ -46,7 +46,7 @@ int run_tests() {
     transpose(&B);
     matrix_multiply_with_transposed_B(&result_10, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM10 (Transposed B):                      %.6f s\n", time_spent);
     transpose(&B);
 
@@ -56,7 +56,7 @@ int run_tests() {
     begin = clock();
     bijk(&result_9, &A, &B, A.cols, A.cols/2);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM9 (Blocked BIJK):                       %.6f s\n", time_spent);
 
     /* Benchmark 8: Parallel Blocked Implementation */
@@ -65,7 +65,7 @@ int run_tests() {
     begin = clock();
     matrix_multiply_8(&result_8, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM8 (Parallel Blocked):                   %.6f s\n", time_spent);
 
     /* Benchmark 7: Blocked Algorithm */
@@ -74,7 +74,7 @@ int run_tests() {
     begin = clock();
     matrix_multiply_7(&result_7, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM7 (Blocked):                            %.6f s\n", time_spent);
 
     /* Benchmark 2: Loop Variant Implementation */
@@ -83,7 +83,7 @@ int run_tests() {
     begin = clock();
     matrix_multiply_2(&result_2, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM2 (Loop Variant):                       %.6f s\n", time_spent);
 
     /* Benchmark 3: Alternative Loop Ordering */
@@ -92,7 +92,7 @@ int run_tests() {
     begin = clock();
     matrix_multiply_3(&result_3, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM3 (Alternative Loop Order):             %.6f s\n", time_spent);
 
     /* Benchmark 4: Loop Optimization Variant */
@@ -101,7 +101,7 @@ int run_tests() {
     begin = clock();
     matrix_multiply_4(&result_4, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM4 (Optimization Variant):               %.6f s\n", time_spent);
 
     /* Benchmark 5: Cache-Aware Implementation */
@@ -110,7 +110,7 @@ int run_tests() {
     begin = clock();
     matrix_multiply_5(&result_5, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM5 (Cache-Aware):                        %.6f s\n", time_spent);
 
     /* Benchmark 6: Advanced Optimization */
@@ -119,7 +119,7 @@ int run_tests() {
     begin = clock();
     matrix_multiply_6(&result_6, &A, &B);
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
     printf("MM6 (Advanced Optimization):              %.6f s\n", time_spent);
 
     printf("\n");

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/CMakeFiles/matplotplusplus-populate"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/CMakeFiles/matplotplusplus-populate.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/CMakeFiles/matplotplusplus-populate-complete.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/matplotplusplus-populate-prefix/src/matplotplusplus-populate-stamp/matplotplusplus-populate-build.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/matplotplusplus-populate-prefix/src/matplotplusplus-populate-stamp/matplotplusplus-populate-configure.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/matplotplusplus-populate-prefix/src/matplotplusplus-populate-stamp/matplotplusplus-populate-download.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/matplotplusplus-populate-prefix/src/matplotplusplus-populate-stamp/matplotplusplus-populate-install.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/matplotplusplus-populate-prefix/src/matplotplusplus-populate-stamp/matplotplusplus-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/matplotplusplus-populate-prefix/src/matplotplusplus-populate-stamp/matplotplusplus-populate-patch.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/matplotplusplus-populate-prefix/src/matplotplusplus-populate-stamp/matplotplusplus-populate-test.rule"
+		},
+		{
+			"file" : "/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-subbuild/matplotplusplus-populate-prefix/src/matplotplusplus-populate-stamp/matplotplusplus-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"matplotplusplus-populate"
+		],
+		"name" : "matplotplusplus-populate"
+	}
+}

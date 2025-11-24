@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define POWER 14
+#define POWER 10
 #define SIZE pow(2, POWER)
 
 int run_tests() {
@@ -134,7 +134,7 @@ int run_tests() {
 
     /* Benchmark 2: MM2 (Transposed multiply) */
     begin = clock();
-    // standard_transposed_multiply(a, b, res_1, N);
+    standard_transposed_multiply(a, b, res_1, N);
     end = clock();
     time_spent = end - begin;
     // if (verify(c, d, N) == 1) {
