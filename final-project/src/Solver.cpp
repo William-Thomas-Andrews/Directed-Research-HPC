@@ -57,16 +57,20 @@ void Solver::jacobi_2(Matrix& grid, Matrix& prev, int index) {
 
 // Parallel Jacobi iteration
 void Solver::jacobi_iterate_2(Matrix& grid, int iterations) {
-    // HeatVisualizer viz;
     const int num_threads = 25;
     std::barrier barrier_obj(num_threads);
     std::vector<std::thread> threads;
-    Matrix prev;
+    Matrix prev = grid; // copy assignment
     auto job = [&](int index) {
         for (int i = 0; i < iterations; i++) {
-            if (index == 0) prev = grid; // copy assignment
+            // if (index == 0) prev = grid; // copy assignment
             barrier_obj.arrive_and_wait();
-            Solver::jacobi_2(grid, prev, index);
+            if (i % 2 == 1) {
+                Solver::jacobi_2(prev, grid, index);
+            } 
+            else {
+                Solver::jacobi_2(grid, prev, index);
+            }
             barrier_obj.arrive_and_wait();
         }
     };
@@ -76,7 +80,6 @@ void Solver::jacobi_iterate_2(Matrix& grid, int iterations) {
     for (int j = 0; j < num_threads; j++) {
         threads[j].join();
     }
-    // MPI_Finalize();
 }
 
 

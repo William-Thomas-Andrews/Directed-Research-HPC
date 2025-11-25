@@ -7,7 +7,7 @@
 #include "Solver.hpp"
 
 #define ITERATIONS 10000
-#define SIZE 50
+#define SIZE 200
 
 // Example: Create initial heat distribution with hot spot in center
 Matrix create_initial_heat_distribution(int rows, int cols) {
