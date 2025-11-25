@@ -42,9 +42,9 @@ HeatVisualizer& HeatVisualizer::set_title(const std::string& t) {
     return *this;
 }
 
-std::vector<std::vector<double>> HeatVisualizer::matrix_to_2d(const Matrix& M) {
-    int rows = const_cast<Matrix&>(M).get_rows();
-    int cols = const_cast<Matrix&>(M).get_cols();
+std::vector<std::vector<double>> HeatVisualizer::matrix_to_2d(Matrix& M) {
+    int rows = M.get_rows();
+    int cols = M.get_cols();
 
     std::vector<std::vector<double>> result(rows, std::vector<double>(cols));
 
@@ -57,7 +57,7 @@ std::vector<std::vector<double>> HeatVisualizer::matrix_to_2d(const Matrix& M) {
     return result;
 }
 
-void HeatVisualizer::heatmap(const Matrix& M) {
+void HeatVisualizer::heatmap(Matrix& M) {
     auto data = matrix_to_2d(M);
 
     auto fig = matplot::figure(true);
@@ -73,7 +73,7 @@ void HeatVisualizer::heatmap(const Matrix& M) {
     matplot::ylabel("Y");
 }
 
-void HeatVisualizer::heatmap(const Matrix& M, double min_val, double max_val) {
+void HeatVisualizer::heatmap(Matrix& M, double min_val, double max_val) {
     auto data = matrix_to_2d(M);
 
     auto fig = matplot::figure(true);
@@ -90,10 +90,10 @@ void HeatVisualizer::heatmap(const Matrix& M, double min_val, double max_val) {
     matplot::ylabel("Y");
 }
 
-void HeatVisualizer::surface(const Matrix& M) {
+void HeatVisualizer::surface(Matrix& M) {
     auto data = matrix_to_2d(M);
-    int rows = const_cast<Matrix&>(M).get_rows();
-    int cols = const_cast<Matrix&>(M).get_cols();
+    int rows = M.get_rows();
+    int cols = M.get_cols();
 
     // Create X and Y meshgrid
     auto [X, Y] = matplot::meshgrid(
@@ -102,7 +102,7 @@ void HeatVisualizer::surface(const Matrix& M) {
     );
 
     auto fig = matplot::figure(true);
-    matplot::surf(X, Y, data);
+    auto s = matplot::surf(X, Y, data);
     matplot::colormap(get_colormap_by_name(colormap_name));
 
     if (show_colorbar) {
@@ -113,12 +113,23 @@ void HeatVisualizer::surface(const Matrix& M) {
     matplot::xlabel("X");
     matplot::ylabel("Y");
     matplot::zlabel("Temperature");
+    // Let matplot++ auto-scale zlim based on data range
 }
 
-void HeatVisualizer::surface(const Matrix& M, double min_val, double max_val) {
+void HeatVisualizer::surface(Matrix& M, double min_val, double max_val) {
     auto data = matrix_to_2d(M);
-    int rows = const_cast<Matrix&>(M).get_rows();
-    int cols = const_cast<Matrix&>(M).get_cols();
+    int rows = M.get_rows();
+    int cols = M.get_cols();
+
+    // Find actual min/max values in the data for better visualization
+    double actual_min = data[0][0];
+    double actual_max = data[0][0];
+    for (const auto& row : data) {
+        for (double val : row) {
+            actual_min = std::min(actual_min, val);
+            actual_max = std::max(actual_max, val);
+        }
+    }
 
     // Create X and Y meshgrid
     auto [X, Y] = matplot::meshgrid(
@@ -127,9 +138,11 @@ void HeatVisualizer::surface(const Matrix& M, double min_val, double max_val) {
     );
 
     auto fig = matplot::figure(true);
-    matplot::surf(X, Y, data);
+    auto s = matplot::surf(X, Y, data);
     matplot::colormap(get_colormap_by_name(colormap_name));
-    matplot::caxis({min_val, max_val});
+
+    // Use actual data range for better visualization
+    matplot::caxis({actual_min, actual_max});
 
     if (show_colorbar) {
         matplot::colorbar();
@@ -139,12 +152,14 @@ void HeatVisualizer::surface(const Matrix& M, double min_val, double max_val) {
     matplot::xlabel("X");
     matplot::ylabel("Y");
     matplot::zlabel("Temperature");
+    // Use actual data range instead of fixed min/max for better visualization
+    matplot::zlim({actual_min, actual_max});
 }
 
-void HeatVisualizer::contour(const Matrix& M) {
+void HeatVisualizer::contour(Matrix& M) {
     auto data = matrix_to_2d(M);
-    int rows = const_cast<Matrix&>(M).get_rows();
-    int cols = const_cast<Matrix&>(M).get_cols();
+    int rows = M.get_rows();
+    int cols = M.get_cols();
 
     // Create X and Y meshgrid for contourf
     auto [X, Y] = matplot::meshgrid(
@@ -173,7 +188,7 @@ void HeatVisualizer::show() {
     matplot::show();
 }
 
-void HeatVisualizer::animate_iteration(const Matrix& M, int iteration, int max_iterations) {
+void HeatVisualizer::animate_iteration(Matrix& M, int iteration, int max_iterations) {
     this->set_colormap("hot")
     .set_title("Initial Heat Distribution")
     .set_colorbar(true);
@@ -190,9 +205,9 @@ void HeatVisualizer::animate_iteration(const Matrix& M, int iteration, int max_i
     // std::cout << "Saved heat_surface.png" << std::endl;
 
     // Save contour plot
-    this->set_title("Heat Distribution (Contour)");
-    this->contour(M);
-    this->save("heat_contour.png");
+    // this->set_title("Heat Distribution (Contour)");
+    // this->contour(M);
+    // this->save("heat_contour.png");
     // std::cout << "Saved heat_contour.png" << std::endl;
     std::cout << " - Iteration " << iteration << "/" << max_iterations << "\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(150));

@@ -24,15 +24,15 @@ public:
     HeatVisualizer& set_title(const std::string& t);
 
     // Visualization methods
-    void heatmap(const Matrix& M);
-    void heatmap(const Matrix& M, double min_val, double max_val);
+    void heatmap(Matrix& M);
+    void heatmap(Matrix& M, double min_val, double max_val);
 
     // Surface plot (3D visualization)
-    void surface(const Matrix& M);
-    void surface(const Matrix& M, double min_val, double max_val);
+    void surface(Matrix& M);
+    void surface(Matrix& M, double min_val, double max_val);
 
     // Contour plot
-    void contour(const Matrix& M);
+    void contour(Matrix& M);
 
     // Save current figure to file
     void save(const std::string& filename);
@@ -41,8 +41,8 @@ public:
     void show();
 
     // Animation support for iterative solvers
-    void animate_iteration(const Matrix& M, int iteration, int max_iterations);
+    void animate_iteration(Matrix& M, int iteration, int max_iterations);
 
     // Utility: Convert Matrix to matplot-compatible 2D vector
-    static std::vector<std::vector<double>> matrix_to_2d(const Matrix& M);
+    static std::vector<std::vector<double>> matrix_to_2d(Matrix& M);
 };
