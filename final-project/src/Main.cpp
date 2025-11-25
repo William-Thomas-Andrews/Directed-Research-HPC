@@ -1,6 +1,7 @@
 #include <cmath>
 #include <chrono>
 #include <thread>
+#include "mpi.h"
 
 #include "Matrix.hpp"
 #include "Solver.hpp"
@@ -41,6 +42,7 @@ int main() {
     int process_Rank, size_Of_Cluster;
     MPI_Comm_size(MPI_COMM_WORLD, &size_Of_Cluster);
     MPI_Comm_rank(MPI_COMM_WORLD, &process_Rank);
+
     int grid_size = 500;
     std::chrono::steady_clock::time_point begin, end;
     Solver solver;

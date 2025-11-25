@@ -29,32 +29,17 @@ void Solver::jacobi_1() {
 }
 
 // Parallel Jacobi
-void Solver::jacobi_2() {
+void Solver::jacobi_2(Matrix* temp, ) {
     if (grid->get_rows() < 3 or grid->get_cols() < 3) {
         std::cout << "Dimensions too small, no iterations performed." << std::endl; 
         return;
     }
-    Matrix temp = *grid; // copy assignment
-
-
-    for(int i = 0; i < size_Of_Cluster; i++) {
-        // if(i == process_Rank){
-        //     // printf("Hello World from process %d of %d\n", process_Rank, size_Of_Cluster);
-        // }
-        // solve()
-        MPI_Barrier(MPI_COMM_WORLD);
+    // Matrix temp = *grid; // copy assignment
+    for (int i = 1; i < temp.get_rows()-1; i++) {
+        for (int j = 1; j < temp.get_cols()-1; j++) {
+            (*grid)(i, j) = 0.25 * ((temp)(i, j-1) + (temp)(i, j+1) + (temp)(i-1, j) + (temp)(i+1, j));
+        }
     }
-    
-    // omp_set_num_threads(32);
-    // #pragma omp unroll
-    // // #pragma omp parallel for
-    // for (int i = 1; i < temp.get_rows()-1; i++) {
-    //     for (int j = 1; j < temp.get_cols()-1; j++) {
-    //         (*grid)(i, j) = 0.25 * ((temp)(i, j-1) + (temp)(i, j+1) + (temp)(i-1, j) + (temp)(i+1, j));
-    //     }
-    // }
-    // // std::cout << omp_get_thread_num() << std::endl;
-    // std::cout << omp_get_num_threads() << std::endl;
 }
 
 // Standard Jacobi iteration
@@ -70,9 +55,13 @@ void Solver::jacobi_iterate_1(int iterations) {
 
 // Parallel Jacobi iteration
 void Solver::jacobi_iterate_2(int iterations) {
-    HeatVisualizer viz;
+    // HeatVisualizer viz;
+    const int num_threads = 4;
+    std::barrier barrier_obj(num_threads);
+    std::vector<std::thread> threads;
     for (int i = 0; i < iterations; i++) {
-        this->jacobi_2();
+        Matrix temp = *grid; // copy assignment
+        this->jacobi_2(temp);
         // if (i % 10 == 0) {
         //     viz.animate_iteration(*grid, i, 1000);
         // }
