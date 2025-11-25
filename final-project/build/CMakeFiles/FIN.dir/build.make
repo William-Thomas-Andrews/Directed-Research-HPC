@@ -73,71 +73,71 @@ CMakeFiles/FIN.dir/src/Main.cpp.o: CMakeFiles/FIN.dir/flags.make
 CMakeFiles/FIN.dir/src/Main.cpp.o: ../src/Main.cpp
 CMakeFiles/FIN.dir/src/Main.cpp.o: CMakeFiles/FIN.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FIN.dir/src/Main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/src/Main.cpp.o -MF CMakeFiles/FIN.dir/src/Main.cpp.o.d -o CMakeFiles/FIN.dir/src/Main.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Main.cpp
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/src/Main.cpp.o -MF CMakeFiles/FIN.dir/src/Main.cpp.o.d -o CMakeFiles/FIN.dir/src/Main.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Main.cpp
 
 CMakeFiles/FIN.dir/src/Main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FIN.dir/src/Main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Main.cpp > CMakeFiles/FIN.dir/src/Main.cpp.i
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Main.cpp > CMakeFiles/FIN.dir/src/Main.cpp.i
 
 CMakeFiles/FIN.dir/src/Main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FIN.dir/src/Main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Main.cpp -o CMakeFiles/FIN.dir/src/Main.cpp.s
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Main.cpp -o CMakeFiles/FIN.dir/src/Main.cpp.s
 
 CMakeFiles/FIN.dir/src/Matrix.cpp.o: CMakeFiles/FIN.dir/flags.make
 CMakeFiles/FIN.dir/src/Matrix.cpp.o: ../src/Matrix.cpp
 CMakeFiles/FIN.dir/src/Matrix.cpp.o: CMakeFiles/FIN.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FIN.dir/src/Matrix.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/src/Matrix.cpp.o -MF CMakeFiles/FIN.dir/src/Matrix.cpp.o.d -o CMakeFiles/FIN.dir/src/Matrix.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Matrix.cpp
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/src/Matrix.cpp.o -MF CMakeFiles/FIN.dir/src/Matrix.cpp.o.d -o CMakeFiles/FIN.dir/src/Matrix.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Matrix.cpp
 
 CMakeFiles/FIN.dir/src/Matrix.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FIN.dir/src/Matrix.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Matrix.cpp > CMakeFiles/FIN.dir/src/Matrix.cpp.i
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Matrix.cpp > CMakeFiles/FIN.dir/src/Matrix.cpp.i
 
 CMakeFiles/FIN.dir/src/Matrix.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FIN.dir/src/Matrix.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Matrix.cpp -o CMakeFiles/FIN.dir/src/Matrix.cpp.s
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Matrix.cpp -o CMakeFiles/FIN.dir/src/Matrix.cpp.s
 
 CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o: CMakeFiles/FIN.dir/flags.make
 CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o: ../src/HeatVisualizer.cpp
 CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o: CMakeFiles/FIN.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o -MF CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o.d -o CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/HeatVisualizer.cpp
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o -MF CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o.d -o CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/HeatVisualizer.cpp
 
 CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/HeatVisualizer.cpp > CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.i
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/HeatVisualizer.cpp > CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.i
 
 CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/HeatVisualizer.cpp -o CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.s
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/HeatVisualizer.cpp -o CMakeFiles/FIN.dir/src/HeatVisualizer.cpp.s
 
 CMakeFiles/FIN.dir/src/Solver.cpp.o: CMakeFiles/FIN.dir/flags.make
 CMakeFiles/FIN.dir/src/Solver.cpp.o: ../src/Solver.cpp
 CMakeFiles/FIN.dir/src/Solver.cpp.o: CMakeFiles/FIN.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FIN.dir/src/Solver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/src/Solver.cpp.o -MF CMakeFiles/FIN.dir/src/Solver.cpp.o.d -o CMakeFiles/FIN.dir/src/Solver.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/src/Solver.cpp.o -MF CMakeFiles/FIN.dir/src/Solver.cpp.o.d -o CMakeFiles/FIN.dir/src/Solver.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp
 
 CMakeFiles/FIN.dir/src/Solver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FIN.dir/src/Solver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp > CMakeFiles/FIN.dir/src/Solver.cpp.i
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp > CMakeFiles/FIN.dir/src/Solver.cpp.i
 
 CMakeFiles/FIN.dir/src/Solver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FIN.dir/src/Solver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp -o CMakeFiles/FIN.dir/src/Solver.cpp.s
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/src/Solver.cpp -o CMakeFiles/FIN.dir/src/Solver.cpp.s
 
 CMakeFiles/FIN.dir/test/Test.cpp.o: CMakeFiles/FIN.dir/flags.make
 CMakeFiles/FIN.dir/test/Test.cpp.o: ../test/Test.cpp
 CMakeFiles/FIN.dir/test/Test.cpp.o: CMakeFiles/FIN.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FIN.dir/test/Test.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/test/Test.cpp.o -MF CMakeFiles/FIN.dir/test/Test.cpp.o.d -o CMakeFiles/FIN.dir/test/Test.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FIN.dir/test/Test.cpp.o -MF CMakeFiles/FIN.dir/test/Test.cpp.o.d -o CMakeFiles/FIN.dir/test/Test.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp
 
 CMakeFiles/FIN.dir/test/Test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FIN.dir/test/Test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp > CMakeFiles/FIN.dir/test/Test.cpp.i
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp > CMakeFiles/FIN.dir/test/Test.cpp.i
 
 CMakeFiles/FIN.dir/test/Test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FIN.dir/test/Test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp -o CMakeFiles/FIN.dir/test/Test.cpp.s
+	mpicxx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/test/Test.cpp -o CMakeFiles/FIN.dir/test/Test.cpp.s
 
 # Object files for target FIN
 FIN_OBJECTS = \
@@ -175,6 +175,8 @@ bin/FIN: /usr/lib/x86_64-linux-gnu/libfftw3_omp.so
 bin/FIN: /usr/lib/x86_64-linux-gnu/libfftw3f_omp.so
 bin/FIN: /usr/lib/x86_64-linux-gnu/libfftw3l_omp.so
 bin/FIN: _deps/matplotplusplus-build/source/3rd_party/libnodesoup.a
+bin/FIN: /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so
+bin/FIN: /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so
 bin/FIN: CMakeFiles/FIN.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable bin/FIN"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FIN.dir/link.txt --verbose=$(VERBOSE)

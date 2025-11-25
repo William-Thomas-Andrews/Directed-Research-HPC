@@ -3,6 +3,8 @@
 #include <matplot/matplot.h>
 #include <vector>
 #include <string>
+#include <thread>
+
 #include "Matrix.hpp"
 #include "Solver.hpp"
 
@@ -27,6 +29,7 @@ public:
 
     // Surface plot (3D visualization)
     void surface(const Matrix& M);
+    void surface(const Matrix& M, double min_val, double max_val);
 
     // Contour plot
     void contour(const Matrix& M);

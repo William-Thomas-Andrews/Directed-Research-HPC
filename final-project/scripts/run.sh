@@ -1,3 +1,3 @@
 #! /bin/sh
 
-cd ../build ; ./bin/FIN ; cd ../scripts
+cd ../build ; mpirun -np 8 ./bin/FIN ; cd ../scripts

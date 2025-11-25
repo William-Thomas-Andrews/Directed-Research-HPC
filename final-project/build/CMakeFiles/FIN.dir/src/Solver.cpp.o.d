@@ -199,10 +199,52 @@ CMakeFiles/FIN.dir/src/Solver.cpp.o: \
  /usr/include/c++/11/bits/this_thread_sleep.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/omp.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/mpi.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/mpi_portable_platform.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/mpicxx.h \
+ /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/node_handle.h \
+ /usr/include/c++/11/bits/stl_map.h \
+ /usr/include/c++/11/bits/stl_multimap.h \
+ /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/iostream \
+ /usr/include/c++/11/istream /usr/include/c++/11/bits/istream.tcc \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/constants.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/functions.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/datatype.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/exception.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/op.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/status.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/request.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/group.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/comm.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/win.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/file.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/errhandler.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intracomm.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/topology.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intercomm.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/info.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/datatype_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/functions_inln.h \
+ /usr/include/string.h /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/request_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/comm_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intracomm_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/topology_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/intercomm_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/group_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/op_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/errhandler_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/status_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/info_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/win_inln.h \
+ /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/ompi/mpi/cxx/file_inln.h \
  /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/Solver.hpp \
- /usr/include/c++/11/iostream /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/vector \
- /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/random \
@@ -241,4 +283,77 @@ CMakeFiles/FIN.dir/src/Solver.cpp.o: \
  /usr/include/c++/11/bits/stl_numeric.h /usr/include/c++/11/bit \
  /usr/include/c++/11/pstl/glue_numeric_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/Matrix.hpp
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/Matrix.hpp \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/include/HeatVisualizer.hpp \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/matplot.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/common.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/detail/config.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-build/source/matplot/matplot/detail/exports.h \
+ /usr/include/c++/11/algorithm /usr/include/c++/11/bits/ranges_algo.h \
+ /usr/include/c++/11/bits/ranges_algobase.h /usr/include/c++/11/iterator \
+ /usr/include/c++/11/bits/stream_iterator.h \
+ /usr/include/c++/11/bits/ranges_util.h \
+ /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
+ /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
+ /usr/include/c++/11/bits/hashtable_policy.h \
+ /usr/include/c++/11/bits/enable_special_members.h \
+ /usr/include/c++/11/bits/unordered_map.h /usr/include/c++/11/complex \
+ /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/concepts.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/handle_types.h \
+ /usr/include/c++/11/memory \
+ /usr/include/c++/11/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/11/bits/align.h /usr/include/c++/11/bits/shared_ptr.h \
+ /usr/include/c++/11/bits/shared_ptr_base.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/ext/concurrence.h \
+ /usr/include/c++/11/bits/shared_ptr_atomic.h \
+ /usr/include/c++/11/backward/auto_ptr.h \
+ /usr/include/c++/11/bits/ranges_uninitialized.h \
+ /usr/include/c++/11/bits/uses_allocator_args.h \
+ /usr/include/c++/11/pstl/glue_memory_defs.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/type_traits.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/geodata.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/backend/backend_interface.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/backend/backend_registry.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/backend/gnuplot.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/axes_type.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/colors.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/keywords.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/axis_type.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/legend.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/line_spec.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/error_bar.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/line.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/axes_object.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/figure_type.h \
+ /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/popen.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/function_line.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/histogram.h \
+ /usr/include/c++/11/optional \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/bars.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/box_chart.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/circles.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/contours.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/util/contourc.h \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/list.tcc \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/filled_area.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/labels.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/matrix.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/network.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/parallel_lines.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/stair.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/string_function.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/surface.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/axes_objects/vectors.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/freestanding/axes_functions.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/freestanding/axes_lim.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/freestanding/histcounts.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/freestanding/plot.h \
+ /home/wtandrews/320_CSCI/Directed-Research-HPC/final-project/build/_deps/matplotplusplus-src/source/matplot/core/figure_registry.h

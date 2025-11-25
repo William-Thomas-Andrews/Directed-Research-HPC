@@ -1,7 +1,8 @@
-#include "HeatVisualizer.hpp"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+
+#include "HeatVisualizer.hpp"
 
 // Helper function to get colormap by name
 std::vector<std::vector<double>> get_colormap_by_name(const std::string& name) {
@@ -114,6 +115,32 @@ void HeatVisualizer::surface(const Matrix& M) {
     matplot::zlabel("Temperature");
 }
 
+void HeatVisualizer::surface(const Matrix& M, double min_val, double max_val) {
+    auto data = matrix_to_2d(M);
+    int rows = const_cast<Matrix&>(M).get_rows();
+    int cols = const_cast<Matrix&>(M).get_cols();
+
+    // Create X and Y meshgrid
+    auto [X, Y] = matplot::meshgrid(
+        matplot::linspace(0, cols - 1, cols),
+        matplot::linspace(0, rows - 1, rows)
+    );
+
+    auto fig = matplot::figure(true);
+    matplot::surf(X, Y, data);
+    matplot::colormap(get_colormap_by_name(colormap_name));
+    matplot::caxis({min_val, max_val});
+
+    if (show_colorbar) {
+        matplot::colorbar();
+    }
+
+    matplot::title(title);
+    matplot::xlabel("X");
+    matplot::ylabel("Y");
+    matplot::zlabel("Temperature");
+}
+
 void HeatVisualizer::contour(const Matrix& M) {
     auto data = matrix_to_2d(M);
     int rows = const_cast<Matrix&>(M).get_rows();
@@ -147,20 +174,26 @@ void HeatVisualizer::show() {
 }
 
 void HeatVisualizer::animate_iteration(const Matrix& M, int iteration, int max_iterations) {
-    auto data = matrix_to_2d(M);
+    this->set_colormap("hot")
+    .set_title("Initial Heat Distribution")
+    .set_colorbar(true);
 
-    matplot::cla();
-    matplot::imagesc(data);
-    matplot::colormap(get_colormap_by_name(colormap_name));
+    // Save heatmap to file (works on headless systems) with fixed 0-100 range
+    this->heatmap(M, 0.0, 100.0);
+    this->save("heat_heatmap.png");
+    // std::cout << "Saved heat_heatmap.png" << std::endl;
 
-    std::ostringstream oss;
-    oss << title << " - Iteration " << iteration << "/" << max_iterations;
-    matplot::title(oss.str());
+    // Save surface plot to file
+    this->set_title("Heat Distribution (3D Surface)");
+    this->surface(M, 0.0, 100);
+    this->save("heat_surface.png");
+    // std::cout << "Saved heat_surface.png" << std::endl;
 
-    if (show_colorbar) {
-        matplot::colorbar();
-    }
-
-    // Use gcf()->draw() instead of drawnow()
-    matplot::gcf()->draw();
+    // Save contour plot
+    this->set_title("Heat Distribution (Contour)");
+    this->contour(M);
+    this->save("heat_contour.png");
+    // std::cout << "Saved heat_contour.png" << std::endl;
+    std::cout << " - Iteration " << iteration << "/" << max_iterations << "\n";
+    std::this_thread::sleep_for(std::chrono::milliseconds(150));
 }

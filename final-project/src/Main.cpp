@@ -1,9 +1,9 @@
-#include "Matrix.hpp"
-#include "Solver.hpp"
-#include "HeatVisualizer.hpp"
 #include <cmath>
 #include <chrono>
 #include <thread>
+
+#include "Matrix.hpp"
+#include "Solver.hpp"
 
 // Example: Create initial heat distribution with hot spot in center
 Matrix create_initial_heat_distribution(int rows, int cols) {
@@ -25,7 +25,7 @@ Matrix create_initial_heat_distribution(int rows, int cols) {
     // Set boundary conditions (edges fixed at 0)
     for (int i = 0; i < rows; ++i) {
         M(i, 0) = 0.0;
-        M(i, cols - 1) = 10.0;
+        M(i, cols - 1) = 65.0;
     }
     for (int j = 0; j < cols; ++j) {
         M(0, j) = 0.0;
@@ -37,38 +37,45 @@ Matrix create_initial_heat_distribution(int rows, int cols) {
 
 int main() {
     // Create a sample heat distribution matrix
-    int grid_size = 50;
+    MPI_Init(NULL, NULL);
+    int process_Rank, size_Of_Cluster;
+    MPI_Comm_size(MPI_COMM_WORLD, &size_Of_Cluster);
+    MPI_Comm_rank(MPI_COMM_WORLD, &process_Rank);
+    int grid_size = 500;
+    std::chrono::steady_clock::time_point begin, end;
+    Solver solver;
+    HeatVisualizer viz;
+
     Matrix heat_grid = create_initial_heat_distribution(grid_size, grid_size);
-
+    // viz.animate_iteration(heat_grid, 0, 1000);
     std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
-    Solver solver = Solver(&heat_grid, 0.0);
-    for (int i = 0; i < 1000; i++) {
-        solver.iterate(1);
-        // Create visualizer and configure
-        HeatVisualizer viz;
-        viz.set_colormap("hot")
-        .set_title("Initial Heat Distribution")
-        .set_colorbar(true);
+    solver = Solver(&heat_grid, 0.0);
+    begin = std::chrono::steady_clock::now();
+    solver.gauss_seidel_iterate_1(1000);
+    end = std::chrono::steady_clock::now();
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+    // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
+    // viz.animate_iteration(heat_grid, 1000, 1000);
 
-        // Save heatmap to file (works on headless systems)
-        viz.heatmap(heat_grid);
-        viz.save("heat_heatmap.png");
-        std::cout << "Saved heat_heatmap.png" << std::endl;
+    heat_grid = create_initial_heat_distribution(grid_size, grid_size);
+    std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
+    // solver = Solver(&heat_grid, 0.0);
+    begin = std::chrono::steady_clock::now();
+    solver.jacobi_iterate_1(1000);
+    end = std::chrono::steady_clock::now();
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+    // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
+    // viz.animate_iteration(heat_grid, 1000, 1000);
 
-        // Save surface plot to file
-        viz.set_title("Heat Distribution (3D Surface)");
-        viz.surface(heat_grid);
-        viz.save("heat_surface.png");
-        std::cout << "Saved heat_surface.png" << std::endl;
-
-        // Save contour plot
-        viz.set_title("Heat Distribution (Contour)");
-        viz.contour(heat_grid);
-        viz.save("heat_contour.png");
-        std::cout << "Saved heat_contour.png" << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
-
-    }
+    heat_grid = create_initial_heat_distribution(grid_size, grid_size);
+    std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
+    // solver = Solver(&heat_grid, 0.0);
+    begin = std::chrono::steady_clock::now();
+    solver.jacobi_iterate_2(1000);
+    end = std::chrono::steady_clock::now();
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+    // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
+    // viz.animate_iteration(heat_grid, 1000, 1000);
 
     return 0;
 }

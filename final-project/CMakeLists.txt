@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(FIN CXX ASM)
 
+find_package(MPI REQUIRED)
+
 # Matplot++ integration via FetchContent
 include(FetchContent)
 
@@ -25,6 +27,8 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+SET(CMAKE_C_COMPILER mpicc)
+SET(CMAKE_CXX_COMPILER mpicxx)
 
 # Compiler flags for C files
 # set(CMAKE_CXXFLAGS_RELEASE "-O3 -march=native -mtune=native -flto -funroll-loops -ffast-math")
@@ -69,6 +73,8 @@ target_include_directories(FIN
     # PUBLIC ${CMAKE_SOURCE_DIR}/../02-simd/src/
 )
 
+# include_directories(SYSTEM ${MPI_INCLUDE_PATH})
+
 # Link Matplot++
 target_link_libraries(FIN PUBLIC matplot)
 
@@ -78,3 +84,5 @@ target_link_libraries(FIN PUBLIC matplot)
 #     COMMAND ${CMAKE_CXX_COMPILER} -S -O3 -mavx512f ${CXX_SRC_FILES} -o ${CMAKE_BINARY_DIR}/output.s
 #     COMMENT "Generating assembly listing"
 # )
+
+target_link_libraries(FIN PUBLIC MPI::MPI_CXX)
