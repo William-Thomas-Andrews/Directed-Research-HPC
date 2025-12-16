@@ -1,1 +1,0 @@
-/usr/bin/cc -O3 -mavx512f CMakeFiles/AVX.dir/test/Main.c.o CMakeFiles/AVX.dir/test/Test.c.o -o bin/AVX 

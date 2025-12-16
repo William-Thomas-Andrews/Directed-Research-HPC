@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/wtandrews/320_CSCI/Directed-Research-HPC/05-mpi/build",
-  "command": "/usr/bin/c++  -I/home/wtandrews/320_CSCI/Directed-Research-HPC/05-mpi/../01-matrix/include -I/usr/lib/x86_64-linux-gnu/openmpi/include -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -O3 -ffast-math -std=gnu++17 -o CMakeFiles/mpi_matmul.dir/test/main.cpp.o -c /home/wtandrews/320_CSCI/Directed-Research-HPC/05-mpi/test/main.cpp",
-  "file": "/home/wtandrews/320_CSCI/Directed-Research-HPC/05-mpi/test/main.cpp"
-}
-]
