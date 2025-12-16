@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define SIZE 2048
+#define SIZE 4096
 
 int run_tests() {
     clock_t begin, end;
@@ -62,7 +62,7 @@ int run_tests() {
     avx_matrix_multiply(&result_2, &A, &B);
     end = clock();
     time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("MM2 (AVX-512 Intrinsics):                 %.6Lf s\n", time_spent);
+    printf("MM2 (AVX-512 Basic):                      %.6Lf s\n", time_spent);
     if (cmp_matrix(&result, &result_2) == 1) {
         printf("     Correctness verified.\n");
     }

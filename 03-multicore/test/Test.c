@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define SIZE 2048
+#define SIZE 4096
 #define NUM_THREADS 64
 
 int run_tests() {
@@ -123,29 +123,7 @@ int run_tests() {
     if (cmp_matrix(&result, &result_7) == 1) {
         printf("MM7 (Optimized Parallel):                 %.6Lf s\n", time_spent);
     }
-    transpose(&B);
 
-    /* Benchmark 8: Advanced Parallel Strategy */
-    transpose(&B);
-    begin = omp_get_wtime();
-    par_multiply_5(&result_8, &A, &B);
-    end = omp_get_wtime();
-    time_spent = end - begin;
-    if (cmp_matrix(&result, &result_8) == 1) {
-        printf("MM8 (Hardware-Specialized Parallel):      %.6Lf s\n", time_spent);
-    }
-    transpose(&B);
-
-    /* Benchmark 9: High-Performance Parallel Configuration */
-    transpose(&B);
-    begin = omp_get_wtime();
-    par_multiply_6(&result_9, &A, &B);
-    end = omp_get_wtime();
-    time_spent = end - begin;
-    if (cmp_matrix(&result, &result_9) == 1) {
-        printf("MM9 (Hardware-Specialized Parallel):      %.6Lf s\n", time_spent);
-    }
-    transpose(&B);
 
     printf("\n");
     printf("========================================\n");

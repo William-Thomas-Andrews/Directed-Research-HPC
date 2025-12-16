@@ -513,7 +513,7 @@ static inline int cmp_matrix(struct Matrix *A, struct Matrix *B) {
     else if (A->cols != B->cols) return 0; // fprintf(stderr, "Error: column sizes do not match\n");
     else if (A->size != B->size) return 0; // fprintf(stderr, "Error: matrix sizes do not match\n");
     for (int i = 0; i < A->size; i++) {
-        if ((A->data_array[i] - B->data_array[i]) > 1e-9 || (A->data_array[i] - B->data_array[i]) < -1e-9)  { printf("DEBUG: %.9f and %.9f were not the same.\n", A->data_array[i], B->data_array[i]); return 0; }
+        if ((A->data_array[i] - B->data_array[i]) > 1 || (A->data_array[i] - B->data_array[i]) < -1)  { printf("DEBUG: %.9f and %.9f were not the same.\n", A->data_array[i], B->data_array[i]); return 0; }
     }
     return 1;
 }

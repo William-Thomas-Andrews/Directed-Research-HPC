@@ -27,12 +27,13 @@ void Solver::jacobi_1(Matrix& grid) {
 
 // Standard Jacobi iteration
 void Solver::jacobi_iterate_1(Matrix& grid, int iterations) {
-    // HeatVisualizer viz;
+    HeatVisualizer viz;
     for (int i = 0; i < iterations; i++) {
         this->jacobi_1(grid);
-        // if (i % 10 == 0) {
-        //     viz.animate_iteration(grid, i, 1000);
-        // }
+        if (i % 10 == 0) {
+            viz.animate_iteration(grid, i, 1000);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        }
     }
 }
 
@@ -63,7 +64,6 @@ void Solver::jacobi_iterate_2(Matrix& grid, int iterations) {
     Matrix prev = grid; // copy assignment
     auto job = [&](int index) {
         for (int i = 0; i < iterations; i++) {
-            // if (index == 0) prev = grid; // copy assignment
             barrier_obj.arrive_and_wait();
             if (i % 2 == 1) {
                 Solver::jacobi_2(prev, grid, index);
@@ -74,12 +74,8 @@ void Solver::jacobi_iterate_2(Matrix& grid, int iterations) {
             barrier_obj.arrive_and_wait();
         }
     };
-    for (int i = 0; i < num_threads; i++) {
-        threads.emplace_back(job, i);
-    }
-    for (int j = 0; j < num_threads; j++) {
-        threads[j].join();
-    }
+    for (int i = 0; i < num_threads; i++) threads.emplace_back(job, i);
+    for (int j = 0; j < num_threads; j++) threads[j].join();
 }
 
 

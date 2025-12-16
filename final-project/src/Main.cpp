@@ -7,7 +7,7 @@
 #include "Solver.hpp"
 
 #define ITERATIONS 10000
-#define SIZE 200
+#define SIZE 50
 
 // Example: Create initial heat distribution with hot spot in center
 Matrix create_initial_heat_distribution(int rows, int cols) {
@@ -49,16 +49,16 @@ int main() {
     HeatVisualizer viz;
     Matrix heat_grid;
 
-    heat_grid = create_initial_heat_distribution(grid_size, grid_size);
-    // std::uniqe_ptr<Matrix> ptr = std::make_unique<Matrix>(create_initial_heat_distribution(grid_size, grid_size));
-    viz.animate_iteration(heat_grid, 0, 1000);
-    // std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
-    begin = std::chrono::steady_clock::now();
-    solver.gauss_seidel_iterate_1(heat_grid, ITERATIONS);
-    end = std::chrono::steady_clock::now();
-    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
-    // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
-    viz.animate_iteration(heat_grid, 1000, 1000);
+    // heat_grid = create_initial_heat_distribution(grid_size, grid_size);
+    // // std::uniqe_ptr<Matrix> ptr = std::make_unique<Matrix>(create_initial_heat_distribution(grid_size, grid_size));
+    // viz.animate_iteration(heat_grid, 0, 1000);
+    // // std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
+    // begin = std::chrono::steady_clock::now();
+    // solver.gauss_seidel_iterate_1(heat_grid, ITERATIONS);
+    // end = std::chrono::steady_clock::now();
+    // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+    // // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
+    // viz.animate_iteration(heat_grid, 1000, 1000);
 
     heat_grid = create_initial_heat_distribution(grid_size, grid_size);
     // std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
@@ -69,15 +69,15 @@ int main() {
     // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
     viz.animate_iteration(heat_grid, 1000, 1000);
 
-    // std::this_thread::sleep_for(std::chrono::milliseconds(150));
-    heat_grid = create_initial_heat_distribution(grid_size, grid_size);
-    // std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
-    begin = std::chrono::steady_clock::now();
-    solver.jacobi_iterate_2(heat_grid, ITERATIONS);
-    end = std::chrono::steady_clock::now();
-    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
-    // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
-    viz.animate_iteration(heat_grid, 1000, 1000);
+    // // std::this_thread::sleep_for(std::chrono::milliseconds(150));
+    // heat_grid = create_initial_heat_distribution(grid_size, grid_size);
+    // // std::cout << "Matrix dimensions: " << heat_grid.get_rows() << "x" << heat_grid.get_cols() << std::endl;
+    // begin = std::chrono::steady_clock::now();
+    // solver.jacobi_iterate_2(heat_grid, ITERATIONS);
+    // end = std::chrono::steady_clock::now();
+    // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
+    // // std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << "[ns]" << std::endl;
+    // viz.animate_iteration(heat_grid, 1000, 1000);
 
     // TODO: Implement the double shared grid thing for above rather than constantly creating new grids
     // Also perhaps make a new way to lock it

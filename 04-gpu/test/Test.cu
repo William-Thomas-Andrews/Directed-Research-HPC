@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define POWER 10
+#define POWER 11
 #define SIZE pow(2, POWER)
 
 int run_tests() {
