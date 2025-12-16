@@ -1,7 +1,7 @@
-C_matrix/build/
-.vscode
 notes.txt
-
-AVX/build
-
-MultiCore/build
+01-matrix/build/
+02-simd/build/
+03-multicore/build/
+04-gpu/build/
+05-mpi/build/
+final-project/build/
