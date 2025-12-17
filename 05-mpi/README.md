@@ -19,7 +19,7 @@ int MPI_Send(void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI
 int MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Status *status);
 ```
 
-The argument `void *buf` specifies the start of the buffer of data being sent and received as a message. The argument `int count` specifies the amount of data elements of that particular buffer type to be sent/received. The argument `MPI_Datatype datatype` contains the MPI integrated datatype of the data to be sent/received. The `int dest` argument is for specifying which process should receive the message (this is not OS process identifier, but is the *rank* of the destination process within a specific `MPI_Comm`). For `MPI_Recv` there is a similar argument `int source` which specifies which process should receive the message (using the process 'rank'). The parameter `int tag` specifies an optional message tag for differentiating messages. The last parameter for `MPI_Send` is `MPI_Comm comm` which, "represents a logical group of MPI processes. The default communicator provided by MPI is `MPI_COMM_WORLD`; it contains all MPI processes." The last argument for `MPI_Recv` is `MPI_Status *status` which is the status of the reception.
+The argument `void *buf` specifies the start of the buffer of data being sent and received as a message. The argument `int count` specifies the amount of data elements of that particular buffer type to be sent/received. The argument `MPI_Datatype datatype` contains the MPI integrated datatype of the data to be sent/received. The `int dest` argument is for specifying which process should receive the message (this is not OS process identifier, but is the *rank* of the destination process within a specific `MPI_Comm`). For `MPI_Recv` there is a similar argument `int source` which specifies which process should receive the message (using the process *rank*). The parameter `int tag` specifies an optional message tag for differentiating messages. The last parameter for `MPI_Send` is `MPI_Comm comm` which, "represents a logical group of MPI processes. The default communicator provided by MPI is `MPI_COMM_WORLD`; it contains all MPI processes." The last argument for `MPI_Recv` is `MPI_Status *status` which is the status of the reception.
 
 
 
@@ -31,8 +31,6 @@ The argument `void *buf` specifies the start of the buffer of data being sent an
 
 - As we can see, MPI actually slows things down a lot because of the massive overhead of process creation and heavy message passing. However, as the workload increases in size, the MPI implementation actually starts to catch up to the naive matrix multiplication algorithm. 
 
-- 
-
 - Overall, as seen below and also stated by experts, "One downside [to interprocess communication] is that such communication between processes is often either complicated to set up or slow, or both, because operating systems typically provide a lot of protection
 between processes to avoid one process accidentally modifying data belonging to another process. Another downside
 is that there’s an inherent overhead in running multiple
@@ -42,9 +40,9 @@ process, and so forth. It’s not all negative: the added protection operating s
 between processes and the higher-level communication mechanisms mean that it
 can be easier to write safe concurrent code with processes rather than threads ...  Using separate processes for concurrency also has an additional advantage—you
 can run the separate processes on distinct machines connected over a network. Though
-this increases the communication cost, on a carefully designed system it can be a costeffective way of increasing the available parallelism and improving performance." (Williams, Concurrency in Action, 2nd Edition)
+this increases the communication cost, on a carefully designed system it can be a costeffective way of increasing the available parallelism and improving performance." (Williams, Concurrency in Action, 2nd Edition).
 
-- So as we can see from the results below, for any size of pure computations, other forms of concurrency and parallelism are much better than interprocess communication, but for computations on complicated distributed systems where security is emphasized, MPI might just be the way to go.
+
 
 ### 3.1 Timing Comparison
 | Small-size Implementation | Size | Time (seconds) | Speedup |
@@ -90,6 +88,16 @@ this increases the communication cost, on a carefully designed system it can be 
 | OpenMP Parallel AVX | 4096 | 0.135186 | 51.9x |
 | OpenMP Parallel AVX [Optimized] | 4096 | 0.077070 | 91.03x |
 | MPI | 4096 | 76.199275 | 4.61x | -->
+
+--------------------
+
+## 4. Conclusions
+
+- The MPI implementation was slower for all workloads but started catching up to the standard implementation as the workloads increased.
+
+- As we can see from the results above, most likely for any size of pure computations, other forms of multithreaded concurrency and parallelism are much more efficient and cost effective than interprocess communication, but for computations on complicated distributed systems where security is emphasized, MPI might just be the way to go.
+
+--------------------
 
 ## Features
 
