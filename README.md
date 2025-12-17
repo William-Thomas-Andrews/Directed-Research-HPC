@@ -1,4 +1,4 @@
-# High-Performance Computing Research Repository
+# High-Performance Computing Study Repository
 
 A collection of computational performance analysis projects focusing on algorithm optimization, parallel computing, and hardware-software interaction studies.
 
@@ -13,10 +13,7 @@ A comprehensive implementation of the 2D Laplace heat equation solver using mult
 **Key Features:**
 - Serial and parallel Gauss-Seidel iterative solvers
 - Serial and parallel Jacobi iterative solvers
-- MPI-based distributed computing with domain decomposition
-- OpenMP multithreading for shared memory parallelism
-- Hybrid MPI+OpenMP implementations
-- Convergence analysis and performance benchmarking
+- Multithreading for shared memory parallelism
 - Visualization tools for heat distribution analysis
 
 **[View Full Project →](./04-heat/)**
@@ -28,14 +25,13 @@ A comprehensive implementation of the 2D Laplace heat equation solver using mult
 This repository contains multiple independent research projects exploring various aspects of high-performance computing, with emphasis on:
 
 - **Algorithm Performance Analysis**: Comparative studies of different computational approaches
-- **Parallel Computing Strategies**: Threading, process distribution, and scalability analysis
+- **Parallel Computing Strategies**: Multi-threading, multi-core computing, and inter-process communication
 - **Memory Hierarchy Optimization**: Cache efficiency, NUMA awareness, and memory access patterns
 - **Compiler Optimization Impact**: Effects of various compilation flags and strategies
 - **GPU and CUDA Programming**: Speedup capabilities and SIMT architecture exploitation
 - **SIMD Vectorization**: AVX instruction sets and vector register optimization
 - **Multithreading in Computing Kernels**: Efficient implementation and effectiveness analysis
 - **Interprocess Communication**: MPI message passing costs vs benefits
-- **Domain Decomposition**: Partitioning strategies for distributed numerical solvers
 - **Numerical Methods**: Iterative solvers and convergence analysis
 - **Scientific Visualization**: Data analysis and heatmap generation
 
@@ -84,7 +80,7 @@ This repository contains multiple independent research projects exploring variou
 
 - Message Passing Interface implementation for distributed memory systems with process-based parallelization strategies.
 
-- **Key Features:** Point-to-point and collective communication, domain decomposition, load balancing, network performance analysis
+- **Key Features:** Interprocess communication in scientific computing, message passing, domain decomposition
 
 ## Getting Started
 
