@@ -145,6 +145,14 @@ The simulation successfully captures the physical behavior of heat diffusion:
 ![3D Surface Plot](images/heat_surface.png)
 <!-- *Figure 2: 3D surface visualization showing temperature as height* -->
 
+and after a certain number of iterations becomes
+
+![3D Surface Plot](images/heat_surface-2.png)
+
+and then finally
+
+![3D Surface Plot](images/heat_surface-3.png)
+
 The visualizations demonstrate:
 - Heat spreads from high-temperature regions to cooler areas
 - Temperature gradients smooth out over time
@@ -155,6 +163,9 @@ The visualizations demonstrate:
 
 ![Contour Plot](images/heat_contour.png)
 <!-- *Figure 3: Contour plot showing isothermal lines* -->
+which becomes 
+
+![3D Surface Plot](images/heat_contour-1.png)
 
 Multiple visualization methods provide different insights:
 - **Heatmaps**: Show spatial temperature distribution with color coding
