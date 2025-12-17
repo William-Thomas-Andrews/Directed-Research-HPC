@@ -97,6 +97,13 @@ This eliminates the need to copy data between iterations while maintaining corre
 - For small grid sizes, sequential Jacobi may outperform parallel version
 - Gauss-Seidel typically converges faster than Jacobi (fewer iterations) but cannot be parallelized
 
+**Synchronization Time Costs:**
+- This is called twice in my parallel Jacobi solver per iteration to make sure threads are synchronized, which has some performance costs as you can imagine
+```cpp
+barrier_obj.arrive_and_wait();
+```
+- This is necessary, however, because of how the algorithm requires all calculations in one iteration to be complete before entering the next iteration (even though it is inherently parallelizable during each iteration)
+
 ---
 
 ## 4. Methodology
@@ -109,7 +116,7 @@ The simulation uses a finite difference scheme to discretize the 2D heat equatio
 
 <!-- 2. **Time Stepping**: An explicit forward Euler scheme updates temperatures at each time step based on neighboring cell values. -->
 
-2. **Numerical Scheme**: The stencil update formula is:
+2. **Numerical Scheme**: The stencil update formula I used is:
    ```cpp
    grid(i, j) = 0.25 * (grid(i, j-1) + grid(i, j+1) + grid(i-1, j) + grid(i+1, j));
    ```
@@ -163,7 +170,7 @@ The visualizations demonstrate:
 
 ![Contour Plot](images/heat_contour.png)
 <!-- *Figure 3: Contour plot showing isothermal lines* -->
-which becomes 
+and after a certain number of iterations becomes
 
 ![3D Surface Plot](images/heat_contour-1.png)
 
@@ -193,7 +200,7 @@ This project demonstrates how computational methods can simulate real-world phys
 **Physics Accuracy**:
 - The finite difference method accurately approximates the continuous heat equation
 - Physical laws (conservation, diffusion dynamics) are preserved in the discrete formulation
-- Numerical stability can be tricky to tune
+- Numerical stability can be tricky to tune constants for
 
 **Visualization Value**:
 - Multiple visualization types provide complementary perspectives on the same data
