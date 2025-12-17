@@ -35,7 +35,7 @@ Relevant GPU computing concepts:
 
 ### 3.1 Implementation Details
 
-Five GPU implementations were developed and compared against CPU baselines:
+Five GPU implementations were compared against CPU baselines:
 
 1. **Basic Double Precision**: Straightforward CUDA kernel with one thread per output element
 2. **Vectorized Double Precision**: Optimized kernel using memory coalescing and tiling
@@ -50,7 +50,7 @@ All implementations include host-to-device and device-to-host memory transfers i
 - **GPU**: NVIDIA GPU with CUDA support
 - **CUDA Version**: nvcc with `-O3` optimization flags
 - **Host CPU**: Linux system with AVX512 support (for comparison)
-- **Test Sizes**: Focused on large matrices (2048×2048) where GPU overhead is amortized
+- **Test Sizes**: Focused on large matrices (2048×2048) where GPU overhead is amortized (smaller than that the GPU computation time is just made up of overhead essentially)
 
 ### 3.3 Measurement Method
 
@@ -113,11 +113,9 @@ All implementations include host-to-device and device-to-host memory transfers i
 
 2. **GPU vs. Best CPU**: Even basic GPU implementations (130×) exceed the best CPU result (91× from OpenMP+AVX512), with optimized GPU kernels reaching 8000× speedup.
 
-3. **cuBLAS Performance**: NVIDIA's cuBLAS library is highly optimized, achieving near-peak performance with minimal code complexity compared to custom kernels.
+3. **cuBLAS Performance**: NVIDIA's cuBLAS library is highly optimized, achieving near-peak performance with minimal code complexity compared to custom kernels. Since throughput for doubles is much lower than for single precision floats, the lower bound on computation time is much higher for doubles than single precision floats and we observe that boundary above.
 
-4. **Memory Transfer Overhead**: Times include data transfers, yet GPUs still dominate for large matrices. Smaller sizes (commented out) show overhead can negate benefits.
-
-5. **Diminishing Returns**: The jump from basic to vectorized GPU kernels (130× to 185×) is modest compared to the CPU optimization journey, showing GPUs are naturally well-suited to this workload.
+4. **Diminishing Returns**: The jump from basic to vectorized GPU kernels (130× to 185×) is modest compared to the CPU optimization journey, showing GPUs are naturally well-suited to this workload.
 
 
 ---
@@ -147,7 +145,7 @@ GPUs represent a paradigm shift for compute-intensive workloads. Key insights:
 
 This project demonstrates GPU computing's transformative impact on parallel workloads. The 8162× speedup achieved with cuBLAS single precision represents a 90× improvement over the best CPU implementation (OpenMP+AVX512), validating GPUs for matrix operations.
 
-The progression from naive CPU (7.0s) to optimized GPU (0.0009s) for 2048×2048 matrices shows the full potential of hardware-aware optimization. However, the commented results reveal that overhead makes GPUs inefficient for small problems—understanding this crossover point is essential for real-world applications.
+The progression from naive CPU (7.0s) to optimized GPU (0.0009s) for 2048×2048 matrices shows the full potential of hardware-aware optimization.
 
 
 ---
