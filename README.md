@@ -6,7 +6,7 @@ A collection of computational performance analysis projects focusing on algorith
 
 **Parallel Numerical Methods for Scientific Computing**
 
-![Heat Distribution Heatmap](./final-project/images/heat_contour.png)
+![Heat Distribution Heatmap](./final-project/images/heat_contour_display.png)
 
 A comprehensive implementation of the 2D Laplace heat equation solver using multiple numerical methods (Gauss-Seidel and Jacobi) with both serial and parallel approaches. This project demonstrates the practical application of HPC techniques to scientific computing problems.
 

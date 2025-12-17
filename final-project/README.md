@@ -11,7 +11,7 @@ Heat diffusion is a fundamental physical process governed by the heat equation, 
 
 **Objective**: To create an accurate numerical simulation of heat transfer using both sequential and parallel multithreaded approaches, visualize the thermal evolution through heatmaps and surface plots, and explore the computational challenges of parallelizing iterative solvers while demonstrating HPC techniques from the **03-multicore** module.
 
-![Heat Distribution Visualization](images/heat_heatmap.png)
+![Heat Distribution Visualization](images/heat_heatmap_display.png)
 <!-- *Figure 1: 2D heatmap showing temperature distribution* -->
 
 ---
@@ -149,7 +149,7 @@ The simulation uses a finite difference scheme to discretize the 2D heat equatio
 
 The simulation successfully captures the physical behavior of heat diffusion:
 
-![3D Surface Plot](images/heat_surface.png)
+![3D Surface Plot](images/heat_surface_display.png)
 <!-- *Figure 2: 3D surface visualization showing temperature as height* -->
 
 and after a certain number of iterations becomes
@@ -168,7 +168,7 @@ The visualizations demonstrate:
 
 ### 5.2 Visual Analysis
 
-![Contour Plot](images/heat_contour.png)
+![Contour Plot](images/heat_contour_display.png)
 <!-- *Figure 3: Contour plot showing isothermal lines* -->
 and after a certain number of iterations becomes
 
