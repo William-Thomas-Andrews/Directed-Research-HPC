@@ -195,20 +195,20 @@ void HeatVisualizer::animate_iteration(Matrix& M, int iteration, int max_iterati
 
     // Save heatmap to file (works on headless systems) with fixed 0-100 range
     this->heatmap(M, 0.0, 100.0);
-    this->save("heat_heatmap.png");
-    // std::cout << "Saved heat_heatmap.png" << std::endl;
+    this->save("../images/heat_heatmap.png");
+    // std::cout << "Saved images/heat_heatmap.png" << std::endl;
 
     // Save surface plot to file
     this->set_title("Heat Distribution (3D Surface)");
     this->surface(M, 0.0, 100);
-    this->save("heat_surface.png");
-    // std::cout << "Saved heat_surface.png" << std::endl;
+    this->save("../images/heat_surface.png");
+    // std::cout << "Saved images/heat_surface.png" << std::endl;
 
     // Save contour plot
-    // this->set_title("Heat Distribution (Contour)");
-    // this->contour(M);
-    // this->save("heat_contour.png");
-    // std::cout << "Saved heat_contour.png" << std::endl;
+    this->set_title("Heat Distribution (Contour)");
+    this->contour(M);
+    this->save("../images/heat_contour.png");
+    std::cout << "Saved heat_contour.png" << std::endl;
     std::cout << " - Iteration " << iteration << "/" << max_iterations << "\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(150));
 }

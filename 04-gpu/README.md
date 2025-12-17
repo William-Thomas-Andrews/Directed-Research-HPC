@@ -1,7 +1,7 @@
 # GPU Computing and CUDA Programming
 
 ## Abstract
-This project investigates GPU acceleration techniques using CUDA to harness the massive parallel processing power of graphics processing units. Building upon previous optimizations in **02-simd** and **03-multicore**, I explore how GPU architecture can dramatically accelerate computationally intensive operations.
+This project investigates GPU acceleration techniques using CUDA to harness the massive parallel processing power of graphics processing units. Building upon previous optimizations in **02-simd** and **03-multicore**, I explore how GPU architecture can dramatically accelerate computationally intensive operations. Kernel concepts and implementations are used from [https://siboehm.com/articles/22/CUDA-MMM](https://siboehm.com/articles/22/CUDA-MMM).
 
 ---
 
@@ -21,13 +21,13 @@ Relevant GPU computing concepts:
 
 - **NVIDIA CUDA**: A parallel computing platform and programming model that provides direct access to the GPU's instruction set and computational elements for executing compute kernels.
 
-- **Thread Hierarchy**: CUDA organizes threads into a three-level hierarchy (Grid → Thread Block → Warp → Thread) for efficient coordination and resource management.
+- **Thread Hierarchy**: CUDA organizes threads into a three-level hierarchy (|Grid| > |Thread Block| > |Warp| > |Thread|) for efficient coordination and resource management.
 
 - **Coalesced Memory Access**: Memory access pattern where consecutive threads access consecutive memory locations, maximizing memory bandwidth by leveraging spatial locality.
 
 - **Warp Divergence**: Performance degradation that occurs when threads within a warp take different execution paths due to conditionals, forcing serialized execution.
 
-- **Memory Hierarchy**: GPUs use multiple memory types with different speeds and scopes—global memory (large, slow), shared memory (small, fast, block-scoped), and registers (fastest, thread-private).
+- **Memory Hierarchy**: GPUs use multiple memory types with different speeds and scopes with global memory (large, slow), shared memory (small, fast, block-scoped), and registers (fastest, thread-private).
 
 ---
 
