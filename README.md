@@ -2,6 +2,27 @@
 
 A collection of computational performance analysis projects focusing on algorithm optimization, parallel computing, and hardware-software interaction studies.
 
+## Final Project: 2D Laplace Heat Equation Solver
+
+**Parallel Numerical Methods for Scientific Computing**
+
+![Heat Distribution Heatmap](./final-project/images/heat_contour.png)
+
+A comprehensive implementation of the 2D Laplace heat equation solver using multiple numerical methods (Gauss-Seidel and Jacobi) with both serial and parallel approaches. This project demonstrates the practical application of HPC techniques to scientific computing problems.
+
+**Key Features:**
+- Serial and parallel Gauss-Seidel iterative solvers
+- Serial and parallel Jacobi iterative solvers
+- MPI-based distributed computing with domain decomposition
+- OpenMP multithreading for shared memory parallelism
+- Hybrid MPI+OpenMP implementations
+- Convergence analysis and performance benchmarking
+- Visualization tools for heat distribution analysis
+
+**[View Full Project →](./04-heat/)**
+
+---
+
 ## Repository Overview
 
 This repository contains multiple independent research projects exploring various aspects of high-performance computing, with emphasis on:
@@ -10,45 +31,64 @@ This repository contains multiple independent research projects exploring variou
 - **Parallel Computing Strategies**: Threading, process distribution, and scalability analysis
 - **Memory Hierarchy Optimization**: Cache efficiency, NUMA awareness, and memory access patterns
 - **Compiler Optimization Impact**: Effects of various compilation flags and strategies
+- **GPU and CUDA Programming**: Speedup capabilities and SIMT architecture exploitation
+- **SIMD Vectorization**: AVX instruction sets and vector register optimization
+- **Multithreading in Computing Kernels**: Efficient implementation and effectiveness analysis
+- **Interprocess Communication**: MPI message passing costs vs benefits
+- **Domain Decomposition**: Partitioning strategies for distributed numerical solvers
+- **Numerical Methods**: Iterative solvers and convergence analysis
+- **Scientific Visualization**: Data analysis and heatmap generation
 
-## Current Projects
+## Intro Projects
 
 
 
 ### [Project 1: High Performance Matrix Framework](./01-matrix/)
-**Matrix Multiplication Performance Analysis**
 
-Comprehensive C implementation comparing 8 different matrix multiplication algorithms including serial implementations, parallel strategies with threading, and optimized block algorithms. Features high-precision arithmetic, correctness verification, and detailed performance benchmarking.
+- Comparative analysis of 8 matrix multiplication algorithms: serial, parallel threaded, and cache-optimized blocked implementations with performance benchmarking.
 
-**Key Features:**
-- Multiple algorithm implementations (serial, parallel, blocked)
-- Cache optimization analysis
-- Thread-safe parallel processing
-- Compiler optimization studies
-- Memory-efficient operations
-- Extremely fast blocked matrix algorithms
+- **Key Features:** Serial/parallel/blocked algorithms, cache optimization, thread-safe processing, compiler optimization studies
+
+-----------------
+
+### [Project 2: SIMD Vectorization with AVX-512](./02-simd/)
+
+- AVX-512 instruction set implementation for vectorized matrix operations with cache locality optimization and vector register performance analysis.
+
+- **Key Features:** AVX-512 SIMD instructions, cache architecture analysis, register vs cache performance comparison
+
+-----------------
 
 
-### [Project 2: AVX Instruction Set Implementation, SIMD Vectorization, and Cache Properties Analysis](./02-simd/)
-**Matrix Multiplication Performance Analysis**
+### [Project 3: Multi-Core Parallelization](./03-multicore/)
 
-An implementation that seeks to improve upon standard C matrix multiplication algorithms shown in the **01-matrix** project by using the AVX-512 instruction set. I used these instructions to SIMD vectorize my matrix operations in various ways to efficiently use cache locality and fully utilize the comparative speed of registers. As a result, I did infact create algorithms that are faster than previous tries.
+- Exploring multi-core CPU performance through parallel algorithm implementations and thread scaling analysis.
 
-**Key Features:**
-- AVX-512 Intel instruction set
-- Cache architecture analysis
-- Algorithm benchmarking
-- Cache vs Single Instruction Multiple Data (SIMD) vector register perfromance analysis
+- **Key Features:** Thread pool management, core affinity optimization, scalability benchmarking, NUMA-aware design
+
+
+-----------------
+
+
+### [Project 4: GPU Computing with CUDA](./04-cuda/)
+
+- GPU acceleration using CUDA for compute-intensive algorithms, demonstrating SIMT architecture and massive parallelism.
+
+- **Key Features:** CUDA kernel development, memory coalescing, shared memory optimization, GPU vs CPU performance analysis
+
+
+-----------------
+
+
+### [Project 5: Distributed Computing with MPI](./05-mpi/)
+
+- Message Passing Interface implementation for distributed memory systems with process-based parallelization strategies.
+
+- **Key Features:** Point-to-point and collective communication, domain decomposition, load balancing, network performance analysis
 
 ## Getting Started
 
 Each subproject contains its own build system and documentation. Navigate to individual project directories for specific instructions.
-
-### Prerequisites
-- CMake 3.22.1 or higher
-- GCC with modern C standard support
-- pthread library
-- (Optional) Valgrind for memory analysis
 
 ## Research Applications
 
@@ -58,41 +98,6 @@ This repository supports research in:
 - **Parallel Computing Education**: Demonstrating threading concepts and trade-offs
 - **Systems Programming**: Low-level optimization techniques and memory management
 - **Academic Benchmarking**: Standardized performance comparison methodologies
-
-## Future Subprojects
-
-Additional projects planned for this repository include:
-
-- **GPU Computing Studies**: CUDA/OpenCL performance analysis
-- **Network Computing**: MPI and distributed algorithm implementations
-- **Memory Management**: Custom allocator performance comparison
-- **SIMD Optimization**: Vectorization strategy analysis
-
-## Repository Structure
-
-```
-Directed-Research-HPC/
-├── 01-matrix/           # Matrix multiplication performance study
-│   ├── build/            # Build artifacts
-│   ├── include/          # Header files
-│   ├── scripts/          # Build and run automation
-│   ├── src/              # Source implementations
-│   ├── test/             # Test drivers and validation
-│   └── README.md         # Detailed project documentation
-├── 02-simd/             # SIMD vectorization with AVX-512
-│   ├── build/            # Build artifacts
-│   ├── scripts/          # Build and run automation
-│   ├── src/              # Source implementations
-│   ├── test/             # Test drivers and validation
-│   └── README.md         # Detailed project documentation
-├── 03-multicore/        # Multi-core parallelization study
-│   ├── build/            # Build artifacts
-│   ├── scripts/          # Build and run automation
-│   ├── src/              # Source implementations
-│   ├── test/             # Test drivers and validation
-│   └── README.md         # Detailed project documentation
-└── README.md            # This file
-```
 
 ## Contributing
 
